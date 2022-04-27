@@ -1,0 +1,57 @@
+const validateName = {
+  notNull: true, notEmpty: true, len: [12, 100]
+};
+const validateEmail = {
+  notNull: true, notEmpty: true, isEmail: true, len: [0, 100]
+};
+const validatePassword = {
+  notNull: true, notEmpty: true, len: [6, 32]
+};
+const validateRole = {
+  notNull: true, notEmpty: true, len: [0, 20]
+};
+
+module.exports = (sequelize,
+  DataTypes) => {
+  const User = sequelize.define('User',
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: validateName
+      },
+
+      email: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: validateEmail
+      },
+
+      password: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: validatePassword
+      },
+
+      role: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: validateRole
+      },
+    },
+
+    {
+      timestamps: false,
+
+      tableName: 'users',
+
+    });
+
+  return User;
+};
