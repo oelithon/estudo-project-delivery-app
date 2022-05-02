@@ -1,4 +1,4 @@
-const loginRoute = require('../routes/loginRoute');
+const loginRoute = require('./loginRoute');
 
 const routers = [loginRoute];
 
