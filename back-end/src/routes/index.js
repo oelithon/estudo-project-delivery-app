@@ -1,3 +1,5 @@
-const routers = [];
+const registerRouter = require('./registerRoute');
 
-export default routers;
+const routers = [registerRouter];
+
+module.exports = routers;
