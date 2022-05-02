@@ -1,0 +1,88 @@
+.Login-div {
+  margin: 0;
+}
+
+.Login-logo {
+  height: 250px;
+  object-fit: cover;
+  object-position: 0 25px;
+}
+
+.App-name {
+  color: black;
+  font-size: 30px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.Login-main {
+  align-items: center;
+  background-color: white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  font-size: 15px;
+  height: 30px;
+  margin: 1px;
+  padding: 3px;
+  width: 220px;
+}
+
+input::placeholder {
+  padding-left: 3px;
+}
+
+.Login-form {
+  align-items: left;
+  background-color: rgb(221, 238, 236);
+  border: 1px solid lightgray;
+  box-shadow: 0 4px 8px 0 lightgray , 0 6px 8px 0 lightgray;
+  display: flex;
+  flex-flow: column wrap;
+  height: auto;
+  justify-content: center;
+  padding: 3px 15px 20px;
+  width: auto;
+}
+
+.Login-label {
+  color: black;
+  font-size: 14px;
+  margin: 10px 10px 3px;
+}
+
+button {
+  border-radius: 5px;
+  height: 35px;
+  margin: 1px;
+  margin-top: 15px;
+  padding: 5px;
+  width: 230px;
+}
+
+.Login-button {
+  background-color: rgb(7, 114, 60);
+  border: 1px solid rgb(7, 114, 60);
+  color: white;
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.Register-button {
+  border: 1px solid rgb(7, 114, 60);
+  color: rgb(7, 114, 60);
+  font-size: 18px;
+  font-weight: 200;
+}
+
+button:hover {
+  font-weight: 700;
+}
+
+button:disabled {
+  font-weight: 1;
+}
