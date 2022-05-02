@@ -1,4 +1,4 @@
-import Content from './components/Content.jsx';
+import Content from './components/Content.js';
 import './App.css';
 
 function App() {
