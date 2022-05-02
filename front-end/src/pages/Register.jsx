@@ -1,27 +1,25 @@
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 function Register() {
-
   const history = useHistory();
 
   const handleRegisterClick = () => {
     console.log('Clicou no botão de Login!');
     history.push('/');
-  }
+  };
 
   const handleEmailChange = (event) => {
     console.log(event.target.value);
-  }
+  };
 
   const handlePasswordChange = () => {
     console.log('Alterou o input de Password!');
-  }
+  };
 
   return (
-  <div>
-    <main className="Login-main">
+    <div>
+      <main className="Login-main">
         <h3 className="App-name">
           Cadastro
         </h3>
@@ -59,12 +57,12 @@ function Register() {
               type="button"
               onClick={ handleRegisterClick }
             >
-            CADASTRAR
+              CADASTRAR
             </button>
           </Link>
         </form>
-    </main>
-  </div>
+      </main>
+    </div>
   );
 }
 

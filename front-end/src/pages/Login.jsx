@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
