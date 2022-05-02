@@ -6,10 +6,10 @@ import Register from '../pages/Register';
 function Content() {
   return (
     <Switch>
-      <Route exact path='/' component={ Login } />
-      <Route exact path='/subscribe' component={ Register } />
+      <Route exact path="/" component={ Login } />
+      <Route exact path="/subscribe" component={ Register } />
     </Switch>
-  )
+  );
 }
 
 export default Content;

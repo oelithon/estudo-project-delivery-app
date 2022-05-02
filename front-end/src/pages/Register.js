@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 function Register() {
@@ -7,16 +7,16 @@ function Register() {
   const history = useHistory();
 
   const handleRegisterClick = () => {
-    console.log('Clicou no botão de Login!')
+    console.log('Clicou no botão de Login!');
     history.push('/');
   }
 
   const handleEmailChange = (event) => {
-    console.log(event.target.value)
+    console.log(event.target.value);
   }
 
   const handlePasswordChange = () => {
-    console.log('Alterou o input de Password!')
+    console.log('Alterou o input de Password!');
   }
 
   return (
@@ -41,7 +41,7 @@ function Register() {
             data-testid="common_register__input-email"
             type="text"
             placeholder="Seu nome"
-            onChange={handleEmailChange}
+            onChange={ handleEmailChange }
           />
           <p className="Login-label">
             Senha
@@ -50,22 +50,22 @@ function Register() {
             data-testid="common_register__input-password"
             type="password"
             placeholder="***********"
-            onChange={handlePasswordChange}
+            onChange={ handlePasswordChange }
           />
-          <Link to='/' >
-          <button
-            data-testid="common_login__button-login"
-            className="Login-button"
-            type="button"
-            onClick={handleRegisterClick}
-          >
+          <Link to="/">
+            <button
+              data-testid="common_login__button-login"
+              className="Login-button"
+              type="button"
+              onClick={ handleRegisterClick }
+            >
             CADASTRAR
-          </button>
+            </button>
           </Link>
         </form>
-      </main>
+    </main>
   </div>
-  )
+  );
 }
 
 export default Register;

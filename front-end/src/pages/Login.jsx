@@ -1,31 +1,27 @@
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/Zeca.png';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
 import '../styles/Login.css';
 
-
 function Login() {
-
   const history = useHistory();
 
   const handleLoginClick = () => {
-    console.log('Clicou no botão de Login!')
+    console.log('Clicou no botão de Login!');
     history.push('/subscribe');
-  }
+  };
 
   const handleEmailChange = (event) => {
-    console.log(event.target.value)
-  }
-
+    console.log(event.target.value);
+  };
 
   const handlePasswordChange = () => {
-    console.log('Alterou o input de Password!')
-  }
+    console.log('Alterou o input de Password!');
+  };
 
   return (
     <div className="Login-div">
       <main className="Login-main">
-        <img src={logo} className="Login-logo" alt="logo" />
+        <img src={ logo } className="Login-logo" alt="logo" />
         <h3 className="App-name">
           Zeca Delivery!
         </h3>
@@ -37,7 +33,7 @@ function Login() {
             data-testid="common_login__input-email"
             type="text"
             placeholder="email@trybeer.com.br"
-            onChange={handleEmailChange}
+            onChange={ handleEmailChange }
           />
           <p className="Login-label">
             Senha
@@ -46,24 +42,24 @@ function Login() {
             data-testid="common_login__input-password"
             type="password"
             placeholder="***********"
-            onChange={handlePasswordChange}
+            onChange={ handlePasswordChange }
           />
           <button
             data-testid="common_login__button-login"
             className="Login-button"
             type="button"
-            onClick={handleLoginClick}
+            onClick={ handleLoginClick }
           >
             LOGIN
           </button>
-          <Link to="/subscribe" >
-          <button
-            data-testeid="common_login__button-register"
-            className="Register-button"
-            type="button"
-          >
-            Ainda não tenho conta
-          </button>
+          <Link to="/subscribe">
+            <button
+              data-testeid="common_login__button-register"
+              className="Register-button"
+              type="button"
+            >
+              Ainda não tenho conta
+            </button>
           </Link>
         </form>
       </main>
