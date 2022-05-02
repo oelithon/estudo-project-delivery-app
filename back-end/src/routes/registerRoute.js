@@ -1,7 +1,11 @@
-import express from 'express';
+const express = require('express');
+const { createUserValidation } = require('../middlewares/userMiddlewares');
+
 const router = express.Router();
-import { createUserValidation } from '../middlewares/userMiddlewares'
 
 router
-.route('/register')
-.post(createUserValidation)
+  .route('/register')
+  .get((req, res) => res.status(200).json('deubom'))
+  .post(createUserValidation);
+
+module.exports = router;
