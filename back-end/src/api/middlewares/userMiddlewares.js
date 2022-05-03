@@ -24,9 +24,7 @@ const loginValidation = (req, res, next) => {
 };
 
 const createUserValidation = (req, res, next) => {
-  console.log(req.body);
   const body = schema.validate(req.body);
-  console.log(body);
   if ('error' in body) return res.status(BAD_REQUEST).json(body.error.message);
 
   next();
