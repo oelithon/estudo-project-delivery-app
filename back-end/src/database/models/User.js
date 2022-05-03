@@ -8,7 +8,7 @@ const validatePassword = {
   notNull: true, notEmpty: true, len: [6, 32]
 };
 const validateRole = {
-  notNull: true, notEmpty: true, len: [0, 20]
+  notEmpty: true, len: [0, 20]
 };
 
 module.exports = (sequelize,
@@ -40,7 +40,6 @@ module.exports = (sequelize,
       },
 
       role: {
-        allowNull: false,
         type: DataTypes.STRING,
         validate: validateRole
       },
