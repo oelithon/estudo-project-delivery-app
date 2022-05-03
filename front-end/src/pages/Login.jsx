@@ -16,26 +16,26 @@ function Login() {
           <Input
             inputLabel="Login"
             className="default"
-            data-testid="common_login__input-email"
+            dataTestId="common_login__input-email"
             type="text"
             placeholder="email@trybeer.com.br"
           />
           <Input
             inputLabel="Senha"
             className="default"
-            data-testid="common_login__input-password"
+            dataTestId="common_login__input-password"
             type="password"
             placeholder="**********"
           />
           <Button
             path="/subscribe"
-            data-testid="common_login__button-login"
+            dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="LOGIN"
           />
           <Button
             path="/subscribe"
-            data-testid="common_login__button-register"
+            dataTestId="common_login__button-register"
             className="tertiary-button"
             buttonText="Ainda não tenho conta"
           />
