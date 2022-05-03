@@ -1,6 +1,6 @@
 const registerRouter = require('./registerRoute');
 const loginRoute = require('./loginRoute');
 
-const routers = [registerRouter, loginRoute];
+// const routers = [registerRouter, loginRoute];
 
-module.exports = routers;
+module.exports = [registerRouter, loginRoute];
