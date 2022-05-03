@@ -1,5 +1,48 @@
 .ProductCard__div {
-  border: 1px solid black;
+  border: 1.5px solid rgb(104, 95, 95);
+  height: 32rem;
   width: 20rem;
-  height: 30rem;
+  position: relative;
+  box-shadow: 2px 6px 8px #888888;
+}
+
+.productPrice {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  background-color: #e4d1d125;
+
+  border-radius: 10%;
+  border: 1px solid #a79999;
+
+  width: fit-content;
+  height: fit-content;
+
+  font-size: xx-large;
+  font-weight: bold;
+
+  position: absolute;
+  top: 0;
+}
+
+.productDescriptionAndCounter {
+  background-color: #2fc18c71;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+}
+
+.productCounter {
+  margin-top: 0.5rem;
+  transform: translateX(33%);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productImage {
+  width: 13rem;
+  height: 25rem;
 }
