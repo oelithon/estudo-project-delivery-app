@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Button.css';
+import './style.css';
 
 function Button({ path, className, dataTestId, buttonText, onClick }) {
   return (

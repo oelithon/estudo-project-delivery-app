@@ -1,5 +1,6 @@
 import React from 'react';
-import './Input.css';
+import PropTypes from 'prop-types';
+import './style.css';
 
 function Input({ className, dataTestId, inputLabel, placeholder, type }) {
   const handleChange = ({ target }) => {

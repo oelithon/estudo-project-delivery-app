@@ -1,8 +1,7 @@
 import React from 'react';
+import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
-import Button from '../components/button/Button';
-import Input from '../components/input/Input';
 
 function Login() {
   return (
