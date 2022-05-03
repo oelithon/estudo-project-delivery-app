@@ -7,7 +7,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const { User } = require('../../services/userService');
+const { User } = require('../services/userService');
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
