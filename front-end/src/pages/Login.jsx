@@ -1,16 +1,9 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
+import Button from '../components/button/Button';
 
 function Login() {
-  const history = useHistory();
-
-  const handleLoginClick = () => {
-    console.log('Clicou no botão de Login!');
-    history.push('/subscribe');
-  };
-
   const handleEmailChange = (event) => {
     console.log(event.target.value);
   };
@@ -45,23 +38,18 @@ function Login() {
             placeholder="***********"
             onChange={ handlePasswordChange }
           />
-          <button
+          <Button
+            path="/subscribe"
             data-testid="common_login__button-login"
-            className="Login-button"
-            type="button"
-            onClick={ handleLoginClick }
-          >
-            LOGIN
-          </button>
-          <Link to="/subscribe">
-            <button
-              data-testeid="common_login__button-register"
-              className="Register-button"
-              type="button"
-            >
-              Ainda não tenho conta
-            </button>
-          </Link>
+            className="primary-button"
+            buttonText="LOGIN"
+          />
+          <Button
+            path="/subscribe"
+            data-testid="common_login__button-register"
+            className="tertiary-button"
+            buttonText="Ainda não tenho conta"
+          />
         </form>
       </main>
     </div>
