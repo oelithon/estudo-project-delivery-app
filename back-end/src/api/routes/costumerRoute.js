@@ -6,6 +6,6 @@ const router = express.Router();
 
 router
   .route('/customer/products')
-  .get(getAllProducts);
+  .get(validToken, getAllProducts);
 
 module.exports = router;
