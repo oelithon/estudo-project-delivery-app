@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const { Sale, User } = require('../../database/models');
 const { errorResponse, goodResponse } = require('../helpers/response');
 const { OK, INTERNAL_SERVER_ERROR } = require('../helpers/statusCode');
@@ -14,7 +15,6 @@ const getItemById = async (id) => {
 
 const getAllByUserId = async (token) => {
   try {
-  
     const { email } = await decoder(token);
     const { id } = await User.findOne({ where: { email } });
     const orders = await Sale.findAll({ where: { user_id: id } });
@@ -25,8 +25,7 @@ const getAllByUserId = async (token) => {
   }
 };
 
-
 module.exports = {
-  getItemById, 
+  getItemById,
   getAllByUserId,
 };
