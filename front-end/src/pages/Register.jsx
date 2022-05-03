@@ -37,7 +37,7 @@ function Register() {
             placeholder="**********"
           />
           <Button
-            path="/"
+            path="/login"
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="CADASTRAR"

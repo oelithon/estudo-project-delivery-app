@@ -28,13 +28,13 @@ function Login() {
             placeholder="**********"
           />
           <Button
-            path="/subscribe"
+            path="/register"
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="LOGIN"
           />
           <Button
-            path="/subscribe"
+            path="/register"
             dataTestId="common_login__button-register"
             className="tertiary-button"
             buttonText="Ainda não tenho conta"

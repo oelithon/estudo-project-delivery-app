@@ -1,12 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
+import { render } from 'react-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Login from '../src/pages/Login';
+import Register from '../src/pages/Register';
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+
+render(
   <BrowserRouter>
-    <App />
+    <Routes>
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/register" element={<Register />} />
+      <Route exact path="/" element={<Navigate to="/login" />} />
+    </Routes>
   </BrowserRouter>,
-  document.getElementById('root'),
+  rootElement
 );
