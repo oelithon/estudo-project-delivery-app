@@ -10,7 +10,7 @@ button {
   margin: 1px;
   margin-top: 15px;
   text-align: center;
-  width: 230px;
+  width: 260px;
 }
 
 .primary-button {
@@ -26,7 +26,7 @@ button {
 .tertiary-button {
   border: 2px solid #036b52;
   box-sizing: border-box;
-  color: #036b52
+  color: #036b52;
 }
 
 button:hover {

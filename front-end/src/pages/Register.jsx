@@ -1,22 +1,9 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import Input from '../components/input/Input';
+import Button from '../components/button/Button';
+import '../styles/Login.css';
 
 function Register() {
-  const history = useHistory();
-
-  const handleRegisterClick = () => {
-    console.log('Clicou no botão de Login!');
-    history.push('/');
-  };
-
-  const handleEmailChange = (event) => {
-    console.log(event.target.value);
-  };
-
-  const handlePasswordChange = () => {
-    console.log('Alterou o input de Password!');
-  };
-
   return (
     <div>
       <main className="Login-main">
@@ -24,42 +11,33 @@ function Register() {
           Cadastro
         </h3>
         <form className="Login-form">
-          <p className="Login-label">
-            Nome
-          </p>
-          <input
+          <Input
+            inputLabel="Nome"
+            className="default"
             data-testid="common_register__input-name"
             type="text"
             placeholder="Seu nome"
           />
-          <p className="Login-label">
-            E-mail
-          </p>
-          <input
+          <Input
+            inputLabel="E-mail"
+            className="default"
             data-testid="common_register__input-email"
             type="text"
-            placeholder="Seu nome"
-            onChange={ handleEmailChange }
+            placeholder="Seu e-mail"
           />
-          <p className="Login-label">
-            Senha
-          </p>
-          <input
+          <Input
+            inputLabel="Senha"
+            className="default"
             data-testid="common_register__input-password"
             type="password"
-            placeholder="***********"
-            onChange={ handlePasswordChange }
+            placeholder="**********"
           />
-          <Link to="/">
-            <button
-              data-testid="common_login__button-login"
-              className="Login-button"
-              type="button"
-              onClick={ handleRegisterClick }
-            >
-              CADASTRAR
-            </button>
-          </Link>
+          <Button
+            path="/"
+            data-testid="common_login__button-login"
+            className="primary-button"
+            buttonText="CADASTRAR"
+          />
         </form>
       </main>
     </div>
