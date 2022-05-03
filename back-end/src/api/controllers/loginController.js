@@ -1,22 +1,19 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
-const secret = process.env.JWT_SECRET;
-const jwtConfig = {
-  expiresIn: '1d',
-  algorithm: 'HS256',
-};
-
-const { User } = require('../services/userService');
+const { userData } = require('../services/userService');
+const { generateToken } = require('../helpers/jwt');
+const statusCode = require('../helpers/statusCode');
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
+    const user = await userData(email, password);
+    const token = generateToken(user);
 
-  const userData = await User(email, password);
+    return res.status(statusCode.OK).json(token);
+  } catch (error) {
+    const message = { message: '401 - Not Found' };
 
-  const token = jwt.sign({ userData }, secret, jwtConfig);
-
-  return res.status(200).json({ token });
+    return res.status(statusCode.NOT_FOUND).json(message);
+  }
 };
 
 module.exports = {

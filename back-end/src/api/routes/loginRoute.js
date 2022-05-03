@@ -1,8 +1,12 @@
 const express = require('express');
 
-const loginRoute = express.Router();
+const loginController = require('../controllers/loginController');
 
-loginRoute
-  .route('/login');
-  
-module.exports = loginRoute;
+const router = express.Router();
+
+router
+  .route('/login')
+  .get((_req, res) => res.status(200).json({ message: 'tudo ok!' }))
+  .post(loginController.loginUser);
+
+module.exports = router;
