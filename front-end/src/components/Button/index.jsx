@@ -30,7 +30,7 @@ Button.defaultProps = {
   path: '/',
   className: 'primary-button',
   dataTestId: '',
-  onClick: '',
+  onClick: () => {},
   buttonText: 'LOGIN',
 };
 

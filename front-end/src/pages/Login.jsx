@@ -3,30 +3,10 @@ import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
 import '../styles/global.css';
+// import LoginContext from '../context/LoginContext';
 
 function Login() {
-  // const [email, setEmail] = useState({
-  //   user: { email: '' },
-  // });
-
-  // const [password, setPassword] = useState({
-  //   password: '',
-  // });
-
-  // const settingEmail = ({ target }) => {
-  //   setEmail({
-  //     user: { email: target.value },
-  //   });
-  // };
-  // const settingPassword = ({ target }) => {
-  //   setPassword({ password: target.value });
-  // };
-  // const passwordMinLength = 6;
-  // const size
-  // const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-  // const isValid = regex.test()
-  // const enabled = isValid && size > passwordMinLength;
+  // const { settingEmail, settingPassword } = useContext(LoginContext);
 
   return (
     <div>
@@ -41,7 +21,7 @@ function Login() {
             className="default"
             dataTestId="common_login__input-email"
             type="text"
-            onChange={ settingEmail }
+            // onChange={ () => settingEmail() }
             placeholder="email@trybeer.com.br"
           />
           <Input
@@ -49,7 +29,7 @@ function Login() {
             className="default"
             dataTestId="common_login__input-password"
             type="password"
-            onChange={ settingPassword }
+            // onChange={ () => settingPassword() }
             placeholder="**********"
           />
           <Button
