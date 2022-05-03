@@ -5,10 +5,10 @@ const { validToken } = require('../middlewares/authMiddlewares');
 
 const router = express.Router();
 
-router.get('/customer/products',  getAllProducts);
+router.get('/customer/products', validToken, getAllProducts);
 
-router.get('/customer/orders',  getOrders);
+router.get('/customer/orders', validToken, getOrders);
 
-router.get('/customer/orders/:id',  getItem);
+router.get('/customer/orders/:id', validToken, getItem);
 
 module.exports = router;
