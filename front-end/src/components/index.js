@@ -1,4 +1,5 @@
 import DropdownMenu from './DropdownMenu';
 import Counter from './Counter';
+import ProductCard from './ProductCard';
 
-export { DropdownMenu, Counter };
+export { DropdownMenu, Counter, ProductCard };
