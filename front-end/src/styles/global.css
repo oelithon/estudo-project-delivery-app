@@ -26,7 +26,6 @@ button {
 
 
 button,
-input,
 select {
   cursor: pointer;
 }
