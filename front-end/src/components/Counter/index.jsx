@@ -22,6 +22,7 @@ const Counter = () => {
     <div className="Counter__div">
       <button
         className="Counter__button --left"
+        data-testid="19"
         type="button"
         value="-"
         onClick={ ({ target }) => handleClick(target.value) }
@@ -31,6 +32,7 @@ const Counter = () => {
       <label htmlFor="Counter-input" className="Counter__label">
         <input
           id="Counter-input"
+          data-testid="20"
           className="Counter__input"
           type="number"
           value={ quantity }
@@ -43,6 +45,7 @@ const Counter = () => {
         className="Counter__button --right"
         type="button"
         value="+"
+        data-testid="18"
         onClick={ ({ target }) => handleClick(target.value) }
       >
         +

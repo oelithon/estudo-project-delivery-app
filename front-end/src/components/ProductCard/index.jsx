@@ -5,7 +5,7 @@ import imgURL from './skol_lata_350ml.jpg';
 
 const ProductCard = () => {
   const price = 'R$ 2,20';
-  const description = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+  const description = 'Skol 350ml';
 
   return (
     <div className="ProductCard__div">
@@ -14,12 +14,13 @@ const ProductCard = () => {
           src={ imgURL }
           alt="Product logo"
           className="productImage"
+          data-testid="17"
         />
       </div>
-      <div className="productPrice">
+      <div className="productPrice" data-testid="16">
         { price }
       </div>
-      <div className="productDescriptionAndCounter">
+      <div className="productDescriptionAndCounter" data-testid="15">
         { description }
         <div className="productCounter">
           <Counter />
