@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
 import '../styles/global.css';
-// import LoginContext from '../context/LoginContext';
+import LoginContext from '../context/LoginContext';
 
 function Login() {
-  // const { settingEmail, settingPassword } = useContext(LoginContext);
+  const { settingEmail, settingPassword, enabled } = useContext(LoginContext);
 
   return (
     <div>
@@ -21,7 +21,7 @@ function Login() {
             className="default"
             dataTestId="common_login__input-email"
             type="text"
-            // onChange={ () => settingEmail() }
+            onChange={ (event) => settingEmail(event) }
             placeholder="email@trybeer.com.br"
           />
           <Input
@@ -29,7 +29,7 @@ function Login() {
             className="default"
             dataTestId="common_login__input-password"
             type="password"
-            // onChange={ () => settingPassword() }
+            onChange={ (event) => settingPassword(event) }
             placeholder="**********"
           />
           <Button
@@ -37,6 +37,7 @@ function Login() {
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="LOGIN"
+            buttonStatus={ !enabled }
           />
           <Button
             path="/register"

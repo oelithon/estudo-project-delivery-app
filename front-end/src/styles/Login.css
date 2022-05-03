@@ -40,10 +40,6 @@ button:hover {
   font-weight: 700;
 }
 
-button:disabled {
-  font-weight: 1;
-}
-
 a {
   text-decoration: none;
 }

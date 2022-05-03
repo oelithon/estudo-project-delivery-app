@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function Input({ className, dataTestId, inputLabel, placeholder, type }) {
-  const handleChange = ({ target }) => {
-    console.log(target.value);
-  };
-
+function Input({ className, dataTestId, inputLabel, placeholder, type, onChange }) {
   return (
     <div className="input-div">
       <p>{inputLabel}</p>
@@ -14,8 +10,9 @@ function Input({ className, dataTestId, inputLabel, placeholder, type }) {
         className={ className }
         data-testid={ dataTestId }
         placeholder={ placeholder }
-        onChange={ handleChange }
+        onChange={ onChange }
         type={ type }
+        autoComplete="true"
       />
     </div>
   );
@@ -27,6 +24,7 @@ Input.propTypes = {
   dataTestId: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -35,6 +33,7 @@ Input.defaultProps = {
   dataTestId: '',
   type: 'text',
   placeholder: '',
+  onChange: () => {},
 };
 
 export default Input;

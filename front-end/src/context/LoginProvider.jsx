@@ -16,18 +16,20 @@ function LoginProvider({ children }) {
       user: { email: target.value },
     });
   };
+
   const settingPassword = ({ target }) => {
     setPassword({ password: target.value });
   };
 
-  // const passwordMinLength = 6;
-  // const size
-  // const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const passwordMinLength = 6;
+  const passwordSize = password.password.length;
+  const regex = /\S+@\S+\.\S+/;
+  const isValidEmail = regex.test(email.user.email);
 
-  // const isValid = regex.test()
-  // const enabled = isValid && size > passwordMinLength;
+  const enabled = isValidEmail && passwordSize >= passwordMinLength;
 
   const context = {
+    enabled,
     email,
     setEmail,
     password,

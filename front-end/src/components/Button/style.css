@@ -32,3 +32,8 @@ button {
 button:hover {
   font-weight: 700;
 }
+
+button:disabled {
+  color: #0e8d6f;
+  font-weight: 1;
+}
