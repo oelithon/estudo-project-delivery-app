@@ -1,7 +1,10 @@
 const express = require('express');
+const routers = require('./routes');
 
 const app = express();
 
-app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(express.json());
+
+routers.map((router) => app.use('/', router));
 
 module.exports = app;
