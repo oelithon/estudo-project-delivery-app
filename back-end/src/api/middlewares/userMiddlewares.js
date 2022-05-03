@@ -23,7 +23,7 @@ const loginValidation = (req, res, next) => {
   next();
 };
 
-const createUserValidation = async (req, res, next) => {
+const createUserValidation = (req, res, next) => {
   console.log(req.body);
   const body = schema.validate(req.body);
   console.log(body);

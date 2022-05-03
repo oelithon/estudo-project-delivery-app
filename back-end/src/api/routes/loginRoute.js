@@ -5,6 +5,4 @@ const loginRoute = express.Router();
 loginRoute
   .route('/login');
   
-module.exports = {
-  loginRoute,
-};
+module.exports = loginRoute;
