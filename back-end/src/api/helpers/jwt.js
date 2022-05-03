@@ -14,7 +14,7 @@ const generateToken = (payload) => {
 
 const decoder = async (token) => {
   const decoded = await jwt.verify(token, JWT_SECRET);
-  return decoded.user;
+  return decoded;
 };
 
 module.exports = {

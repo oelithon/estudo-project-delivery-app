@@ -14,9 +14,10 @@ const getItemById = async (id) => {
 
 const getAllByUserId = async (token) => {
   try {
+  
     const { email } = await decoder(token);
-    const results = await User.findOne({ where: { email } });
-    const orders = await Sale.FindAll({ where: { user_id: results.id } });
+    const { id } = await User.findOne({ where: { email } });
+    const orders = await Sale.findAll({ where: { user_id: id } });
     return goodResponse(OK, orders);
   } catch (err) {
     console.log(err);
