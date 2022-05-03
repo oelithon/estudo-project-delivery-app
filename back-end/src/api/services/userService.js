@@ -14,9 +14,9 @@ const createUser = async (body) => {
   const user = body;
   try {
     user.password = encryptPassword(body.password);
-    const createdUser = await User.create(user);
-    const token = generateToken(createdUser);
-    return goodResponse(CREATED, token);
+    const created = await User.create(user);
+    const token = generateToken(created.id);
+    return goodResponse(CREATED, { ...created.dataValues, token });
   } catch (err) {
     return errorResponse(INTERNAL_SERVER_ERROR, err);
   }
