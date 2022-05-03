@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Button.css';
 
 function Button({ path, className, dataTestId, buttonText, onClick }) {
@@ -16,5 +17,21 @@ function Button({ path, className, dataTestId, buttonText, onClick }) {
     </Link>
   );
 }
+
+Button.propTypes = {
+  path: PropTypes.string,
+  className: PropTypes.string,
+  dataTestId: PropTypes.string,
+  onClick: PropTypes.func,
+  buttonText: PropTypes.string,
+};
+
+Button.defaultProps = {
+  path: '/',
+  className: 'primary-button',
+  dataTestId: '',
+  onClick: '',
+  buttonText: 'LOGIN',
+};
 
 export default Button;

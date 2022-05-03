@@ -20,4 +20,20 @@ function Input({ className, dataTestId, inputLabel, placeholder, type }) {
   );
 }
 
+Input.propTypes = {
+  inputLabel: PropTypes.string,
+  className: PropTypes.string,
+  dataTestId: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+
+Input.defaultProps = {
+  inputLabel: '',
+  className: 'primary-button',
+  dataTestId: '',
+  type: 'text',
+  placeholder: '',
+};
+
 export default Input;
