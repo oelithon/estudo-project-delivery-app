@@ -5,7 +5,6 @@ const router = express.Router();
 
 router
   .route('/register')
-  .get((req, res) => res.status(200).json('deubom'))
   .post(createUserValidation);
 
 module.exports = router;
