@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, Input } from '../components';
+import { Button, HiddenElement, Input } from '../components';
 import RegisterContext from '../context/RegisterContext';
 import '../styles/Login.css';
 
@@ -14,7 +14,7 @@ function Register() {
 
   // A função abaixo foi desenvolvovida com a ajuda de: https://www.youtube.com/watch?v=efr1xbwFlKU
 
-  const handleClick = async () => {
+  const handleClick = () => {
     const body = JSON.stringify({
       name: name.name,
       email: email.email,
@@ -72,6 +72,7 @@ function Register() {
             onClick={ handleClick }
           />
         </form>
+        <HiddenElement />
       </main>
     </div>
   );

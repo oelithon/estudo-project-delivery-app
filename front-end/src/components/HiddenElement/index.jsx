@@ -1,7 +1,12 @@
 import React from 'react';
+import './style.css';
 
 function HiddenElement() {
-  <span>
-    Login ou senha incorretos
-  </span>
+  return (
+    <span className="hidden-element">
+      Login ou senha incorretos
+    </span>
+  );
 }
+
+export default HiddenElement;

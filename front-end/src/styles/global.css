@@ -27,3 +27,8 @@ body, input, textarea, button {
 button, select {
   cursor: pointer;
 }
+
+
+span {
+  color: black;
+}

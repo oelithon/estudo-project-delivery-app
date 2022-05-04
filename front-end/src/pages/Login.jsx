@@ -6,7 +6,7 @@ import '../styles/global.css';
 import LoginContext from '../context/LoginContext';
 
 function Login() {
-  const { setEmail,
+  const { setEmail, handleClick, loading,
     setPassword, settingEmail, settingPassword, enabled } = useContext(LoginContext);
 
   useEffect(() => {
@@ -20,7 +20,6 @@ function Login() {
       });
     };
   }, [setEmail, setPassword]);
-
   return (
     <div>
       <main className="Login-main">
@@ -46,11 +45,12 @@ function Login() {
             placeholder="**********"
           />
           <Button
-            path="/register"
+            path=""
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="LOGIN"
             buttonStatus={ !enabled }
+            onClick={ handleClick }
           />
           <Button
             path="/register"
@@ -59,6 +59,9 @@ function Login() {
             buttonText="Ainda não tenho conta"
           />
         </form>
+        <span className="loading">
+          { loading ? 'Loading...' : '' }
+        </span>
       </main>
     </div>
   );
