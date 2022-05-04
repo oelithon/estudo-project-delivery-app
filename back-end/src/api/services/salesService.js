@@ -16,7 +16,8 @@ const getAllByUserId = async (token) => {
   try {
     const { email } = await decoder(token);
     const { id } = await User.findOne({ where: { email } });
-    const orders = await Sale.findAll({ where: { user_id: id } });
+    // Alterei o user_id para userId pra poder passar no ESlint
+    const orders = await Sale.findAll({ where: { userId: id } });
     return goodResponse(OK, orders);
   } catch (err) {
     console.log(err);
