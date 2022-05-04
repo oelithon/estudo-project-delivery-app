@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Input } from '../components';
+import RegisterContext from '../context/RegisterContext';
 import '../styles/Login.css';
 
 function Register() {
-  const handleClick = () => {
-    console.log('clicou');
+  const {
+    name,
+    email,
+    password,
+    settingName,
+    settingEmail,
+    settingPassword } = useContext(RegisterContext);
+
+  // A função abaixo foi desenvolvovida com a ajuda de: https://www.youtube.com/watch?v=efr1xbwFlKU
+
+  const handleClick = async () => {
+    const body = JSON.stringify({
+      name: name.name,
+      email: email.email,
+      password: password.password,
+      role: 'client',
+    });
+
+    const request = new XMLHttpRequest();
+
+    request.open('POST', 'http://localhost:3001/users', true);
+
+    request.setRequestHeader('Content-type', 'application/json');
+
+    request.send(body);
+
+    request.onload = function() {
+      console.log(this.responseText);
+    };
+
+    return request.responseText;
   };
 
   return (
@@ -19,6 +49,7 @@ function Register() {
             className="default"
             dataTestId="common_register__input-name"
             type="text"
+            onChange={ (event) => settingName(event) }
             placeholder="Seu nome"
           />
           <Input
@@ -26,6 +57,7 @@ function Register() {
             className="default"
             dataTestId="common_register__input-email"
             type="text"
+            onChange={ (event) => settingEmail(event) }
             placeholder="Seu e-mail"
           />
           <Input
@@ -33,10 +65,11 @@ function Register() {
             className="default"
             dataTestId="common_register__input-password"
             type="password"
+            onChange={ (event) => settingPassword(event) }
             placeholder="**********"
           />
           <Button
-            path="/login"
+            path=""
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="CADASTRAR"

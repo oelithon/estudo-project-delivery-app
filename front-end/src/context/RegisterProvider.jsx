@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LoginContext from './LoginContext';
+import RegisterContext from './RegisterContext';
 
-function LoginProvider({ children }) {
+function RegisterProvider({ children }) {
+  const [name, setName] = useState({
+    name: '',
+  });
+
   const [email, setEmail] = useState({
     email: '',
   });
@@ -11,42 +15,39 @@ function LoginProvider({ children }) {
     password: '',
   });
 
+  const settingName = ({ target }) => {
+    setName({ name: target.value });
+  };
+
   const settingEmail = ({ target }) => {
-    setEmail({
-      email: target.value,
-    });
+    setEmail({ email: target.value });
   };
 
   const settingPassword = ({ target }) => {
     setPassword({ password: target.value });
   };
 
-  const passwordMinLength = 6;
-  const passwordSize = password.password.length;
-  const regex = /\S+@\S+\.\S+/;
-  const isValidEmail = regex.test(email.email);
-
-  const enabled = isValidEmail && passwordSize >= passwordMinLength;
-
   const context = {
-    enabled,
+    name,
+    setName,
     email,
     setEmail,
     password,
     setPassword,
+    settingName,
     settingEmail,
     settingPassword,
   };
 
   return (
-    <LoginContext.Provider value={ context }>
+    <RegisterContext.Provider value={ context }>
       { children }
-    </LoginContext.Provider>
+    </RegisterContext.Provider>
   );
 }
 
-LoginProvider.propTypes = {
+RegisterProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default LoginProvider;
+export default RegisterProvider;
