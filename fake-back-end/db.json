@@ -59,8 +59,8 @@
     },
     {
       "id": 2,
-      "name": "Raphael",
-      "email": "raphael@trybe.com",
+      "name": "Rafael",
+      "email": "rafael@trybe.com",
       "password": "trybe456",
       "role": "saller"
     },

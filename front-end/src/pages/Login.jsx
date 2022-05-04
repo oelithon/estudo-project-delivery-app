@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
@@ -6,7 +6,20 @@ import '../styles/global.css';
 import LoginContext from '../context/LoginContext';
 
 function Login() {
-  const { settingEmail, settingPassword, enabled } = useContext(LoginContext);
+  const { setEmail,
+    setPassword, settingEmail, settingPassword, enabled } = useContext(LoginContext);
+
+  useEffect(() => {
+    console.error('Verificar useEffect da tela de Login');
+    return () => {
+      setEmail({
+        email: '',
+      });
+      setPassword({
+        password: '',
+      });
+    };
+  }, [setEmail, setPassword]);
 
   return (
     <div>
