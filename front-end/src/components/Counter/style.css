@@ -1,0 +1,48 @@
+.Counter__div {
+  align-items: center;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  margin: 0;
+  width: fit-content;
+}
+
+.Counter__input {
+  border: 1px solid black;
+  font-size: large;
+  height: 2rem;
+  text-align: center;
+  width: 2rem;
+}
+
+.Counter__button {
+  background-color: #036b52;
+  border-style: none;
+  color: #f2fffc;
+  font-size: larger;
+  height: 2.15rem;
+  transition: opacity 0.2s;
+  width: 2.15rem;
+}
+
+.Counter__button, .Counter__input {
+  margin: 0;
+  padding: 0;
+}
+
+.Counter__button:active {
+  opacity: 0.5;
+}
+
+.Counter__button.--right {
+  border-radius: 0% 25% 25% 0%;
+}
+
+.Counter__button.--left {
+  border-radius: 25% 0% 0% 25%;
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}

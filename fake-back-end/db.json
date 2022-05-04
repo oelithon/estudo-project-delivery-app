@@ -1,0 +1,119 @@
+{
+  "products": [
+    {
+      "_id": 1,
+      "name": "Becks 330ml",
+      "image": "abc",
+      "price": 4.49
+    },
+    {
+      "id": 2,
+      "name": "Antartica Pilsen 300ml",
+      "price": 2.49,
+      "url_image": "abc"
+    },
+    {
+      "id": 3,
+      "name": "Heineken 600ml",
+      "price": 7.5,
+      "url_image": "abc"
+    },
+    {
+      "id": 4,
+      "name": "Brahma Duplo Malte 350ml",
+      "price": 2.79,
+      "url_image": "abc"
+    },
+    {
+      "id": 5,
+      "name": "Skol Beats 250ml",
+      "price": 3.57,
+      "url_image": "abc"
+    },
+    {
+      "id": 6,
+      "name": "Skol Latinha 250ml",
+      "price": 2.19,
+      "url_image": "abc"
+    },
+    {
+      "id": 7,
+      "name": "Skol Beats 350ml",
+      "price": 4.49,
+      "url_image": "abc"
+    },
+    {
+      "id": 8,
+      "name": "Skol Lata 350ml",
+      "price": 2.5,
+      "url_image": "abc"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Thereza",
+      "email": "Thereza@trybe.com",
+      "password": "trybe123",
+      "role": "adm"
+    },
+    {
+      "id": 2,
+      "name": "Rafael",
+      "email": "rafael@trybe.com",
+      "password": "trybe456",
+      "role": "saller"
+    },
+    {
+      "id": 3,
+      "name": "Paulo",
+      "email": "paulo@trybe.com",
+      "password": "trybe789",
+      "role": "client"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "user_id": 3,
+      "seller_id": 2,
+      "total_price": 20,
+      "delivery_address": "Rua dos bobos",
+      "delivery_number": 0,
+      "sale_date": "27/04",
+      "status": "Entregue"
+    },
+    {
+      "id": 2,
+      "user_id": 3,
+      "seller_id": 2,
+      "total_price": 25.9,
+      "delivery_address": "Rua dos bobos",
+      "delivery_number": 0,
+      "sale_date": "28/04",
+      "status": "PREPARANDO"
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "seller_id": 2,
+      "total_price": 20,
+      "delivery_address": "Rua dos bobos",
+      "delivery_number": 0,
+      "sale_date": "27/04",
+      "status": "PENDENTE"
+    }
+  ],
+  "salesProduct": [
+    {
+      "sale_id": 1,
+      "product_id": 2,
+      "quantity": 3
+    },
+    {
+      "sale_id": 2,
+      "product_id": 5,
+      "quantity": 2
+    }
+  ]
+}
