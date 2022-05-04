@@ -30,11 +30,7 @@ function Register() {
 
     request.send(body);
 
-    request.onload = function() {
-      console.log(this.responseText);
-    };
-
-    return request.responseText;
+    return body;
   };
 
   return (
