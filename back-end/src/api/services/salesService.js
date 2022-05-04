@@ -14,7 +14,6 @@ const getItemById = async (id) => {
 
 const getAllByUserId = async (token) => {
   try {
-  
     const { email } = await decoder(token);
     const { id } = await User.findOne({ where: { email } });
     const orders = await Sale.findAll({ where: { user_id: id } });
@@ -24,7 +23,6 @@ const getAllByUserId = async (token) => {
     return errorResponse(INTERNAL_SERVER_ERROR, err);
   }
 };
-
 
 module.exports = {
   getItemById, 
