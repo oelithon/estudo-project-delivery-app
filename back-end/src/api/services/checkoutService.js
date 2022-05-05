@@ -26,7 +26,7 @@ const createSale = async (receivedSale) => {
     },
   );
 
-  return create;
+  return goodResponse(statusCode.OK, create);
 };
 
 module.exports = {
