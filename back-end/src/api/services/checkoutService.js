@@ -3,7 +3,7 @@ const { goodResponse } = require('../helpers/response');
 const statusCode = require('../helpers/statusCode');
 
 const sellerList = async () => {
-  const list = await User.findAll({ where: { role: 'customer' } });
+  const list = await User.findAll({ where: { role: 'seller' } });
 
   const { id, name, email, role } = list[0];
 
