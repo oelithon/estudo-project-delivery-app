@@ -70,18 +70,6 @@
       "email": "paulo@trybe.com",
       "password": "trybe789",
       "role": "client"
-    },
-    {
-      "email": "paulo@gmail.com",
-      "password": "123456",
-      "role": "client",
-      "id": 4
-    },
-    {
-      "email": "paulo@gmail.com",
-      "password": "123456",
-      "role": "client",
-      "id": 5
     }
   ],
   "sales": [

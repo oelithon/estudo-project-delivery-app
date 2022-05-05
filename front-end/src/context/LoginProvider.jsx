@@ -19,7 +19,7 @@ function LoginProvider({ children }) {
   });
 
   const settingName = ({ target }) => {
-    setName({ password: target.value });
+    setName({ name: target.value });
   };
 
   const settingEmail = ({ target }) => {
@@ -37,27 +37,24 @@ function LoginProvider({ children }) {
   const regex = /\S+@\S+\.\S+/;
   const isValidEmail = regex.test(email.email);
   const nameMinLength = 12;
-  const nameSize = name.length;
+  const nameSize = name.name.length;
   const enabledToLogin = isValidEmail && passwordSize >= passwordMinLength;
-  const enabledToRegister = enabledToLogin && nameSize >= nameMinLength;
+  const enabledToRegister = isValidEmail
+    && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
-  const getAll = () => {
-    const request = new XMLHttpRequest();
+  const getAll = async () => {
+    const response = await fetch('http://localhost:3001/users')
+      .then((res) => res.json())
+      .then((data) => data);
 
-    request.open('GET', 'http://localhost:3001/users', false);
-
-    request.setRequestHeader('Content-type', 'application/json');
-
-    request.send();
-
-    return JSON.parse(request.response);
+    return response;
   };
 
-  const handleLoginButton = () => {
+  const handleLoginButton = async () => {
     setLoading(true);
     const userEmail = email.email;
     const userPassword = password.password;
-    const arrayOfUsers = getAll();
+    const arrayOfUsers = await getAll();
     const findUser = arrayOfUsers.find(
       (user) => user.email === userEmail && user.password === userPassword,
     );
@@ -74,8 +71,6 @@ function LoginProvider({ children }) {
     }
   };
 
-  // A função abaixo foi desenvolvovida com a ajuda de: https://www.youtube.com/watch?v=efr1xbwFlKU
-
   const register = () => {
     const body = JSON.stringify({
       name: name.name,
@@ -84,15 +79,15 @@ function LoginProvider({ children }) {
       role: 'client',
     });
 
-    const request = new XMLHttpRequest();
+    const response = fetch('http://localhost:3001/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    }).then((res) => res.json());
 
-    request.open('POST', 'http://localhost:3001/users', true);
-
-    request.setRequestHeader('Content-type', 'application/json');
-
-    request.send(body);
-
-    return body;
+    return response;
   };
 
   const handleRegisterButton = () => {
