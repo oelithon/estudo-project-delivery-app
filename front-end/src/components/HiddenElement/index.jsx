@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css';
 
-function HiddenElement() {
+function HiddenElement(dataTestId) {
   return (
-    <span className="hidden-element">
+    <span data-testid={ dataTestId } className="hidden-element">
       Login ou senha incorretos
     </span>
   );

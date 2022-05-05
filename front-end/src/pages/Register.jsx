@@ -1,37 +1,15 @@
 import React, { useContext } from 'react';
 import { Button, HiddenElement, Input } from '../components';
-import RegisterContext from '../context/RegisterContext';
+import LoginContext from '../context/LoginContext';
 import '../styles/Login.css';
 
 function Register() {
   const {
-    name,
-    email,
-    password,
+    hidden,
     settingName,
     settingEmail,
-    settingPassword } = useContext(RegisterContext);
-
-  // A função abaixo foi desenvolvovida com a ajuda de: https://www.youtube.com/watch?v=efr1xbwFlKU
-
-  const handleClick = () => {
-    const body = JSON.stringify({
-      name: name.name,
-      email: email.email,
-      password: password.password,
-      role: 'client',
-    });
-
-    const request = new XMLHttpRequest();
-
-    request.open('POST', 'http://localhost:3001/users', true);
-
-    request.setRequestHeader('Content-type', 'application/json');
-
-    request.send(body);
-
-    return body;
-  };
+    settingPassword,
+    handleRegisterButton } = useContext(LoginContext);
 
   return (
     <div>
@@ -66,13 +44,15 @@ function Register() {
           />
           <Button
             path=""
-            dataTestId="common_login__button-login"
+            dataTestId="common_register__button-register"
             className="primary-button"
             buttonText="CADASTRAR"
-            onClick={ handleClick }
+            onClick={ handleRegisterButton }
           />
         </form>
-        <HiddenElement />
+        { hidden
+          ? <HiddenElement dataTestId="common_register__element-invalid_register" />
+          : '' }
       </main>
     </div>
   );

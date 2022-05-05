@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, Input } from '../components';
+import { Button, Input, HiddenElement } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
 import '../styles/global.css';
 import LoginContext from '../context/LoginContext';
 
 function Login() {
-  const { setEmail, handleClick, loading,
+  const { hidden, setHidden, setEmail, handleLoginButton, loading,
     setPassword, settingEmail, settingPassword, enabled } = useContext(LoginContext);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');
     return () => {
+      setHidden(false);
       setEmail({
         email: '',
       });
@@ -19,7 +20,7 @@ function Login() {
         password: '',
       });
     };
-  }, [setEmail, setPassword]);
+  }, [setHidden, setEmail, setPassword]);
   return (
     <div>
       <main className="Login-main">
@@ -50,7 +51,7 @@ function Login() {
             className="primary-button"
             buttonText="LOGIN"
             buttonStatus={ !enabled }
-            onClick={ handleClick }
+            onClick={ handleLoginButton }
           />
           <Button
             path="/register"
@@ -59,9 +60,10 @@ function Login() {
             buttonText="Ainda não tenho conta"
           />
         </form>
-        <span className="loading">
-          { loading ? 'Loading...' : '' }
-        </span>
+        { loading ? 'Loading...' : ''}
+        { hidden
+          ? <HiddenElement dataTestId="common_login__element-invalid-email" />
+          : '' }
       </main>
     </div>
   );
