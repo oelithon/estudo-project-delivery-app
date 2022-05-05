@@ -5,7 +5,9 @@ const statusCode = require('../helpers/statusCode');
 const sellerList = async () => {
   const list = await User.findAll({ where: { role: 'customer' } });
 
-  return goodResponse(statusCode.OK, list);
+  const { id, name, email, role } = list[0];
+
+  return goodResponse(statusCode.OK, { id, name, email, role });
 };
 
 module.exports = {
