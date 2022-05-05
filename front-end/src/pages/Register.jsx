@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, HiddenElement, Input } from '../components';
 import LoginContext from '../context/LoginContext';
 import '../styles/Login.css';
@@ -6,10 +6,26 @@ import '../styles/Login.css';
 function Register() {
   const {
     hidden,
+    setHidden,
+    setEmail,
+    setPassword,
     settingName,
     settingEmail,
     settingPassword,
     handleRegisterButton } = useContext(LoginContext);
+
+  useEffect(() => {
+    console.error('Verificar useEffect da tela de Registro');
+    return () => {
+      setHidden(false);
+      setEmail({
+        email: '',
+      });
+      setPassword({
+        password: '',
+      });
+    };
+  }, [setHidden, setEmail, setPassword]);
 
   return (
     <div>

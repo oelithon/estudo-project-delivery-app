@@ -36,7 +36,10 @@ function LoginProvider({ children }) {
   const passwordSize = password.password.length;
   const regex = /\S+@\S+\.\S+/;
   const isValidEmail = regex.test(email.email);
-  const enabled = isValidEmail && passwordSize >= passwordMinLength;
+  const nameMinLength = 12;
+  const nameSize = name.length;
+  const enabledToLogin = isValidEmail && passwordSize >= passwordMinLength;
+  const enabledToRegister = enabledToLogin && nameSize >= nameMinLength;
 
   const getAll = () => {
     const request = new XMLHttpRequest();
@@ -93,7 +96,7 @@ function LoginProvider({ children }) {
   };
 
   const handleRegisterButton = () => {
-    if (enabled === true) {
+    if (enabledToRegister === true) {
       const result = register();
       console.log('Usuário cadastrado com sucesso!');
       setHidden(false);
@@ -106,7 +109,7 @@ function LoginProvider({ children }) {
     loading,
     hidden,
     setHidden,
-    enabled,
+    enabledToLogin,
     name,
     setName,
     email,

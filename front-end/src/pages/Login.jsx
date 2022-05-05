@@ -6,8 +6,15 @@ import '../styles/global.css';
 import LoginContext from '../context/LoginContext';
 
 function Login() {
-  const { hidden, setHidden, setEmail, handleLoginButton, loading,
-    setPassword, settingEmail, settingPassword, enabled } = useContext(LoginContext);
+  const { hidden,
+    setHidden,
+    setEmail,
+    handleLoginButton,
+    loading,
+    setPassword,
+    settingEmail,
+    settingPassword,
+    enabledToLogin } = useContext(LoginContext);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');
@@ -21,6 +28,7 @@ function Login() {
       });
     };
   }, [setHidden, setEmail, setPassword]);
+
   return (
     <div>
       <main className="Login-main">
@@ -50,7 +58,7 @@ function Login() {
             dataTestId="common_login__button-login"
             className="primary-button"
             buttonText="LOGIN"
-            buttonStatus={ !enabled }
+            buttonStatus={ !enabledToLogin }
             onClick={ handleLoginButton }
           />
           <Button
