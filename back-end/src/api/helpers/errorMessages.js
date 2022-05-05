@@ -1,6 +1,6 @@
 const emailAlreadyRegistered = { error: 'Email already registered' };
-const tokenIsRequired = 'token is required!';
-const invalidCredentials = 'Invalid credentials!';
+const tokenIsRequired = { error: 'token is required!' };
+const invalidCredentials = { errro: 'Invalid credentials!' };
 const notFound = { error: '401 - Not Found' };
 
 module.exports = {

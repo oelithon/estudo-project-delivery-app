@@ -9,7 +9,7 @@ const {
   createdUser,
   returnRegister,
 } = require('../mocks/userMocks');
-const { CREATED, BAD_REQUEST, OK, NOT_FOUND } = require('../../api/helpers/statusCode');
+const { OK, NOT_FOUND } = require('../../api/helpers/statusCode');
 const { notFound } = require('../../api/helpers/errorMessages');
 
 chai.use(chaiHttp);
