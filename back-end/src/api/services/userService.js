@@ -38,8 +38,17 @@ const createUser = async (body) => {
   }
 };
 
+const sellerList = async () => {
+  const list = await User.findAll({ where: { role: 'seller' } });
+
+  const { id, name, email, role } = list[0];
+
+  return goodResponse(statusCode.OK, { id, name, email, role });
+};
+
 module.exports = {
   userData,
   createUser,
   checkEmail,
+  sellerList,
 };

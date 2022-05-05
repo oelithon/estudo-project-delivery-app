@@ -1,4 +1,5 @@
-const { sellerList, createSale } = require('../services/checkoutService');
+const { sellerList } = require('../services/userService');
+const { createSale } = require('../services/salesService');
 
 const seller = async (_req, res) => {
   const { status, json } = await sellerList();
