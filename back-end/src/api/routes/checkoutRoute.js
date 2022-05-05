@@ -5,7 +5,7 @@ const checkoutController = require('../controllers/checkoutController');
 const router = express.Router();
 
 router
-  .route('/login')
+  .route('/checkout')
   .get(checkoutController.seller);
 
 module.exports = router;
