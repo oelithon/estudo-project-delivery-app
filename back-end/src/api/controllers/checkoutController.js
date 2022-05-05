@@ -1,9 +1,9 @@
 const { sellerList } = require('../services/checkoutService');
 
-const seller = async () => {
-  const list = await sellerList();
+const seller = async (_req, res) => {
+  const { status, json } = await sellerList();
 
-  return list;
+  return res.status(status).json(json);
 };
 
 module.exports = {
