@@ -6,6 +6,7 @@ import '../styles/Login.css';
 function Register() {
   const {
     hidden,
+    enabledToRegister,
     setHidden,
     setEmail,
     setPassword,
@@ -64,6 +65,7 @@ function Register() {
             className="primary-button"
             buttonText="CADASTRAR"
             onClick={ handleRegisterButton }
+            buttonStatus={ !enabledToRegister }
           />
         </form>
         { hidden
