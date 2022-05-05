@@ -105,6 +105,7 @@ function LoginProvider({ children }) {
     hidden,
     setHidden,
     enabledToLogin,
+    enabledToRegister,
     name,
     setName,
     email,
