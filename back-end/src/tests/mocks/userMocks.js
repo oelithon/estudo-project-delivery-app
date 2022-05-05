@@ -6,21 +6,17 @@ const newUser = {
 
 const createdUser = {
   id: 36,
-  dataValues: {
-    name: 'Otto Albuquerque',
-    password: '1a1e66b4d9a1a89cdf95827c9f3ec399',
-    email: 'ottoBoy@otto.com',
-    role: 'customer',
-
-  },
+  name: 'Otto Albuquerque',
+  password: '1a1e66b4d9a1a89cdf95827c9f3ec399',
+  email: 'ottoBoy@otto.com',
+  role: 'customer',
 }
 
 const returnRegister = {
   id: 36,
-  password: '1a1e66b4d9a1a89cdf95827c9f3ec399',
   email: 'ottoBoy@otto.com',
   name: 'Otto Albuquerque',
-  token: 'eyJhbGciOiJIUzI1NiJ9.MzY.2Eb3JETH-kbvvaSYOarqLiZGs2cXSQZFnjXT9atjvh0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsIm5hbWUiOiJPdHRvIEFsYnVxdWVycXVlIiwiZW1haWwiOiJvdHRvQm95QG90dG8uY29tIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjUxNzcwNjE3fQ.PLve6Pvt3xXhNlHO9iLHjD_B1ovg0hRuEO_EE2lobHk',
   role: 'customer',
 }
 
@@ -57,6 +53,17 @@ const invalidPassword = {
   email: 'ottoBoy@otto.com',
 }
 
+const loginUser = {
+  password: '19naosao20',
+  email: 'ottoBoy@otto.com',
+}
+const returnLogin = {
+  id: 36,
+  email: 'ottoBoy@otto.com',
+  name: 'Otto Albuquerque',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsIm5hbWUiOiJPdHRvIEFsYnVxdWVycXVlIiwiZW1haWwiOiJvdHRvQm95QG90dG8uY29tIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjUxNzcwNjE3fQ.PLve6Pvt3xXhNlHO9iLHjD_B1ovg0hRuEO_EE2lobHk',
+  role: 'customer',
+}
 
 module.exports = {
   newUser,
@@ -68,4 +75,6 @@ module.exports = {
   invalidName,
   nullPassword,
   nullName,
+  loginUser,
+  returnLogin,
 };

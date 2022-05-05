@@ -14,7 +14,7 @@ const {
   nullName,
   nullPassword,
 } = require('../mocks/userMocks');
-const { CREATED, BAD_REQUEST } = require('../../api/helpers/statusCode');
+const { CREATED, BAD_REQUEST, INTERNAL_SERVER_ERROR } = require('../../api/helpers/statusCode');
 
 chai.use(chaiHttp);
 // let chaiLib = chai;
@@ -67,15 +67,15 @@ describe('Rota /register', () => {
   })
 
   it('Testa se é possível fazer o registo de um usuário', () => {
-    const { body: { name, email, password, role, token } } = goodRespnse;
+    const { body: { name, email, role, id } } = goodRespnse;
 
-    expect(goodRespnse).to.be.an('object');
+    expect(goodRespnse.body).to.be.an('object');
     expect(goodRespnse).to.have.status(CREATED);
+    expect(goodRespnse.body).to.haveOwnProperty('token');
+    expect(id).to.be.equal(returnRegister.id);
     expect(name).to.be.equal(returnRegister.name);
     expect(role).to.be.equal(returnRegister.role);
     expect(email).to.be.equal(returnRegister.email);
-    expect(password).to.be.equal(returnRegister.password);
-    expect(token).to.be.equal(returnRegister.token);
 
   });
 
@@ -154,5 +154,35 @@ describe('Rota /register', () => {
     expect(userAlreadyRegistered).to.have.status(BAD_REQUEST);
     expect(body.error).to.be.equal('Email already registered');
   });
-  
+
+});
+
+
+describe('Rota /register', () => {
+  let errorRespnse;
+
+  before(async () => {
+    sinon
+      .stub(User, 'findOne')
+      .returns(false);
+    sinon
+      .stub(User, 'create')
+      .throws(new Error)
+    errorRespnse = await chaiRequest(app)
+      .post('/register')
+      .send(newUser);
+  });
+
+  after(() => {
+    User.findOne.restore();
+    User.create.restore();
+  })
+
+  it('Testa que não é possivel fazer um registro caso a api não consiga se conectar com o DB', () => {
+    const { body } = errorRespnse;
+
+    expect(body).to.be.an('object');
+    expect(errorRespnse).to.have.status(INTERNAL_SERVER_ERROR);
+    expect(body).to.haveOwnProperty('error');
+  });
 });

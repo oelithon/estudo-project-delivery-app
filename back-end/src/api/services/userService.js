@@ -1,17 +1,21 @@
 const { User } = require('../../database/models');
-const { emailAlreadyRegistered } = require('../helpers/errorMessages');
+const { emailAlreadyRegistered, notFound } = require('../helpers/errorMessages');
 const { generateToken } = require('../helpers/jwt');
 const { encryptPassword } = require('../helpers/md5');
 const { errorResponse, goodResponse } = require('../helpers/response');
-const { CREATED, INTERNAL_SERVER_ERROR, BAD_REQUEST } = require('../helpers/statusCode');
+const statusCode = require('../helpers/statusCode');
 
 const userData = async (email, password) => {
-  const encryptedPass = encryptPassword(password);
-  const userMatch = await User.findOne({ where: { email, password: encryptedPass } });
-  const { name, role } = userMatch;
-  const user = { name, email, role };
-
-  return user;
+  try {
+    const encryptedPass = encryptPassword(password);
+    const userMatch = await User.findOne({ where: { email, password: encryptedPass } });
+    const { id, name, role } = userMatch;
+    const user = { id, name, email, role };
+    const token = generateToken(user);
+    return goodResponse(statusCode.OK, { id, name, email, role, token });
+  } catch (error) {
+    return errorResponse(statusCode.NOT_FOUND, notFound);
+  }
 };
 
 const checkEmail = async (email) => {
@@ -24,13 +28,13 @@ const createUser = async (body) => {
   user.password = encryptPassword(body.password);
   try {
     if (!await checkEmail(user.email)) {
-      const created = await User.create(user);
-      const token = generateToken(created.id);
-      return goodResponse(CREATED, { ...created.dataValues, token });
+      const { id, name, email, role } = await User.create(user);
+      const token = generateToken({ id, name, email, role });
+      return goodResponse(statusCode.CREATED, { id, name, email, role, token });
     }
-    return errorResponse(BAD_REQUEST, emailAlreadyRegistered);
+    return errorResponse(statusCode.BAD_REQUEST, emailAlreadyRegistered);
   } catch (err) {
-    return errorResponse(INTERNAL_SERVER_ERROR, err);
+    return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
 

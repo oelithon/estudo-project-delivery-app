@@ -2,7 +2,6 @@ const { getItemById, getAllByUserId } = require('../services/salesService');
 
 const getItem = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const { status, json } = await getItemById(id);
   return res.status(status).json(json);
 };
