@@ -1,22 +1,29 @@
 import React from 'react';
 import './style.css';
 
-const DeliveryCard = () => (
-  <div className="DeliveryCard">
+const DeliveryCard = () => {
+  const orderNumber = '0001';
+  const orderStatus = 'ENTREGUE';
+  const dateNow = '05/05/2022';
+  const price = 'R$ 10,00';
 
-    <div className="DeliveryCard--order">
-      <div className="DeliveryCard--order--pedido">Pedido</div>
-      <div className="DeliveryCard--order--number">0001</div>
+  return (
+    <div className="DeliveryCard">
+
+      <div className="DeliveryCard--order">
+        <div className="DeliveryCard--order--pedido">Pedido</div>
+        <div className="DeliveryCard--order--number">{orderNumber}</div>
+      </div>
+
+      <div className="DeliveryCard--status">{orderStatus}</div>
+
+      <div className="DeliveryCard--dateAndPrice">
+        <div className="DeliveryCard--dateAndPrice--date">{dateNow}</div>
+        <div className="DeliveryCard--dateAndPrice--price">{price}</div>
+      </div>
+
     </div>
-
-    <div className="DeliveryCard--status">ENTREGUE</div>
-
-    <div className="DeliveryCard--dateAndPrice">
-      <div className="DeliveryCard--dateAndPrice--date">DD/MM/AA</div>
-      <div className="DeliveryCard--dateAndPrice--price">R$ 00,00</div>
-    </div>
-
-  </div>
-);
+  );
+};
 
 export default DeliveryCard;
