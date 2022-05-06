@@ -16,7 +16,7 @@ render(
         <Route exact path="/componentsview" celement={<Counter />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/custumer/checkout" element={<Checkout />} />
+        <Route exact path="/customer/checkout" element={<Checkout />} />
         <Route exact path="/" element={<Navigate to="/login" />} />
       </Routes>
     </LoginProvider>
