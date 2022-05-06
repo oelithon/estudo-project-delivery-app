@@ -2,13 +2,13 @@
   align-items: center;
   display: flex;
   height: fit-content;
-  margin: 0;
   justify-content: center;
+  margin: 0;
   width: fit-content;
 }
 
 .Counter__input {
-  border: 1px solid #000;
+  border: 1px solid black;
   font-size: large;
   height: 2rem;
   text-align: center;
@@ -25,8 +25,7 @@
   width: 2.15rem;
 }
 
-.Counter__button,
-.Counter__input {
+.Counter__button, .Counter__input {
   margin: 0;
   padding: 0;
 }
@@ -37,11 +36,6 @@
 
 .Counter__button.--left {
   border-radius: 25% 0% 0% 25%;
-}
-
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .Counter__button:active {

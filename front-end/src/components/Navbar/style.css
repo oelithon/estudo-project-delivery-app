@@ -1,10 +1,10 @@
 button {
   border-radius: 0%;
   border-style: none;
-  color: #ffffff;
+  color: white;
   cursor: pointer;
   font-size: medium;
-  font-weight: bolder;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   transition: opacity 0.2s;
@@ -16,7 +16,7 @@ button:active {
 
 .Navbar__header {
   align-items: center;
-  background-color: #036B52;
+  background-color: #036b52;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -33,6 +33,9 @@ button:active {
 
 .Navbar__button--home, .Navbar__button--items {
   background-color: #036b52;
+  border: 2px solid #034939;
+  border-radius: 15%;
+  height: 3rem;
   width: fit-content;
 }
 
