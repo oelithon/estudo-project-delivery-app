@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { ItemBox } from '../components';
+import DescriptionBox from '../components/DescriptionBox';
 import '../styles/checkout.css';
 
 function Checkout() {
@@ -35,9 +36,16 @@ function Checkout() {
     <div>
       <p>Finalizar Pedido</p>
       <div className="products-box">
-        <p>Item</p>
-        <ItemBox />
-        <ItemBox />
+        <ul className="products-list">
+          <li className="list-item">
+            <ItemBox />
+            <DescriptionBox />
+          </li>
+          <li className="list-item">
+            <ItemBox />
+            <DescriptionBox />
+          </li>
+        </ul>
       </div>
     </div>
   );

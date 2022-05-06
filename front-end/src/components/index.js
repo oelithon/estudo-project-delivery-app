@@ -8,11 +8,11 @@ import QuantityBox from './QuantityBox';
 import SubTotalBox from './SubTotalBox';
 import ValueBox from './ValueBox';
 
-export { 
-  DropdownMenu, 
-  Counter, 
-  Button, 
-  Input, 
+export {
+  DropdownMenu,
+  Counter,
+  Button,
+  Input,
   HiddenElement,
   ItemBox,
   QuantityBox,
