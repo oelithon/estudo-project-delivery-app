@@ -2,3 +2,19 @@
   margin: 0;
   padding: 0;
 }
+
+.item-box {
+  align-items: center;
+  background-color: #2fc18c;
+  border-radius: 25% 0% 0% 25%;
+  color: #001813;
+  display: flex;
+  font-size: 36px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 42px;
+  margin-bottom: 10px;
+  padding: 2px;
+  text-align: center;
+  width: 50px;
+}

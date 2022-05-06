@@ -1,6 +1,7 @@
 // Essa página está sendo usada somente para visualizar os componentes criados
 
 import React, { useEffect } from 'react';
+import { ItemBox } from '../components';
 import '../styles/checkout.css';
 
 function Checkout() {
@@ -32,7 +33,12 @@ function Checkout() {
 
   return (
     <div>
-      <p>Página de Checkout</p>
+      <p>Finalizar Pedido</p>
+      <div className="products-box">
+        <p>Item</p>
+        <ItemBox />
+        <ItemBox />
+      </div>
     </div>
   );
 }
