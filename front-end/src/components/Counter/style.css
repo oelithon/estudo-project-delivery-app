@@ -41,8 +41,3 @@
 .Counter__button.--left {
   border-radius: 25% 0% 0% 25%;
 }
-
-input::-webkit-inner-spin-button {
-  appearance: none;
-  margin: 0;
-}

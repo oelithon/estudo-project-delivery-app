@@ -1,4 +1,4 @@
-button {
+.primary-button, .secondary-button, .tertiary-button {
   align-items: center;
   border-radius: 5px;
   display: flex;

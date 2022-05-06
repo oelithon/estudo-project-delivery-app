@@ -39,7 +39,6 @@ module.exports = {
         type: Sequelize.DataTypes.DATE
       },
       status: {
-        allowNull: false,
         type: Sequelize.STRING,
         defaultValue: 'Pendente',
       },
