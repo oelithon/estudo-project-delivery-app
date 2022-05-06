@@ -3,8 +3,8 @@
     {
       "_id": 1,
       "name": "Becks 330ml",
-      "image": "abc",
-      "price": 4.49
+      "price": 4.49,
+      "url_image": "abc"
     },
     {
       "id": 2,
