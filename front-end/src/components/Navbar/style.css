@@ -15,10 +15,10 @@ button:active {
 }
 
 .Navbar__header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #036B52;
+  display: flex;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
@@ -26,9 +26,9 @@ button:active {
 
 
 .Navbar__buttons--exit--username {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 
 }
 

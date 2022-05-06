@@ -1,6 +1,6 @@
 .DropdownMenu__label {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: flex-start;
 }
 
