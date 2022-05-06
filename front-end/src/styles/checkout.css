@@ -1,11 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .products-box {
   border: 1px solid black;
-  height: 400px;
+  height: auto;
   margin: 1%;
   padding: 1.5%;
 }

@@ -1,4 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
+.subtotal-box {
+  align-items: center;
+  background-color: #056cf9;
+  color: #f2fffc;
+  display: flex;
+  font-size: 36px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 42px;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+  width: 10%;
 }

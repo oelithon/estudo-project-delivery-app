@@ -1,8 +1,7 @@
-.item-box {
+.value-box {
   align-items: center;
-  background-color: #2fc18c;
-  border-radius: 15px 0 0 15px;
-  color: #001813;
+  background-color: #421981;
+  color: #f2fffc;
   display: flex;
   font-size: 36px;
   font-weight: 500;
@@ -11,5 +10,5 @@
   margin-bottom: 10px;
   padding: 5px;
   text-align: center;
-  width: 5%;
+  width: 10%;
 }
