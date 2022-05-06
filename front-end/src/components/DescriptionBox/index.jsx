@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './style.css';
 
-function DescriptionBox() {
+function DescriptionBox({ inputInfo }) {
   return (
     <div className="description-box">
-      Nome do Produto
+      { inputInfo }
     </div>
   );
 }
+
+DescriptionBox.propTypes = {
+  inputInfo: PropTypes.string.isRequired,
+};
 
 export default DescriptionBox;

@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-function QuantityBox() {
+function QuantityBox({ inputInfo }) {
   return (
     <div className="quantity-box">
-      Qntd
+      { inputInfo }
     </div>
   );
 }
+
+QuantityBox.propTypes = {
+  inputInfo: PropTypes.number.isRequired,
+};
 
 export default QuantityBox;
