@@ -1,8 +1,8 @@
 button {
-  border-style: none;
   border-radius: 0%;
-  cursor: pointer;
+  border-style: none;
   color: #ffffff;
+  cursor: pointer;
   font-size: medium;
   font-weight: bolder;
   margin: 0;
@@ -29,12 +29,10 @@ button:active {
   align-items: center;
   display: flex;
   justify-content: center;
-
 }
 
-.Navbar__button--home,
-.Navbar__button--items {
-  background-color: #036B52;
+.Navbar__button--home, .Navbar__button--items {
+  background-color: #036b52;
   width: fit-content;
 }
 
@@ -48,7 +46,6 @@ button:active {
   width: 3rem;
 }
 
-.Navbar__button--exit,
-.Navbar__button--username {
+.Navbar__button--exit, .Navbar__button--username {
   height: 3rem;
 }

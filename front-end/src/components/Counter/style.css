@@ -1,14 +1,14 @@
 .Counter__div {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   height: fit-content;
-  width: fit-content;
   margin: 0;
+  justify-content: center;
+  width: fit-content;
 }
 
 .Counter__input {
-  border: 1px solid #000000;
+  border: 1px solid #000;
   font-size: large;
   height: 2rem;
   text-align: center;
@@ -18,15 +18,11 @@
 .Counter__button {
   background-color: #036b52;
   border-style: none;
-  color: #F2FFFC;
+  color: #f2fffc;
   font-size: larger;
   height: 2.15rem;
   transition: opacity 0.2s;
   width: 2.15rem;
-}
-
-.Counter__button:active {
-  opacity: 0.5;
 }
 
 .Counter__button,
@@ -36,20 +32,18 @@
 }
 
 .Counter__button.--right {
-  border-bottom-left-radius: 0%;
-  border-bottom-right-radius: 25%;
-  border-top-left-radius: 0%;
-  border-top-right-radius: 25%;
+  border-radius: 0% 25% 25% 0%;
 }
 
 .Counter__button.--left {
-  border-bottom-left-radius: 25%;
-  border-bottom-right-radius: 0%;
-  border-top-left-radius: 25%;
-  border-top-right-radius: 0%;
+  border-radius: 25% 0% 0% 25%;
 }
 
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.Counter__button:active {
+  opacity: 0.5;
 }
