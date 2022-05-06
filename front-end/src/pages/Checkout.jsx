@@ -36,6 +36,14 @@ function Checkout() {
     <div>
       <p>Finalizar Pedido</p>
       <div className="products-box">
+        <div className="products-header">
+          <p className="item-header">Item</p>
+          <p className="description-header">Descrição</p> 
+          <p className="quantity-header">Quantidade</p>
+          <p className="price-header">Valor Unitário</p>
+          <p className="sub-total-header">Sub-total</p>
+          <p className="remove-header">Remover Item</p>
+        </div>
         <ul className="products-list">
           <li className="list-item">
             <ItemBox />

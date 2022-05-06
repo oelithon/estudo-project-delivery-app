@@ -5,6 +5,42 @@
   padding: 1.5%;
 }
 
+.products-header {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+}
+
+p {
+  font-size: 15px;
+  margin: 0 0 5px;
+  text-align: center;
+}
+
+.item-header {
+  width: 5%;
+}
+
+.description-header {
+  width: 47%;
+}
+
+.quantity-header {
+  width: 10.5%;
+}
+
+.price-header {
+  width: 10.5%;
+}
+
+.sub-total-header {
+  width: 10.5%;
+}
+
+.remove-header {
+  width: 180px;
+}
+
 .products-list {
   list-style: none;
   width: auto;
