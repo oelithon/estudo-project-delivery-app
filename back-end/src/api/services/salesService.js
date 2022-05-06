@@ -25,7 +25,6 @@ const getOrderById = async (id) => {
 const getAllByUserId = async (token) => {
   try {
     const { id } = await decoder(token);
-    // const { id } = await User.findOne({ where: { email } });
     const orders = await Sale.findAll({ where: { user_id: id } });
     return goodResponse(statusCode.OK, orders);
   } catch (err) {
@@ -34,8 +33,9 @@ const getAllByUserId = async (token) => {
   }
 };
 
-const createSale = async (receivedSale) => {
-  const create = await Sale.create(receivedSale);
+const createSale = async (receivedSale, token) => {
+  const { id } = await decoder(token);
+  const create = await Sale.create({ ...receivedSale, userId: id });
   const createSaleProducts = receivedSale.products.map(async ({ productId, quantity }) => (
     SaleProduct.create({ saleId: create.id, productId, quantity })));
   create.dataValues.date = filterDate(create.saleDate);

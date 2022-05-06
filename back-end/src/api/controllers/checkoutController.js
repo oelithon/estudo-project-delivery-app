@@ -9,8 +9,8 @@ const seller = async (_req, res) => {
 
 const create = async (req, res) => {
   const receivedSale = req.body;
-
-  const { status, json } = await createSale(receivedSale);
+  const token = req.headers.authorization;
+  const { status, json } = await createSale(receivedSale, token);
 
   return res.status(status).json(json);
 };
