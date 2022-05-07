@@ -1,0 +1,15 @@
+.total-box {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 10px;
+  color: #f2fffc;
+  display: flex;
+  font-size: 48px;
+  font-weight: 500;
+  height: 70px;
+  justify-content: center;
+  line-height: 42px;
+  margin-top: 70px;
+  padding: 5px;
+  width: 350px;
+}

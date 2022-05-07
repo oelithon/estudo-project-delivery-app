@@ -49,3 +49,8 @@ p {
 .list-item {
   display: flex;
 }
+
+.total-box-container {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function SubTotalBox({ inputInfo }) {
+function TotalBox({ inputInfo }) {
   return (
-    <div className="subtotal-box">
-      { inputInfo }
+    <div className="total-box">
+      { `Total: ${inputInfo}` }
     </div>
   );
 }
 
-SubTotalBox.propTypes = {
+TotalBox.propTypes = {
   inputInfo: PropTypes.string.isRequired,
 };
 
-export default SubTotalBox;
+export default TotalBox;

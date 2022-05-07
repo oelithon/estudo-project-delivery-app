@@ -1,7 +1,6 @@
-// Essa página está sendo usada somente para visualizar os componentes criados
-
 import React from 'react';
 import { Button, ItemBox, QuantityBox, PriceBox, SubTotalBox, DescriptionBox } from '../components';
+import TotalBox from '../components/TotalBox';
 import useCurrency from '../Hooks/useCurrency';
 import '../styles/checkout.css';
 
@@ -28,7 +27,14 @@ function Checkout() {
 
   localStorage.setItem('myProducts', myProducts);
   const arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
-  console.log(arrayOfProducts);
+  let totalPrice = 0
+  
+  const finalPrice = arrayOfProducts.map((product) => {
+    const subTotalPrice = product.name * product.quantity;
+    totalPrice = totalPrice + subTotalPrice;
+
+    return totalPrice;
+  })
 
   // --------Simulando o localStorage------
 
@@ -56,24 +62,9 @@ function Checkout() {
             </li>
           )) }
         </ul>
-        {/* <ul className="products-list">
-          <li className="list-item">
-            <ItemBox />
-            <DescriptionBox />
-            <QuantityBox />
-            <PriceBox />
-            <SubTotalBox />
-            <Button path="" buttonText="Remover" className="remove-button" />
-          </li>
-          <li className="list-item">
-            <ItemBox />
-            <DescriptionBox />
-            <QuantityBox />
-            <PriceBox />
-            <SubTotalBox />
-            <Button path="" buttonText="Remover" className="remove-button" />
-          </li>
-        </ul> */}
+        {/* <div className="total-box-container">
+          <TotalBox inputInfo={ useCurrency(finalPrice, "R$") }/>
+        </div> */}
       </div>
     </div>
   );
