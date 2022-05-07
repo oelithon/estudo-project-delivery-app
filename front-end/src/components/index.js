@@ -10,6 +10,7 @@ import PriceBox from './PriceBox';
 import ProductCard from './ProductCard';
 import Navbar from './Navbar';
 import DeliveryCard from './DeliveryCard';
+import DescriptionBox from  './DescriptionBox';
 
 export {
   DropdownMenu,
@@ -23,4 +24,6 @@ export {
   ItemBox,
   QuantityBox,
   SubTotalBox,
-  PriceBox };
+  PriceBox,
+  DescriptionBox
+};

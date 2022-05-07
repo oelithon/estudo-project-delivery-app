@@ -1,8 +1,8 @@
 // Essa página está sendo usada somente para visualizar os componentes criados
 
 import React from 'react';
-import { Button, ItemBox, QuantityBox, PriceBox, SubTotalBox } from '../components';
-import DescriptionBox from '../components/DescriptionBox';
+import { Button, ItemBox, QuantityBox, PriceBox, SubTotalBox, DescriptionBox } from '../components';
+import useCurrency from '../Hooks/useCurrency';
 import '../styles/checkout.css';
 
 function Checkout() {
@@ -50,8 +50,8 @@ function Checkout() {
               <ItemBox inputInfo={ index + 1 } />
               <DescriptionBox inputInfo={ product.name } />
               <QuantityBox inputInfo={ product.quantity } />
-              <PriceBox inputInfo={ Number((product.price).toFixed(2)) } />
-              <SubTotalBox inputInfo={ Number((product.quantity * product.price).toFixed(2)) } />
+              <PriceBox inputInfo={ useCurrency(product.price, "R$") } />
+              <SubTotalBox inputInfo={ useCurrency(product.quantity * product.price, "R$") } />
               <Button path="" buttonText="Remover" className="remove-button" />
             </li>
           )) }
