@@ -11,6 +11,7 @@ import ProductCard from './ProductCard';
 import Navbar from './Navbar';
 import DeliveryCard from './DeliveryCard';
 import DescriptionBox from  './DescriptionBox';
+import TotalBox from './TotalBox';
 
 export {
   DropdownMenu,
@@ -25,5 +26,6 @@ export {
   QuantityBox,
   SubTotalBox,
   PriceBox,
-  DescriptionBox
+  DescriptionBox,
+  TotalBox,
 };

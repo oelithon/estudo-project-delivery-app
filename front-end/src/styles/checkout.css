@@ -11,10 +11,18 @@
   width: 100%;
 }
 
+h3 {
+  margin: 15px;
+}
+
 p {
   font-size: 15px;
   margin: 0 0 5px;
   text-align: center;
+}
+
+tr {
+  border-bottom: 5px;
 }
 
 .item-header {
@@ -22,23 +30,23 @@ p {
 }
 
 .description-header {
-  width: 47%;
+  min-width: 45%;
 }
 
 .quantity-header {
-  width: 10.5%;
+  width: 10%;
 }
 
 .price-header {
-  width: 10.5%;
+  width: 13%;
 }
 
 .sub-total-header {
-  width: 10.5%;
+  width: 13%;
 }
 
 .remove-header {
-  width: 180px;
+  width: 14%;
 }
 
 .products-list {
@@ -54,3 +62,88 @@ p {
   display: flex;
   justify-content: flex-end;
 }
+
+.item-box {
+  background-color: #2fc18c;
+  border-radius: 15px 0 0 15px;
+  color: #001813;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 42px;
+  padding: 5px;
+  text-align: center;
+}
+
+.description-box {
+  background-color: #dfe7e5;
+  color: #001813;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 42px;
+  padding: 5px;
+  text-indent: 20px;
+}
+
+.price-box {
+  background-color: #421981;
+  color: #f2fffc;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 42px;
+  padding: 5px;
+  text-align: center;
+}
+
+.quantity-box {
+  background-color: #036b52;
+  color: #f2fffc;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 42px;
+  padding: 5px;
+  text-align: center;
+}
+
+.subtotal-box {
+  background-color: #056cf9;
+  color: #f2fffc;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 42px;
+  padding: 5px;
+  text-align: center;
+}
+
+.remove-button {
+  border-radius: 0 15px 15px 0;
+  display: table-cell;
+  font-size: 28px;
+  font-weight: 500;
+  height: auto;
+  justify-content: center;
+  line-height: 42px;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+}
+
+.remove-button:hover {
+  font-weight: 800;
+}
+
+.total-box {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 10px;
+  color: #f2fffc;
+  display: flex;
+  font-size: 48px;
+  font-weight: 500;
+  height: 70px;
+  justify-content: center;
+  line-height: 42px;
+  margin-top: 70px;
+  padding: 5px;
+  width: 350px;
+}
+
