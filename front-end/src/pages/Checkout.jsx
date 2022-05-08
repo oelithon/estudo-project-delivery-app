@@ -27,6 +27,8 @@ function Checkout() {
   localStorage.setItem('myProducts', myProducts);
   const arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
 
+  // --------Simulando o localStorage------
+
   function currency(value, coin) {
     const fixedValue = value.toFixed(2);
     const modifiedValue = fixedValue.replace('.', ',');
@@ -35,7 +37,12 @@ function Checkout() {
     return newCurrency;
   }
 
-  // --------Simulando o localStorage------
+  const handleRemoveClick = () => {
+    const getArrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    console.log(getArrayOfProducts);
+    console.log(typeof getArrayOfProducts);
+    console.log('clicou!');
+  };
 
   return (
     <div>
@@ -69,7 +76,12 @@ function Checkout() {
                   />
                 </td>
                 <td className="remove-button">
-                  <Button path="" buttonText="Remover" className="remove-button" />
+                  <Button
+                    path=""
+                    buttonText="Remover"
+                    className="remove-button"
+                    onClick={ handleRemoveClick }
+                  />
                 </td>
               </tr>))}
           </tbody>
