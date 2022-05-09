@@ -38,5 +38,5 @@ Exemplo:
 
 4. Após instalação das dependencias, execute o comendo `npm run db:reset` para configurar um banco de dados de exemplo que será consumido por nossa API.
 
-5. Por fim, vamos a parte mais divertida! Consumir nossa API.
+5. Por fim, vamos a parte mais divertida! Consumir a API Delivery App.
 Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
