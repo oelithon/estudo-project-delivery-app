@@ -67,3 +67,43 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 	"token": "token gerado ao realizar o login com sucesso"
 }
 ```
+#### Rota Checkout
+
+- O endpoint `/checkout`, permite que você realize o checkout de uma venda desde que a pessoa usuária tenha feito login com sucesso. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
+
+http://localhost:3001/checkout
+
+```json
+{
+"sellerId": 2, // id do vendedor selecionado
+"totalPrice": 150.49, // valor total da compra realizada
+"deliveryAddress": "Rua Exemplo Teste", // endereço para entrega do pedido
+"deliveryNumber": "123", // número do local de entrega
+"products": [ // array com os itens do carrinho de compras
+{
+"productId": 2, // id do produto presente no carrinho de compras
+"quantity": 5 // quantidade
+},
+{
+"productId": 6, // id do produto presente no carrinho de compras
+"quantity": 2 // quantidade
+}
+]
+}
+```
+
+Sua resposta será um objeto contendo informações da venda confirmada, como por exemplo:
+
+```json
+{
+	"saleDate": "2022-05-09T20:30:22.235Z", // datetime do momento da venda
+	"status": "Pendente", // status de pedido
+	"id": 2, // id do pedido realizado
+	"sellerId": 2, // id do vendedor selecionado
+	"totalPrice": 150.49, // valor total da compra realizada
+	"deliveryAddress": "Rua Exemplo Teste", // endereço para entrega do pedido
+	"deliveryNumber": "123", // número do local de entrega
+	"userId": 3, // id da pessoa usuária logada que realizou o pedido
+	"date": "9/5/2022" // data do pedido
+}
+```
