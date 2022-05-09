@@ -164,3 +164,30 @@ Sua resposta será um array de objetos contendo informações de todos os produt
   //...
 ]
 ```
+---
+
+#### Rota `/customer/orders`
+
+> Listar todos os pedidos realizados pela pessoa usuária
+
+- No endpoint `/customer/orders`, é possível realizar a busca de todos os pedidos realizados pela pessoa usuária, desde que tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/customer/orders.
+
+Sua resposta será um array de objetos contendo informações de todos os pedidos, como por exemplo:
+
+```json
+[
+  //...
+	{
+		"id": 2, // id do pedido realizado
+		"userId": 3, // id da pessoa usuária logada que realizou o pedido
+		"sellerId": 2, // id do vendedor selecionado
+		"totalPrice": "150.49", // valor total da compra realizada
+		"deliveryAddress": "Rua Exemplo Teste", // endereço para entrega do pedido
+		"deliveryNumber": "123", // número do local de entrega
+		"saleDate": "2022-05-09T20:30:22.000Z", // datetime do momento da venda
+		"status": "Pendente", // status de pedido
+		"user_id": 3
+	},
+  //...
+]
+```
