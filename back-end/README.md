@@ -41,6 +41,8 @@ Exemplo:
 5. Por fim, vamos a parte mais divertida! Consumir a API Delivery App.
 Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
 
+---
+
 ### Endpoints
 
 #### Rota `/login`
@@ -69,6 +71,9 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 	"token": "token gerado ao realizar o login com sucesso"
 }
 ```
+
+---
+
 #### Rota `/checkout`
 
 ##### Obter lista de vendedores
