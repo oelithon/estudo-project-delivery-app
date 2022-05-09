@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
@@ -100,7 +100,15 @@ function LoginProvider({ children }) {
     setHidden(true);
   };
 
+  function currency(value, coin) {
+    const fixedValue = value.toFixed(2);
+    const modifiedValue = fixedValue.replace('.', ',');
+    const newCurrency = `${coin} ${modifiedValue}`;
+    return newCurrency;
+  }
+
   const context = {
+    currency,
     loading,
     hidden,
     setHidden,

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox } from '../components';
-  
+import LoginContext from '../context/LoginContext';
+
 function Checkout() {
   const [products, setProducts] = useState([]);
+  const { currency } = useContext(LoginContext);
   const myProducts = JSON.stringify([
     {
       name: 'Becks 330ml',
@@ -26,14 +28,7 @@ function Checkout() {
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
   useEffect(() => {
     setProducts(arrayOfProducts);
-  }, [arrayOfProducts]);
-
-  function currency(value, coin) {
-    const fixedValue = value.toFixed(2);
-    const modifiedValue = fixedValue.replace('.', ',');
-    const newCurrency = `${coin} ${modifiedValue}`;
-    return newCurrency;
-  }
+  }, []);
 
   const handleRemoveClick = (event) => {
     arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
