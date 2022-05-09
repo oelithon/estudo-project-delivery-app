@@ -6,7 +6,7 @@
 - NodeJS: version 16.0.0 ou superior;
 - MySQL: version 8.0.29;
 
-* As demais dependencias encontram-se especificadas no arquivo package.json desse repositório. Siga os passos da sessão "Como funciona?" para iniciar a API. 
+* As demais dependencias encontram-se especificadas no arquivo package.json desse repositório. Siga os passos da sessão seguinte para iniciar a configuração da API. 
 
 ### Configuração
 
