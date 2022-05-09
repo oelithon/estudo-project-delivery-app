@@ -23,7 +23,7 @@ Exemplo:
 
 - No diretório `/back-end`, crie um arquivo `.env` para configurar suas variáveis de ambiente, para isso, execute em seu terminal o comando `touch .env`, abra seu editor de código, em seguida abra o arquivo `.env` criado, cole o exemplo de váriaveis de ambiente abaixo alterando APENAS as suas credenciais do MySQL Local de sua máquina.
 
-```js script
+```dotenv
 {
   NODE_ENV=development
   API_PORT=3001
@@ -40,3 +40,28 @@ Exemplo:
 
 5. Por fim, vamos a parte mais divertida! Consumir a API Delivery App.
 Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
+
+### Endpoints
+
+- Agora que configuramos a API e já temos um banco de dados de exemplo para trabalhar, podemos então realizar o login na aplicação utilizando o endpoint `/login`. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
+
+http://localhost:3001/login
+
+```json
+{
+	"email": "zebirita@email.com",
+	"password": "$#zebirita#$"
+}
+```
+
+Sua resposta será um objeto contendo informações do usuário cadastrado, como por exemplo:
+
+```json
+{
+	"id": 3,
+	"name": "Cliente Zé Birita",
+	"email": "zebirita@email.com",
+	"role": "customer",
+	"token": "token gerado ao realizar o login com sucesso"
+}
+```
