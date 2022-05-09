@@ -1,6 +1,6 @@
 # Boas vindas ao repositório de BackEnd da aplicação Delivery App!
 
-## Vamos te guiar nas principais funcionálidades de nossa API, como fazer requisições e respostas esperadas.
+## Vamos te guiar nas principais funcionalidades de nossa API, como fazer requisições e respostas esperadas.
 
 ### Requisitos
 - NodeJS: version 16.0.0 ou superior;
