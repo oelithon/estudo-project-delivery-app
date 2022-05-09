@@ -162,4 +162,5 @@ Sua resposta será um array de objetos contendo informações de todos os produt
 		"url_image": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg"
 	},
   //...
+]
 ```
