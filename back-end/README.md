@@ -75,20 +75,20 @@ http://localhost:3001/checkout
 
 ```json
 {
-"sellerId": 2, // id do vendedor selecionado
-"totalPrice": 150.49, // valor total da compra realizada
-"deliveryAddress": "Rua Exemplo Teste", // endereço para entrega do pedido
-"deliveryNumber": "123", // número do local de entrega
-"products": [ // array com os itens do carrinho de compras
-{
-"productId": 2, // id do produto presente no carrinho de compras
-"quantity": 5 // quantidade
-},
-{
-"productId": 6, // id do produto presente no carrinho de compras
-"quantity": 2 // quantidade
-}
-]
+  "sellerId": 2, // id do vendedor selecionado
+  "totalPrice": 150.49, // valor total da compra realizada
+  "deliveryAddress": "Rua Exemplo Teste", // endereço para entrega do pedido
+  "deliveryNumber": "123", // número do local de entrega
+  "products": [ // array com os itens do carrinho de compras
+    {
+    "productId": 2, // id do produto presente no carrinho de compras
+    "quantity": 5 // quantidade
+    },
+    {
+    "productId": 6, // id do produto presente no carrinho de compras
+    "quantity": 2 // quantidade
+    }
+  ]
 }
 ```
 
