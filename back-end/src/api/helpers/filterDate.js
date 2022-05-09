@@ -3,4 +3,16 @@ const filterDate = (paramDate) => {
   return `${date}/${month}/${year}`;
 };
 
-module.exports = filterDate;
+const filterArrayDate = (orders) => {
+  const ordersWhitDate = orders.map((obj) => {
+    const order = obj.dataValues;
+    order.date = filterDate(order.saleDate);
+    return order;
+  });
+  return ordersWhitDate;
+};
+
+module.exports = {
+  filterDate,
+  filterArrayDate,
+};
