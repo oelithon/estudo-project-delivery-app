@@ -69,6 +69,8 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 ```
 #### Rota Checkout
 
+##### Realizando um pedido
+
 - O endpoint `/checkout`, permite que você realize o checkout de uma venda desde que a pessoa usuária tenha feito login com sucesso. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
 
 http://localhost:3001/checkout
