@@ -71,9 +71,24 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 ```
 #### Rota `/checkout`
 
+##### Obter lista de vendedores
+
+- O endpoint `/checkout`, permite que você realize a busca por todos os vendedores cadastrados na base de dados. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/checkout.
+
+Sua resposta será um objeto contendo informações dos vendedores, como por exemplo:
+
+```json
+{
+	"id": 2, // id do vendedor
+	"name": "Fulana Pereira", // nome completo
+	"email": "fulana@deliveryapp.com", // e-mail
+	"role": "seller" // tipo de pessoa usuária
+}
+```
+
 ##### Realizando um pedido
 
-- O endpoint `/checkout`, permite que você realize o checkout de uma venda desde que a pessoa usuária tenha feito login com sucesso. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
+- Ainda no endpoint `/checkout`, você pode realizar o checkout de uma venda desde que a pessoa usuária tenha feito login com sucesso. Então, faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
 
 http://localhost:3001/checkout
 
