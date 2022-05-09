@@ -89,6 +89,8 @@ http://localhost:3001/register
 }
 ```
 
+A requisição na rota `/register` por padrão faz o cadastro de uma pessoa usuária com a `role` do tipo `customer`, mas caso queira cadastrar outro tipo, basta informar a chave `role` nas requisições, que essa chave pode receber também os tipos `administrador` e `seller`.
+
 Sua resposta será um objeto contendo informações do usuário cadastrado, como por exemplo:
 
 ```json
