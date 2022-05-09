@@ -216,7 +216,8 @@ Sua resposta será um array de objetos contendo informações de todos os pedido
 		"deliveryNumber": "123", // número do local de entrega
 		"saleDate": "2022-05-09T20:30:22.000Z", // datetime do momento da venda
 		"status": "Pendente", // status de pedido
-		"user_id": 3
+		"user_id": 3,
+    "date": "9/5/2022"
 	},
   //...
 ]
@@ -242,6 +243,7 @@ Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 	"saleDate": "2022-05-09T19:01:52.000Z", // datetime do momento da venda
 	"status": "Pendente", // status de pedido
 	"user_id": 3,
+  "date": "9/5/2022",
 	"products": [ // array com os itens do pedido
 		{
 			"id": 2,
