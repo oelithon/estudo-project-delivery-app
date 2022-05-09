@@ -191,3 +191,42 @@ Sua resposta será um array de objetos contendo informações de todos os pedido
   //...
 ]
 ```
+---
+
+#### Rota `/customer/orders/:id`
+
+> Lista um pedidos realizado pela pessoa usuária de forma específica através do id
+
+- No endpoint `/customer/orders/:id`, é possível realizar a busca de um pedido realizado pela pessoa usuária, através do id do pedido cadastrado, também é necessário que tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/customer/orders/1.
+
+Sua resposta será um objeto contendo informações do pedido, como por exemplo:
+
+```json
+{
+	"id": 1, // id do pedido realizado
+	"userId": 3, // id da pessoa usuária logada que realizou o pedido
+	"sellerId": 2, // id do vendedor selecionado
+	"totalPrice": "200.33", // valor total da compra realizada
+	"deliveryAddress": "rua josé das couves", // endereço para entrega do pedido
+	"deliveryNumber": "n 301", // número do local de entrega
+	"saleDate": "2022-05-09T19:01:52.000Z", // datetime do momento da venda
+	"status": "Pendente", // status de pedido
+	"user_id": 3,
+	"products": [ // array com os itens do pedido
+		{
+			"id": 2,
+			"name": "Heineken 600ml",
+			"price": "7.50",
+			"url_image": "http://localhost:3001/images/heineken_600ml.jpg",
+			"quantity": 5
+		},
+		{
+			"id": 6,
+			"name": "Skol Beats Senses 313ml",
+			"price": "4.49",
+			"url_image": "http://localhost:3001/images/skol_beats_senses_313ml.jpg",
+			"quantity": 2
+		}
+	]
+}
+```
