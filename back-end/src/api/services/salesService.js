@@ -3,7 +3,7 @@ const { Sale, SaleProduct, Product } = require('../../database/models');
 const { errorResponse, goodResponse } = require('../helpers/response');
 const { decoder } = require('../helpers/jwt');
 const statusCode = require('../helpers/statusCode');
-const filterDate = require('../helpers/filterDate');
+const { filterDate, filterArrayDate } = require('../helpers/filterDate');
 const productDataProcessing = require('../helpers/productDataProcessing');
 
 const getOrderById = async (id) => {
@@ -17,8 +17,7 @@ const getOrderById = async (id) => {
 
     return goodResponse(statusCode.OK, productDataProcessing(product));
   } catch (err) {
-    console.log(err);
-    return errorResponse(statusCode.INTERNAL_SERVER_ERROR, err);
+    return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
 
@@ -26,10 +25,10 @@ const getAllByUserId = async (token) => {
   try {
     const { id } = await decoder(token);
     const orders = await Sale.findAll({ where: { user_id: id } });
-    return goodResponse(statusCode.OK, orders);
+
+    return goodResponse(statusCode.OK, filterArrayDate(orders));
   } catch (err) {
-    console.log(err);
-    return errorResponse(statusCode.INTERNAL_SERVER_ERROR, err);
+    return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
 

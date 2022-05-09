@@ -84,7 +84,7 @@ describe('Rota /customer/products', () => {
     Product.findAll.restore();
   })
 
-  it('Testa que a API retorna erro caso não consrica se conectar com o DB', () => {
+  it('Testa que a API retorna erro caso não consiga se conectar com o DB', () => {
     const { body } = internalError;
 
     expect(body).to.be.an('object');

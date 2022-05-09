@@ -8,8 +8,12 @@ const {
   returnLogin,
   createdUser,
   returnRegister,
+  nullEmail,
+  invalidEmail,
+  invalidPassword,
+  nullPassword,
 } = require('../mocks/userMocks');
-const { OK, NOT_FOUND } = require('../../api/helpers/statusCode');
+const { OK, NOT_FOUND, BAD_REQUEST } = require('../../api/helpers/statusCode');
 const { notFound } = require('../../api/helpers/errorMessages');
 
 chai.use(chaiHttp);
@@ -76,4 +80,67 @@ describe('Rota /login', () => {
 
   });
 
+});
+
+
+describe('Rota /login', () => {
+  let nullEmailResponse;
+  let invalidEmailResponse;
+  let nullPasswordResponse;
+  let invalidPasswordResponse;
+
+  before(async () => {
+    sinon
+      .stub(User, 'findOne')
+      .returns(false);
+    nullEmailResponse = await chaiRequest(app)
+      .post('/login')
+      .send(nullEmail);
+    invalidEmailResponse = await chaiRequest(app)
+      .post('/login')
+      .send(invalidEmail);
+    nullPasswordResponse = await chaiRequest(app)
+      .post('/login')
+      .send(nullPassword);
+    invalidPasswordResponse = await chaiRequest(app)
+      .post('/login')
+      .send(invalidPassword);
+
+  });
+  after(() => {
+    User.findOne.restore();
+  })
+
+
+  it('Testa que não é possível fazer o login de um usuário sem o campo "email"', () => {
+    const { body } = nullEmailResponse;
+
+    expect(nullEmailResponse).to.be.an('object');
+    expect(nullEmailResponse).to.have.status(BAD_REQUEST);
+    expect(body.error).to.be.equal('"email" is required');
+  });
+
+  it('Testa que não é possível fazer o login de um usuário sem um "email" válido', () => {
+    const { body } = invalidEmailResponse;
+
+    expect(invalidEmailResponse).to.be.an('object');
+    expect(invalidEmailResponse).to.have.status(BAD_REQUEST);
+    expect(body.error).to.be.equal('"email" must be a valid email');
+  });
+
+  it('Testa que não é possível fazer o login de um usuário sem o campo "password"', () => {
+    const { body } = nullPasswordResponse;
+
+    expect(nullEmailResponse).to.be.an('object');
+    expect(nullEmailResponse).to.have.status(BAD_REQUEST);
+    expect(body.error).to.be.equal('"password" is required');
+  });
+
+  it('Testa que não é possível fazer o login de um usuário sem um "password" válido', () => {
+    const { body } = invalidPasswordResponse;
+
+    expect(invalidEmailResponse).to.be.an('object');
+    expect(invalidEmailResponse).to.have.status(BAD_REQUEST);
+    expect(body.error).to.be.equal('"password" length must be at least 6 characters long');
+  });
 });
