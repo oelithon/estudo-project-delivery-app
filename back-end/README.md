@@ -131,3 +131,35 @@ Sua resposta será um objeto contendo informações da venda confirmada, como po
 	"date": "9/5/2022" // data do pedido
 }
 ```
+---
+
+#### Rota `/customer/products`
+
+> Listar todos os produtos
+
+- No endpoint `/customer/products`, é possível realizar a busca de todos os produtos cadastrados na base de dados, desde que a pessoa usuária tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/customer/products.
+
+Sua resposta será um array de objetos contendo informações de todos os produtos cadastrados, como por exemplo:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Skol Lata 250ml",
+		"price": "2.20",
+		"url_image": "http://localhost:3001/images/skol_lata_350ml.jpg"
+	},
+	{
+		"id": 2,
+		"name": "Heineken 600ml",
+		"price": "7.50",
+		"url_image": "http://localhost:3001/images/heineken_600ml.jpg"
+	},
+	{
+		"id": 3,
+		"name": "Antarctica Pilsen 300ml",
+		"price": "2.49",
+		"url_image": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg"
+	},
+  //...
+```
