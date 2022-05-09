@@ -37,3 +37,18 @@ button:disabled {
   color: #0e8d6f;
   font-weight: 1;
 }
+
+.finish-order-button {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 10px;
+  color: #f2fffc;
+  display: flex;
+  font-size: 28px;
+  font-weight: 800;
+  height: 70px;
+  justify-content: center;
+  line-height: 42px;
+  padding: 5px;
+  width: 500px;
+}

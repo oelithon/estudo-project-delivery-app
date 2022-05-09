@@ -28,7 +28,7 @@ function Checkout() {
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
   useEffect(() => {
     setProducts(arrayOfProducts);
-  }, []);
+  }, [arrayOfProducts]);
 
   const handleRemoveClick = (event) => {
     arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
@@ -56,13 +56,13 @@ function Checkout() {
               <tr key={ index } name={ index }>
                 <td className="item-box"><ItemBox inputInfo={ index + 1 } /></td>
                 <td
-                  data-testid={ `customer_checkout__element-order-table-name-<${index}>` }
+                  dataTestId={ `customer_checkout__element-order-table-name-<${index}>` }
                   className="description-box"
                 >
                   <DescriptionBox inputInfo={ product.name } />
                 </td>
                 <td
-                  data-testid={
+                  dataTestId={
                     `customer_checkout__element-order-table-quantity-<${index}>`
                   }
                   className="quantity-box"
@@ -70,7 +70,7 @@ function Checkout() {
                   <QuantityBox inputInfo={ product.quantity } />
                 </td>
                 <td
-                  data-testid={
+                  dataTestId={
                     `customer_checkout__element-order-table-unit-price-<${index}>`
                   }
                   className="price-box"
@@ -78,7 +78,7 @@ function Checkout() {
                   <PriceBox inputInfo={ currency(product.price, 'R$') } />
                 </td>
                 <td
-                  data-testid={
+                  dataTestId={
                     `customer_checkout__element-order-table-sub-total-<${index}>`
                   }
                   className="subtotal-box"
@@ -89,7 +89,7 @@ function Checkout() {
                 </td>
                 <td id={ index } className="remove-button">
                   <Button
-                    data-testid={
+                    dataTestId={
                       `customer_checkout__element-order-table-remove-<${index}>`
                     }
                     path=""
@@ -103,7 +103,7 @@ function Checkout() {
         </table>
         <div className="total-box-container">
           <TotalBox
-            data-testid="customer_checkout__element-order-total-price"
+            dataTestId="customer_checkout__element-order-total-price"
             className="total-box"
             inputInfo={ currency(products.reduce((acc, product) => (
               acc + product.price * product.quantity
@@ -113,6 +113,14 @@ function Checkout() {
       </div>
       <h3>Detalhes e Endereço para Entrega</h3>
       <div className="main-box">
+        <div className="finish-button-container">
+          <Button
+            className="finish-order-button"
+            dataTestId="customer_checkout__button-submit-order"
+            path=""
+            buttonText="FINALIZAR PEDIDO"
+          />
+        </div>
       </div>
     </div>
   );

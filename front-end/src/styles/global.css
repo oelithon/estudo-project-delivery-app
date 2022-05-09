@@ -18,6 +18,10 @@ html {
   }
 }
 
+a {
+  height: auto;
+}
+
 body, input, textarea, button {
   font-family: Roboto , sans-serif;
   font-weight: 400;
@@ -181,4 +185,9 @@ td {
   margin-top: 70px;
   padding: 5px;
   width: 350px;
+}
+
+.finish-button-container {
+  display: flex;
+  justify-content: center;
 }
