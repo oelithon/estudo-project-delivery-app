@@ -93,10 +93,10 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 
 ```json
 {
-	"id": 4,
+	"id": 4, // id do cadastro realizado
 	"name": "Otto Albuquerque",
 	"email": "ottoBoy@otto.com",
-	"role": "customer",
+	"role": "customer", // tipo de atrubuição
 	"token": "token gerado ao realizar o cadastro com sucesso"
 }
 ```
