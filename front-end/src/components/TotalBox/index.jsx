@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function TotalBox({ inputInfo }) {
+function TotalBox({ inputInfo, dataTestId }) {
   return (
-    <div className="total-box">
+    <div className="total-box" data-testid={ dataTestId }>
       { `Total: ${inputInfo}` }
     </div>
   );

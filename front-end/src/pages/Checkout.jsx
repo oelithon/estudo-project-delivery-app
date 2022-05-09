@@ -47,7 +47,7 @@ function Checkout() {
   return (
     <div>
       <h3>Finalizar Pedido</h3>
-      <div className="products-box">
+      <div className="main-box">
         <table>
           <tr>
             <th className="item-header">Item</th>
@@ -61,22 +61,35 @@ function Checkout() {
             { arrayOfProducts.map((product, index) => (
               <tr key={ index }>
                 <td className="item-box"><ItemBox inputInfo={ index + 1 } /></td>
-                <td className="description-box">
+                <td 
+                  data-testid={`customer_checkout__element-order-table-name-<${index}>` }
+                  className="description-box"
+                >
                   <DescriptionBox inputInfo={ product.name } />
                 </td>
-                <td className="quantity-box">
+                <td 
+                  data-testid={`customer_checkout__element-order-table-quantity-<${index}>` }
+                  className="quantity-box"
+                >
                   <QuantityBox inputInfo={ product.quantity } />
                 </td>
-                <td className="price-box">
+                <td 
+                  data-testid={`customer_checkout__element-order-table-unit-price-<${index}>` }
+                  className="price-box"
+                >
                   <PriceBox inputInfo={ currency(product.price, 'R$') } />
                 </td>
-                <td className="subtotal-box">
+                <td 
+                  data-testid={`customer_checkout__element-order-table-sub-total-<${index}>` }
+                  className="subtotal-box"
+                >
                   <SubTotalBox
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />
                 </td>
                 <td className="remove-button">
                   <Button
+                    data-testid={`customer_checkout__element-order-table-remove-<${index}>` }
                     path=""
                     buttonText="Remover"
                     className="remove-button"
@@ -88,12 +101,16 @@ function Checkout() {
         </table>
         <div className="total-box-container">
           <TotalBox
+            data-testid="customer_checkout__element-order-total-price"
             className="total-box"
             inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
               acc + product.price * product.quantity
             ), 0), 'R$') }
           />
         </div>
+      </div>
+      <h3>Detalhes e Endereço para Entrega</h3>
+      <div className="main-box">
       </div>
     </div>
   );

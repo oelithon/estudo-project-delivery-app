@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SubTotalBox({ inputInfo }) {
+function SubTotalBox({ inputInfo, dataTestId }) {
   return (
-    <div className="subtotal-box">
+    <div className="subtotal-box" data-testid={ dataTestId }>
       { inputInfo }
     </div>
   );

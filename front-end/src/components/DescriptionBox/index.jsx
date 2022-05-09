@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function DescriptionBox({ inputInfo }) {
+function DescriptionBox({ inputInfo, dataTestId }) {
   return (
-    <div className="description-box">
+    <div className="description-box" data-testid={ dataTestId }>
       { inputInfo }
     </div>
   );
