@@ -17,11 +17,11 @@ Para começar a utilizar a API:
 
 2. Em seu terminal, execute o comando `npm install` para instalar todas as dependências necessárias.
 
-3. Precisaremos configurar um arquivo .env com algumas variáveis de ambiente que serão úteis a nossa aplicação. Siga o exemplo abaixo:
+3. Precisaremos configurar um arquivo `.env` com algumas variáveis de ambiente que serão úteis a nossa aplicação. Siga o exemplo abaixo:
 
 Exemplo:
 
-- No diretório /back-end, crie um arquivo .env para configurar suas variáveis de ambiente, para isso, execute em seu terminal o comando `touch .env`, abra seu editor de código, em seguida abra o arquivo .env criado, cole o exemplo de váriaveis de ambiente abaixo alterando APENAS as suas credenciais do MySQL Local de sua máquina.
+- No diretório `/back-end`, crie um arquivo `.env` para configurar suas variáveis de ambiente, para isso, execute em seu terminal o comando `touch .env`, abra seu editor de código, em seguida abra o arquivo `.env` criado, cole o exemplo de váriaveis de ambiente abaixo alterando APENAS as suas credenciais do MySQL Local de sua máquina.
 
 ```js script
 {
