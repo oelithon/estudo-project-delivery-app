@@ -43,7 +43,7 @@ Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
 
 ### Endpoints
 
-#### Rota /login
+#### Rota `/login`
 
 ##### Realizando o login da pessoa consumidora
 
@@ -69,7 +69,7 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 	"token": "token gerado ao realizar o login com sucesso"
 }
 ```
-#### Rota /checkout
+#### Rota `/checkout`
 
 ##### Realizando um pedido
 
