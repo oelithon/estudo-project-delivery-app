@@ -43,6 +43,8 @@ Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
 
 ### Endpoints
 
+#### Rota Login
+
 - Agora que configuramos a API e já temos um banco de dados de exemplo para trabalhar, podemos então realizar o login na aplicação utilizando o endpoint `/login`. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
 
 http://localhost:3001/login
