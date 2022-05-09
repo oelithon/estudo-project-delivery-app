@@ -11,6 +11,11 @@ function SubTotalBox({ inputInfo, dataTestId }) {
 
 SubTotalBox.propTypes = {
   inputInfo: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+SubTotalBox.defaultProps = {
+  dataTestId: '',
 };
 
 export default SubTotalBox;

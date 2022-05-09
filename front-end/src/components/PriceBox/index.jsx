@@ -11,6 +11,11 @@ function PriceBox({ inputInfo, dataTestId }) {
 
 PriceBox.propTypes = {
   inputInfo: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+PriceBox.defaultProps = {
+  dataTestId: '',
 };
 
 export default PriceBox;

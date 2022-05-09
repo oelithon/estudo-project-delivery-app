@@ -11,6 +11,11 @@ function DescriptionBox({ inputInfo, dataTestId }) {
 
 DescriptionBox.propTypes = {
   inputInfo: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+DescriptionBox.defaultProps = {
+  dataTestId: '',
 };
 
 export default DescriptionBox;

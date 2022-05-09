@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox } from '../components';
-import '../styles/checkout.css';
-
+  
 function Checkout() {
-  // --------Simulando o localStorage------
-
+  const [products, setProducts] = useState([]);
   const myProducts = JSON.stringify([
     {
       name: 'Becks 330ml',
@@ -25,23 +23,24 @@ function Checkout() {
   ]);
 
   localStorage.setItem('myProducts', myProducts);
-  const arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
-
-  // --------Simulando o localStorage------
+  let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+  useEffect(() => {
+    setProducts(arrayOfProducts);
+  }, [arrayOfProducts]);
 
   function currency(value, coin) {
     const fixedValue = value.toFixed(2);
     const modifiedValue = fixedValue.replace('.', ',');
     const newCurrency = `${coin} ${modifiedValue}`;
-
     return newCurrency;
   }
 
-  const handleRemoveClick = () => {
-    const getArrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
-    console.log(getArrayOfProducts);
-    console.log(typeof getArrayOfProducts);
-    console.log('clicou!');
+  const handleRemoveClick = (event) => {
+    arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    const index = event.target.parentElement.parentElement.id;
+    arrayOfProducts.splice(index, 1);
+    localStorage.setItem('myProducts', JSON.stringify(arrayOfProducts));
+    setProducts(arrayOfProducts);
   };
 
   return (
@@ -58,42 +57,50 @@ function Checkout() {
             <th className="remove-header">Remover Item</th>
           </tr>
           <tbody>
-            { arrayOfProducts.map((product, index) => (
-              <tr key={ index }>
+            { products.map((product, index) => (
+              <tr key={ index } name={ index }>
                 <td className="item-box"><ItemBox inputInfo={ index + 1 } /></td>
-                <td 
-                  data-testid={`customer_checkout__element-order-table-name-<${index}>` }
+                <td
+                  data-testid={ `customer_checkout__element-order-table-name-<${index}>` }
                   className="description-box"
                 >
                   <DescriptionBox inputInfo={ product.name } />
                 </td>
-                <td 
-                  data-testid={`customer_checkout__element-order-table-quantity-<${index}>` }
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-quantity-<${index}>`
+                  }
                   className="quantity-box"
                 >
                   <QuantityBox inputInfo={ product.quantity } />
                 </td>
-                <td 
-                  data-testid={`customer_checkout__element-order-table-unit-price-<${index}>` }
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-unit-price-<${index}>`
+                  }
                   className="price-box"
                 >
                   <PriceBox inputInfo={ currency(product.price, 'R$') } />
                 </td>
-                <td 
-                  data-testid={`customer_checkout__element-order-table-sub-total-<${index}>` }
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-sub-total-<${index}>`
+                  }
                   className="subtotal-box"
                 >
                   <SubTotalBox
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />
                 </td>
-                <td className="remove-button">
+                <td id={ index } className="remove-button">
                   <Button
-                    data-testid={`customer_checkout__element-order-table-remove-<${index}>` }
+                    data-testid={
+                      `customer_checkout__element-order-table-remove-<${index}>`
+                    }
                     path=""
                     buttonText="Remover"
                     className="remove-button"
-                    onClick={ handleRemoveClick }
+                    onClick={ (event) => handleRemoveClick(event) }
                   />
                 </td>
               </tr>))}
@@ -103,7 +110,7 @@ function Checkout() {
           <TotalBox
             data-testid="customer_checkout__element-order-total-price"
             className="total-box"
-            inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
+            inputInfo={ currency(products.reduce((acc, product) => (
               acc + product.price * product.quantity
             ), 0), 'R$') }
           />

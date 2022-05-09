@@ -11,6 +11,10 @@ function TotalBox({ inputInfo, dataTestId }) {
 
 TotalBox.propTypes = {
   inputInfo: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
 };
 
+TotalBox.defaultProps = {
+  dataTestId: '',
+};
 export default TotalBox;

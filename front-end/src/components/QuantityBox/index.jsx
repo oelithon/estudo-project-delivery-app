@@ -11,6 +11,11 @@ function QuantityBox({ inputInfo, dataTestId }) {
 
 QuantityBox.propTypes = {
   inputInfo: PropTypes.number.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+QuantityBox.defaultProps = {
+  dataTestId: '',
 };
 
 export default QuantityBox;
