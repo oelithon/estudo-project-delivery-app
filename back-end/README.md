@@ -71,7 +71,35 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 	"token": "token gerado ao realizar o login com sucesso"
 }
 ```
+---
 
+#### Rota `/register`
+
+> Cadastrando uma pessoa usuária
+
+- O endpoint `/register`, permite que você realize o cadastro de uma nova pessoa usuária na base de dados. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
+
+http://localhost:3001/register
+
+```json
+{
+"name": "Otto Albuquerque",
+"password": "19naosao20",
+"email": "ottoBoy@otto.com"
+}
+```
+
+Sua resposta será um objeto contendo informações do usuário cadastrado, como por exemplo:
+
+```json
+{
+	"id": 4,
+	"name": "Otto Albuquerque",
+	"email": "ottoBoy@otto.com",
+	"role": "customer",
+	"token": "token gerado ao realizar o cadastro com sucesso"
+}
+```
 ---
 
 #### Rota `/checkout`
