@@ -83,9 +83,9 @@ http://localhost:3001/register
 
 ```json
 {
-"name": "Otto Albuquerque",
-"password": "19naosao20",
-"email": "ottoBoy@otto.com"
+  "name": "Otto Albuquerque",
+  "password": "19naosao20",
+  "email": "ottoBoy@otto.com"
 }
 ```
 
