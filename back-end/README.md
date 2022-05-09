@@ -47,7 +47,7 @@ Execute o comando `npm start`, a API irá rodar na porta http://localhost:3001/
 
 #### Rota `/login`
 
-<u>Realizando o login da pessoa consumidora</u>
+> Realizando o login da pessoa consumidora
 
 - Agora que configuramos a API e já temos um banco de dados de exemplo para trabalhar, podemos então realizar o login na aplicação utilizando o endpoint `/login`. Faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
 
@@ -76,7 +76,7 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 
 #### Rota `/checkout`
 
-<u>Obter lista de vendedores</u>
+> Obter lista de vendedores
 
 - O endpoint `/checkout`, permite que você realize a busca por todos os vendedores cadastrados na base de dados. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/checkout.
 
@@ -91,7 +91,7 @@ Sua resposta será um objeto contendo informações dos vendedores, como por exe
 }
 ```
 
-<u>Realizando um pedido</u>
+> Realizando um pedido
 
 - Ainda no endpoint `/checkout`, você pode realizar o checkout de uma venda desde que a pessoa usuária tenha feito login com sucesso. Então, faça uma requisição do tipo POST utilizando os dados do exemplo abaixo:
 
