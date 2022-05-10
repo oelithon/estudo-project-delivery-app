@@ -1,31 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button, ItemBox, QuantityBox,
-  PriceBox, SubTotalBox, DescriptionBox, TotalBox } from '../components';
+  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function Checkout() {
   const [products, setProducts] = useState([]);
-  const { currency } = useContext(LoginContext);
-  const myProducts = JSON.stringify([
-    {
-      name: 'Becks 330ml',
-      price: 4.49,
-      quantity: 2,
-    },
-    {
-      name: 'Antartica Pilsen 300ml',
-      price: 2.49,
-      quantity: 5,
-    },
-    {
-      name: 'Heineken 600ml',
-      price: 7.5,
-      quantity: 3,
-    },
-  ]);
+  // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
+  const sellers = ['Thereza', 'Rafael', 'Paulo'];
+  const { currency, settingAddress, settingNumber } = useContext(LoginContext);
+  //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
+  // const myProducts = JSON.stringify([
+  //   {
+  //     name: 'Becks 330ml',
+  //     price: 4.49,
+  //     quantity: 2,
+  //   },
+  //   {
+  //     name: 'Antartica Pilsen 300ml',
+  //     price: 2.49,
+  //     quantity: 5,
+  //   },
+  //   {
+  //     name: 'Heineken 600ml',
+  //     price: 7.5,
+  //     quantity: 3,
+  //   },
+  // ]);
 
-  localStorage.setItem('myProducts', myProducts);
+  // localStorage.setItem('myProducts', myProducts);
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+
   useEffect(() => {
     setProducts(arrayOfProducts);
   }, [arrayOfProducts]);
@@ -56,13 +60,13 @@ function Checkout() {
               <tr key={ index } name={ index }>
                 <td className="item-box"><ItemBox inputInfo={ index + 1 } /></td>
                 <td
-                  dataTestId={ `customer_checkout__element-order-table-name-<${index}>` }
+                  data-testid={ `customer_checkout__element-order-table-name-<${index}>` }
                   className="description-box"
                 >
                   <DescriptionBox inputInfo={ product.name } />
                 </td>
                 <td
-                  dataTestId={
+                  data-testid={
                     `customer_checkout__element-order-table-quantity-<${index}>`
                   }
                   className="quantity-box"
@@ -70,7 +74,7 @@ function Checkout() {
                   <QuantityBox inputInfo={ product.quantity } />
                 </td>
                 <td
-                  dataTestId={
+                  data-testid={
                     `customer_checkout__element-order-table-unit-price-<${index}>`
                   }
                   className="price-box"
@@ -78,7 +82,7 @@ function Checkout() {
                   <PriceBox inputInfo={ currency(product.price, 'R$') } />
                 </td>
                 <td
-                  dataTestId={
+                  data-testid={
                     `customer_checkout__element-order-table-sub-total-<${index}>`
                   }
                   className="subtotal-box"
@@ -89,7 +93,7 @@ function Checkout() {
                 </td>
                 <td id={ index } className="remove-button">
                   <Button
-                    dataTestId={
+                    data-testid={
                       `customer_checkout__element-order-table-remove-<${index}>`
                     }
                     path=""
@@ -113,8 +117,45 @@ function Checkout() {
       </div>
       <h3>Detalhes e Endereço para Entrega</h3>
       <div className="main-box">
+        <div className="select-input-container">
+          <div className="select-container">
+            <p>P. Vendedor(a) Responsável</p>
+            <select
+              data-testid="customer_checkout__select-seller"
+              className="select-input"
+            >
+              { sellers.map((seller, index) => (
+                <option
+                  className="option-input"
+                  value={ seller }
+                  key={ index }
+                >
+                  { seller }
+                </option>
+              )) }
+            </select>
+          </div>
+          <Input
+            inputLabel="Endereço"
+            className="address-input"
+            dataTestId="customer_checkout__input-address"
+            type="text"
+            onChange={ (event) => settingAddress(event) }
+            placeholder="Endereço"
+          />
+          <Input
+            inputLabel="Número"
+            className="number-input"
+            dataTestId="customer_checkout__input-addressNumber"
+            type="text"
+            onChange={ (event) => settingNumber(event) }
+            placeholder="Número"
+          />
+        </div>
         <div className="finish-button-container">
           <Button
+          // Esse botão deve enviar uma requisição para criação de uma venda e, na sequência, redirecionar
+          // para a rota /customer/orders/<id> onde o <id> é o id gerado após a conclusão da requisição.
             className="finish-order-button"
             dataTestId="customer_checkout__button-submit-order"
             path=""

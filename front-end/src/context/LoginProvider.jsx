@@ -18,6 +18,14 @@ function LoginProvider({ children }) {
     password: '',
   });
 
+  const [address, setAddress] = useState({
+    address: '',
+  });
+
+  const [number, setNumber] = useState({
+    number: '',
+  });
+
   const settingName = ({ target }) => {
     setName({ name: target.value });
   };
@@ -30,6 +38,14 @@ function LoginProvider({ children }) {
 
   const settingPassword = ({ target }) => {
     setPassword({ password: target.value });
+  };
+
+  const settingAddress = ({ target }) => {
+    setAddress({ address: target.value });
+  };
+
+  const settingNumber = ({ target }) => {
+    setNumber({ number: target.value });
   };
 
   const passwordMinLength = 6;
@@ -108,6 +124,10 @@ function LoginProvider({ children }) {
   }
 
   const context = {
+    address,
+    setAddress,
+    number,
+    setNumber,
     currency,
     loading,
     hidden,
@@ -123,6 +143,8 @@ function LoginProvider({ children }) {
     settingName,
     settingEmail,
     settingPassword,
+    settingAddress,
+    settingNumber,
     getAll,
     handleLoginButton,
     handleRegisterButton,
