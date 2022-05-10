@@ -1,0 +1,11 @@
+.DropdownMenu__label {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.DropdownMenu__select {
+  background: transparent;
+  height: 2rem;
+  width: 10rem;
+}

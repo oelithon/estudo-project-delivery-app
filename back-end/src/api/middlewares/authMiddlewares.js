@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 const JWT_SECRET = fs.readFileSync('jwt.evaluation.key', 'utf8');
 const jwt = require('jsonwebtoken');
 const { NOT_FOUND, UNAUTHORIZED } = require('../helpers/statusCode');
