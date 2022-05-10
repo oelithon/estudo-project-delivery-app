@@ -10,7 +10,7 @@ import PriceBox from './PriceBox';
 import ProductCard from './ProductCard';
 import Navbar from './Navbar';
 import DeliveryCard from './DeliveryCard';
-import DescriptionBox from  './DescriptionBox';
+import DescriptionBox from './DescriptionBox';
 import TotalBox from './TotalBox';
 
 export {
