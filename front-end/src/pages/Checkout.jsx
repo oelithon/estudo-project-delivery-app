@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function Checkout() {
-  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
   const sellers = ['Thereza', 'Rafael', 'Paulo'];
-  const { currency, settingAddress, settingNumber } = useContext(LoginContext);
+  const { address, number, currency, setProducts, settingAddress,
+    settingNumber } = useContext(LoginContext);
   //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
   // const myProducts = JSON.stringify([
   //   {
@@ -30,16 +32,44 @@ function Checkout() {
   // localStorage.setItem('myProducts', myProducts);
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
 
-  useEffect(() => {
-    setProducts(arrayOfProducts);
-  }, [arrayOfProducts]);
-
   const handleRemoveClick = (event) => {
     arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
     const index = event.target.parentElement.parentElement.id;
     arrayOfProducts.splice(index, 1);
     localStorage.setItem('myProducts', JSON.stringify(arrayOfProducts));
+    // O setProducts abaixo, nesse momento, está servindo apenas para atualizar a página.
     setProducts(arrayOfProducts);
+  };
+
+  const handleFinishOrderClick = () => {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const todayDate = `${day}/${month}`;
+    const total = currency(arrayOfProducts.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0), 'R$');
+
+    const body = JSON.stringify({
+      userId: 1,
+      seller_id: 2,
+      total_price: total,
+      delivery_address: address.address,
+      delivery_number: number.number,
+      sale_date: todayDate,
+      status: 'PENDENTE',
+    });
+
+    fetch('http://localhost:3001/sales', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    }).then((res) => res.json())
+      .then((data) => {
+        navigate(`/customer/orders/${data.id}`);
+      });
   };
 
   return (
@@ -56,44 +86,53 @@ function Checkout() {
             <th className="remove-header">Remover Item</th>
           </tr>
           <tbody>
-            { products.map((product, index) => (
+            { arrayOfProducts.map((product, index) => (
               <tr key={ index } name={ index }>
-                <td className="item-box"><ItemBox inputInfo={ index + 1 } /></td>
                 <td
-                  data-testid={ `customer_checkout__element-order-table-name-<${index}>` }
-                  className="description-box"
+                  className="item-box"
                 >
-                  <DescriptionBox inputInfo={ product.name } />
+                  <ItemBox
+                    dataTestId={
+                      `customer_checkout__element-order-table-item-number-<${index}>`
+                    }
+                    inputInfo={ index + 1 }
+                  />
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-quantity-<${index}>`
-                  }
-                  className="quantity-box"
-                >
-                  <QuantityBox inputInfo={ product.quantity } />
+                <td className="description-box">
+                  <DescriptionBox
+                    dataTestId={
+                      `customer_checkout__element-order-table-name-<${index}>`
+                    }
+                    inputInfo={ product.name }
+                  />
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-unit-price-<${index}>`
-                  }
-                  className="price-box"
-                >
-                  <PriceBox inputInfo={ currency(product.price, 'R$') } />
+                <td className="quantity-box">
+                  <QuantityBox
+                    dataTestId={
+                      `customer_checkout__element-order-table-quantity-<${index}>`
+                    }
+                    inputInfo={ product.quantity }
+                  />
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-sub-total-<${index}>`
-                  }
-                  className="subtotal-box"
-                >
+                <td className="price-box">
+                  <PriceBox
+                    dataTestId={
+                      `customer_checkout__element-order-table-unit-price-<${index}>`
+                    }
+                    inputInfo={ currency(product.price, 'R$') }
+                  />
+                </td>
+                <td className="subtotal-box">
                   <SubTotalBox
+                    dataTestId={
+                      `customer_checkout__element-order-table-sub-total-<${index}>`
+                    }
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />
                 </td>
                 <td id={ index } className="remove-button">
                   <Button
-                    data-testid={
+                    dataTestId={
                       `customer_checkout__element-order-table-remove-<${index}>`
                     }
                     path=""
@@ -109,7 +148,7 @@ function Checkout() {
           <TotalBox
             dataTestId="customer_checkout__element-order-total-price"
             className="total-box"
-            inputInfo={ currency(products.reduce((acc, product) => (
+            inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
               acc + product.price * product.quantity
             ), 0), 'R$') }
           />
@@ -154,12 +193,11 @@ function Checkout() {
         </div>
         <div className="finish-button-container">
           <Button
-          // Esse botão deve enviar uma requisição para criação de uma venda e, na sequência, redirecionar
-          // para a rota /customer/orders/<id> onde o <id> é o id gerado após a conclusão da requisição.
             className="finish-order-button"
             dataTestId="customer_checkout__button-submit-order"
             path=""
             buttonText="FINALIZAR PEDIDO"
+            onClick={ handleFinishOrderClick }
           />
         </div>
       </div>

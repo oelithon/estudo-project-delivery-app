@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -124,6 +125,8 @@ function LoginProvider({ children }) {
   }
 
   const context = {
+    products,
+    setProducts,
     address,
     setAddress,
     number,
