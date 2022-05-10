@@ -13,6 +13,6 @@ const getOrders = async (req, res) => {
 };
 
 module.exports = {
-  getOrderById, 
+  getOrderById,
   getOrders,
 };

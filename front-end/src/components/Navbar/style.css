@@ -1,0 +1,54 @@
+button {
+  border-radius: 0%;
+  border-style: none;
+  color: white;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+button:active {
+  opacity: 0.5;
+}
+
+.Navbar__header {
+  align-items: center;
+  background-color: #036b52;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+.Navbar__buttons--exit--username {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.Navbar__button--home, .Navbar__button--items {
+  background-color: #036b52;
+  border: 2px solid #034939;
+  border-radius: 15%;
+  height: 3rem;
+  width: fit-content;
+}
+
+.Navbar__button--username {
+  background-color: #421981;
+  width: 5rem;
+}
+
+.Navbar__button--exit {
+  background-color: #056cf9;
+  width: 3rem;
+}
+
+.Navbar__button--exit, .Navbar__button--username {
+  height: 3rem;
+}
