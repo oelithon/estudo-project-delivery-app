@@ -36,7 +36,8 @@ module.exports = {
         type: Sequelize.STRING,
       },
       sale_date: {
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
+        // defaultValue: DataTypes.NOW
       },
       status: {
         type: Sequelize.STRING,

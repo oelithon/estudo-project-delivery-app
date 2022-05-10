@@ -7,10 +7,10 @@ const getAll = async () => {
     const allProducts = await Product.findAll();
     return goodResponse(OK, allProducts);
   } catch (err) {
-    return errorResponse(INTERNAL_SERVER_ERROR, err);
+    return errorResponse(INTERNAL_SERVER_ERROR, { error: err });
   }
 };
 
 module.exports = {
-  getAll, 
+  getAll,
 };

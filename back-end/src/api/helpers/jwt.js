@@ -13,8 +13,12 @@ const generateToken = (payload) => {
 };
 
 const decoder = async (token) => {
-  const decoded = await jwt.verify(token, JWT_SECRET);
-  return decoded;
+  try {
+    const decoded = await jwt.verify(token, JWT_SECRET);
+    return decoded;
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = {
