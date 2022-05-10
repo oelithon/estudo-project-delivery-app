@@ -24,7 +24,7 @@ const getOrderById = async (id) => {
 const getAllByUserId = async (token) => {
   try {
     const { id } = await decoder(token);
-    const orders = await Sale.findAll({ where: { user_id: id } });
+    const orders = await Sale.findAll({ where: { userId: id } });
 
     return goodResponse(statusCode.OK, filterArrayDate(orders));
   } catch (err) {
