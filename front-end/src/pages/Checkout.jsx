@@ -29,7 +29,7 @@ function Checkout() {
     },
   ]);
 
-  localStorage.setItem('myProducts', myProducts);
+  // localStorage.setItem('myProducts', myProducts);
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
 
   const handleRemoveClick = (event) => {
@@ -74,7 +74,7 @@ function Checkout() {
 
   return (
     <div>
-      <h3>Finalizar Pedido</h3>
+      <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>
           <tr>
@@ -154,7 +154,7 @@ function Checkout() {
           />
         </div>
       </div>
-      <h3>Detalhes e Endereço para Entrega</h3>
+      <h3 className="container-title">Detalhes e Endereço para Entrega</h3>
       <div className="main-box">
         <div className="select-input-container">
           <div className="select-container">

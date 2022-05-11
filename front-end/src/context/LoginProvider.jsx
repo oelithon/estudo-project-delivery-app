@@ -59,14 +59,17 @@ function LoginProvider({ children }) {
   const enabledToRegister = isValidEmail
     && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
-  const getAll = async () => {
+  const getAll = async (userEmail, userPassword) => {
     const body = JSON.stringify({
-      email: email.email,
-      password: password.password,
+      email: userEmail,
+      password: userPassword,
     });
 
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body,
     })
       .then((res) => res.json())
@@ -81,7 +84,7 @@ function LoginProvider({ children }) {
     const userPassword = password.password;
     console.log(userEmail);
     console.log(userPassword);
-    const arrayOfUsers = await getAll();
+    const arrayOfUsers = await getAll(userEmail, userPassword);
     const findUser = arrayOfUsers.find(
       (user) => user.email === userEmail && user.password === userPassword,
     );

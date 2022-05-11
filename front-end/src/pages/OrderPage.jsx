@@ -33,7 +33,7 @@ function OrderPage() {
 
   return (
     <div>
-      <h3>Detalhe do Pedido</h3>
+      <h3 className="container-title">Detalhe do Pedido</h3>
       <div className="order-box">
         <div className="order-number">
           <strong>
