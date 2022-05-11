@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const { Sale, SaleProduct, Product } = require('../../database/models');
 const { errorResponse, goodResponse } = require('../helpers/response');
 const { decoder } = require('../helpers/jwt');
