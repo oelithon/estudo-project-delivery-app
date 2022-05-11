@@ -19,12 +19,8 @@ button:active {
   background-color: #036b52;
   display: flex;
   justify-content: space-between;
-<<<<<<< HEAD
   align-items: center;
   background-color: #036B52;
-=======
-  position: fixed;
->>>>>>> e86f30f17aec07d7515b906ea6f5d2f2430d63cc
   top: 0;
   width: 100%;
 }

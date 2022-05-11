@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import Counter from '../Counter';
 import './style.css';
 
+const formatNumbertoBRL = (numberToFormat) => (
+  new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(numberToFormat)
+);
+
 const ProductCard = ({ price, description, imgURL }) => (
   <div className="ProductCard__div">
     <div className="image-container">
@@ -14,7 +21,7 @@ const ProductCard = ({ price, description, imgURL }) => (
       />
     </div>
     <div className="productPrice" data-testid="16">
-      { price }
+      { formatNumbertoBRL(price) }
     </div>
     <div className="productDescriptionAndCounter" data-testid="15">
       { description }
