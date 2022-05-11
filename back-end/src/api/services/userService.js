@@ -38,7 +38,7 @@ const createUser = async (body) => {
   }
 };
 
-const sellerList = async () => {
+const sellers = async () => {
   const list = await User.findAll({ where: { role: 'seller' } });
 
   const { id, name, email, role } = list[0];
@@ -50,5 +50,5 @@ module.exports = {
   userData,
   createUser,
   checkEmail,
-  sellerList,
+  sellers,
 };
