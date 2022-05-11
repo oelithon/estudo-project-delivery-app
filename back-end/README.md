@@ -24,7 +24,6 @@ Exemplo:
 - No diretório `/back-end`, crie um arquivo `.env` para configurar suas variáveis de ambiente, para isso, execute em seu terminal o comando `touch .env`, abra seu editor de código, em seguida abra o arquivo `.env` criado, cole o exemplo de váriaveis de ambiente abaixo alterando APENAS as suas credenciais do MySQL Local de sua máquina.
 
 ```dotenv
-{
   NODE_ENV=development
   API_PORT=3001
   MYSQL_HOST=localhost
@@ -33,7 +32,6 @@ Exemplo:
   MYSQL_PASSWORD=yourPassword
   MYSQL_DB_NAME=delivery-app
   EVAL_ALWAYS_RESTORE_DEV_DB=true
-}
 ```
 
 4. Após instalação das dependencias, execute o comando `npm run db:reset` para configurar um banco de dados de exemplo que será consumido por nossa API.
