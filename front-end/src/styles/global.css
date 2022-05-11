@@ -45,6 +45,27 @@ span {
   padding: 1.5%;
 }
 
+.main-box-order {
+  background-color: #fbfffe;
+  border: 1px solid #b1c2be;
+  border-top: none;
+  box-shadow: 0 2px 4px 0 #b1c2be , 0 3px 4px 0 #b1c2be;
+  margin: 0 7% 1%;
+  padding: 1.5%;
+}
+
+.order-box {
+  align-items: center;
+  background-color: #dfe7e5;
+  border: 1px solid #b1c2be;
+  border-bottom: none;
+  box-shadow: 0 2px 4px 0 #b1c2be , 0 3px 4px 0 #b1c2be;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 7%;
+  padding: 5px;
+}
+
 .products-header {
   align-items: stretch;
   display: flex;
@@ -146,6 +167,16 @@ td {
 
 .subtotal-box {
   background-color: #056cf9;
+  color: #f2fffc;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.subtotal-box-order {
+  background-color: #056cf9;
+  border-radius: 0 15px 15px 0;
   color: #f2fffc;
   font-size: 28px;
   font-weight: 500;
