@@ -1,21 +1,32 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Button, HiddenElement, Input } from '../components';
+import LoginContext from '../context/LoginContext';
+import '../styles/Login.css';
 
 function Register() {
-  const history = useHistory();
+  const {
+    hidden,
+    enabledToRegister,
+    setHidden,
+    setEmail,
+    setPassword,
+    settingName,
+    settingEmail,
+    settingPassword,
+    handleRegisterButton } = useContext(LoginContext);
 
-  const handleRegisterClick = () => {
-    console.log('Clicou no botão de Login!');
-    history.push('/');
-  };
-
-  const handleEmailChange = (event) => {
-    console.log(event.target.value);
-  };
-
-  const handlePasswordChange = () => {
-    console.log('Alterou o input de Password!');
-  };
+  useEffect(() => {
+    console.error('Verificar useEffect da tela de Registro');
+    return () => {
+      setHidden(false);
+      setEmail({
+        email: '',
+      });
+      setPassword({
+        password: '',
+      });
+    };
+  }, [setHidden, setEmail, setPassword]);
 
   return (
     <div>
@@ -24,43 +35,42 @@ function Register() {
           Cadastro
         </h3>
         <form className="Login-form">
-          <p className="Login-label">
-            Nome
-          </p>
-          <input
-            data-testid="common_register__input-name"
+          <Input
+            inputLabel="Nome"
+            className="default"
+            dataTestId="common_register__input-name"
             type="text"
+            onChange={ (event) => settingName(event) }
             placeholder="Seu nome"
           />
-          <p className="Login-label">
-            E-mail
-          </p>
-          <input
-            data-testid="common_register__input-email"
+          <Input
+            inputLabel="E-mail"
+            className="default"
+            dataTestId="common_register__input-email"
             type="text"
-            placeholder="Seu nome"
-            onChange={ handleEmailChange }
+            onChange={ (event) => settingEmail(event) }
+            placeholder="Seu e-mail"
           />
-          <p className="Login-label">
-            Senha
-          </p>
-          <input
-            data-testid="common_register__input-password"
+          <Input
+            inputLabel="Senha"
+            className="default"
+            dataTestId="common_register__input-password"
             type="password"
-            placeholder="***********"
-            onChange={ handlePasswordChange }
+            onChange={ (event) => settingPassword(event) }
+            placeholder="**********"
           />
-          <Link to="/">
-            <button
-              data-testid="common_login__button-login"
-              className="Login-button"
-              type="button"
-              onClick={ handleRegisterClick }
-            >
-              CADASTRAR
-            </button>
-          </Link>
+          <Button
+            path=""
+            dataTestId="common_register__button-register"
+            className="primary-button"
+            buttonText="CADASTRAR"
+            onClick={ handleRegisterButton }
+            buttonStatus={ !enabledToRegister }
+          />
         </form>
+        { hidden
+          ? <HiddenElement dataTestId="common_register__element-invalid_register" />
+          : '' }
       </main>
     </div>
   );
