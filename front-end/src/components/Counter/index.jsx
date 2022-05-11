@@ -34,7 +34,7 @@ const Counter = () => {
           id="Counter-input"
           data-testid="20"
           className="Counter__input"
-          type="number"
+          type="text"
           value={ quantity }
           onChange={ ({ target }) => handleChange(target.value) }
         />

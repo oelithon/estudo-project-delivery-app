@@ -5,7 +5,7 @@ const validateDeliveryNumber = {
   notNull: true, notEmpty: true, len: [0, 50]
 };
 const validateStatus = {
-  notNull: true, notEmpty: true, len: [0, 50]
+  notEmpty: true, len: [0, 50]
 };
 
 module.exports = (sequelize,
@@ -18,48 +18,48 @@ module.exports = (sequelize,
         autoIncrement: true
       },
 
-      user_id: {
+      userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
 
-      seller_id: {
+      sellerId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
 
-      total_price: {
+      totalPrice: {
         allowNull: false,
         type: DataTypes.FLOAT(9, 2),
       },
 
-      delivery_address: {
+      deliveryAddress: {
         allowNull: false,
         type: DataTypes.STRING,
         validate: validateDeliveryAddress,
       },
 
-      delivery_number: {
+      deliveryNumber: {
         allowNull: false,
         type: DataTypes.STRING,
         validate: validateDeliveryNumber,
       },
 
-      sale_date: {
-        allowNull: false,
+      saleDate: {
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       },
 
       status: {
-        allowNull: false,
         type: DataTypes.STRING,
         validate: validateStatus,
+        defaultValue: 'Pendente',
       },
     },
 
     {
+      underscored: true,
       timestamps: false,
-
       tableName: 'sales',
 
     });

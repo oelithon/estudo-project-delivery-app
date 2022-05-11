@@ -1,10 +1,10 @@
 button {
-  border-style: none;
   border-radius: 0%;
+  border-style: none;
+  color: white;
   cursor: pointer;
-  color: #ffffff;
   font-size: medium;
-  font-weight: bolder;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   transition: opacity 0.2s;
@@ -15,25 +15,32 @@ button:active {
 }
 
 .Navbar__header {
+  align-items: center;
+  background-color: #036b52;
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
   align-items: center;
   background-color: #036B52;
+=======
+  position: fixed;
+>>>>>>> e86f30f17aec07d7515b906ea6f5d2f2430d63cc
   top: 0;
   width: 100%;
 }
 
 
 .Navbar__buttons--exit--username {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-
 }
 
-.Navbar__button--home,
-.Navbar__button--items {
-  background-color: #036B52;
+.Navbar__button--home, .Navbar__button--items {
+  background-color: #036b52;
+  border: 2px solid #034939;
+  border-radius: 15%;
+  height: 3rem;
   width: fit-content;
 }
 
@@ -47,7 +54,6 @@ button:active {
   width: 3rem;
 }
 
-.Navbar__button--exit,
-.Navbar__button--username {
+.Navbar__button--exit, .Navbar__button--username {
   height: 3rem;
 }

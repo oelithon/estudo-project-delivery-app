@@ -36,10 +36,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       sale_date: {
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
+        // defaultValue: DataTypes.NOW
       },
       status: {
-        allowNull: false,
         type: Sequelize.STRING,
         defaultValue: 'Pendente',
       },
