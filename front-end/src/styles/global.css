@@ -41,10 +41,8 @@ span {
   background-color: #fbfffe;
   border: 1px solid #b1c2be;
   box-shadow: 0 2px 4px 0 #b1c2be , 0 3px 4px 0 #b1c2be;
-  height: auto;
-  margin: 1%;
+  margin: 0 7% 1%;
   padding: 1.5%;
-
 }
 
 .products-header {
@@ -54,8 +52,8 @@ span {
 }
 
 h3 {
-  font-size: 28px;
-  margin: 15px;
+  font-size: 20px;
+  margin: 2% 0% 0.5% 7%;
 }
 
 table {
@@ -190,6 +188,7 @@ td {
 .finish-button-container {
   display: flex;
   justify-content: center;
+  margin-top: 5%;
 }
 
 .select-input-container {
@@ -231,6 +230,7 @@ td {
   border-radius: 5px;
   font-size: 24px;
   padding: 5px;
+  width: 500px;
 }
 
 .number-input {
@@ -239,8 +239,5 @@ td {
   border-radius: 5px;
   font-size: 24px;
   padding: 5px;
-}
-
-.input-div .number-input {
   width: 150px;
 }
