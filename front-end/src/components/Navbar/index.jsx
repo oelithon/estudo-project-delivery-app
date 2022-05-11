@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
 
@@ -24,9 +25,21 @@ const Navbar = ({ usertype, username }) => {
   return (
     <header className="Navbar__header">
       <div>
-        <button className="Navbar__button--home" type="button">ZECA DELIVERY</button>
+        <Link to="/">
+          <button
+            className="Navbar__button--home"
+            type="button"
+          >
+            ZECA DELIVERY
+          </button>
+        </Link>
       </div>
-      <button className="Navbar__button--items" type="button">{ items.item1 }</button>
+      <button
+        className="Navbar__button--items"
+        type="button"
+      >
+        { items.item1 }
+      </button>
       <button className="Navbar__button--items" type="button">{ items.item2 }</button>
       <div className="Navbar__buttons--exit--username">
         <button className="Navbar__button--username" type="button">
