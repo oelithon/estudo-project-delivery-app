@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -18,6 +19,14 @@ function LoginProvider({ children }) {
     password: '',
   });
 
+  const [address, setAddress] = useState({
+    address: '',
+  });
+
+  const [number, setNumber] = useState({
+    number: '',
+  });
+
   const settingName = ({ target }) => {
     setName({ name: target.value });
   };
@@ -30,6 +39,14 @@ function LoginProvider({ children }) {
 
   const settingPassword = ({ target }) => {
     setPassword({ password: target.value });
+  };
+
+  const settingAddress = ({ target }) => {
+    setAddress({ address: target.value });
+  };
+
+  const settingNumber = ({ target }) => {
+    setNumber({ number: target.value });
   };
 
   const passwordMinLength = 6;
@@ -100,7 +117,21 @@ function LoginProvider({ children }) {
     setHidden(true);
   };
 
+  function currency(value, coin) {
+    const fixedValue = value.toFixed(2);
+    const modifiedValue = fixedValue.replace('.', ',');
+    const newCurrency = `${coin} ${modifiedValue}`;
+    return newCurrency;
+  }
+
   const context = {
+    products,
+    setProducts,
+    address,
+    setAddress,
+    number,
+    setNumber,
+    currency,
     loading,
     hidden,
     setHidden,
@@ -115,6 +146,8 @@ function LoginProvider({ children }) {
     settingName,
     settingEmail,
     settingPassword,
+    settingAddress,
+    settingNumber,
     getAll,
     handleLoginButton,
     handleRegisterButton,
