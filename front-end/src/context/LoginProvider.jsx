@@ -60,9 +60,17 @@ function LoginProvider({ children }) {
     && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
   const getAll = async () => {
-    const response = await fetch('http://localhost:3001/users')
+    const body = JSON.stringify({
+      email: email.email,
+      password: password.password,
+    });
+
+    const response = await fetch('http://localhost:3001/login', {
+      method: 'POST',
+      body,
+    })
       .then((res) => res.json())
-      .then((data) => data);
+      .then((data) => console.log(data));
 
     return response;
   };
