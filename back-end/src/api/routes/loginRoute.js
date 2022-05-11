@@ -1,12 +1,12 @@
 const express = require('express');
 
-const { createNewSale } = require('../controllers/userController');
+const { createUser } = require('../controllers/userController');
 const { loginValidation } = require('../middlewares/userMiddlewares');
 
 const router = express.Router();
 
 router
   .route('/login')
-  .post(loginValidation, createNewSale);
+  .post(loginValidation, createUser);
 
 module.exports = router;
