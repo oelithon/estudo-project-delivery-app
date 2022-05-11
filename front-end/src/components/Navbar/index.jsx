@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-const Navbar = () => {
-  const usertype = 'client';
-  const username = 'Rafael';
+const Navbar = ({ usertype, username }) => {
   const [items, setItems] = useState({ item1: '', item2: '' });
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const Navbar = () => {
     default:
       break;
     }
-  }, []);
+  }, [usertype]);
 
   return (
     <header className="Navbar__header">
@@ -37,6 +36,16 @@ const Navbar = () => {
       </div>
     </header>
   );
+};
+
+Navbar.defaultProps = {
+  usertype: 'client',
+  username: 'Sem nome',
+};
+
+Navbar.propTypes = {
+  usertype: PropTypes.string,
+  username: PropTypes.string,
 };
 
 export default Navbar;

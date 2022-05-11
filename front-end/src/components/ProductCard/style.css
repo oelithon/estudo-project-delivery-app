@@ -1,9 +1,10 @@
 .ProductCard__div {
   border: 1.5px solid rgb(104, 95, 95);
-  height: 32rem;
-  width: 20rem;
-  position: relative;
   box-shadow: 2px 6px 8px #888888;
+  height: 25rem;
+  position: relative;
+  margin: 10px;
+  width: 15rem;
 }
 
 .productPrice {
@@ -43,9 +44,10 @@
   align-items: center;
 }
 
-.productImage {
+/* .productImage {
   width: 13rem;
   height: 25rem;
   position: absolute;
   bottom: 65px;
-}
+} */
+/* REFAZER O DIMENSIONAMENTO DA IMAGEM */

@@ -19,7 +19,6 @@ button:active {
   justify-content: space-between;
   align-items: center;
   background-color: #036B52;
-  position: fixed;
   top: 0;
   width: 100%;
 }
