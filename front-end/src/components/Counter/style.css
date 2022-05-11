@@ -30,14 +30,14 @@
   padding: 0;
 }
 
+.Counter__button:active {
+  opacity: 0.5;
+}
+
 .Counter__button.--right {
   border-radius: 0% 25% 25% 0%;
 }
 
 .Counter__button.--left {
   border-radius: 25% 0% 0% 25%;
-}
-
-.Counter__button:active {
-  opacity: 0.5;
 }
