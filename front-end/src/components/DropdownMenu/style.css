@@ -5,12 +5,16 @@
 }
 
 .DropdownMenu__select {
+<<<<<<< HEAD
   appearance: none;
   background: transparent;
   background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
   background-position-x: 100%;
   background-position-y: 2px;
   background-repeat: no-repeat;
+=======
+  background: transparent;
+>>>>>>> 238031839a3bda85d2a0a122468c87875f51e9fd
   height: 2rem;
   width: 10rem;
 }

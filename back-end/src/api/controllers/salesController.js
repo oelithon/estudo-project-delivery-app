@@ -1,9 +1,15 @@
-const { getItemById, getAllByUserId } = require('../services/salesService');
+const { getOrderById: getOrder, getAllByUserId } = require('../services/salesService');
 
+<<<<<<< HEAD
 const getItem = async (req, res) => {
   const { id } = req.params;
   console.log(id);
   const { status, json } = await getItemById(id);
+=======
+const getOrderById = async (req, res) => {
+  const { id } = req.params;
+  const { status, json } = await getOrder(id);
+>>>>>>> 238031839a3bda85d2a0a122468c87875f51e9fd
   return res.status(status).json(json);
 };
 
@@ -14,6 +20,6 @@ const getOrders = async (req, res) => {
 };
 
 module.exports = {
-  getItem, 
+  getOrderById,
   getOrders,
 };

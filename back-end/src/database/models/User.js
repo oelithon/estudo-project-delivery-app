@@ -41,7 +41,8 @@ module.exports = (sequelize,
 
       role: {
         type: DataTypes.STRING,
-        validate: validateRole
+        validate: validateRole,
+        defaultValue: 'customer'
       },
     },
 
