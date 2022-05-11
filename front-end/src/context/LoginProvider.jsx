@@ -79,6 +79,8 @@ function LoginProvider({ children }) {
     setLoading(true);
     const userEmail = email.email;
     const userPassword = password.password;
+    console.log(userEmail);
+    console.log(userPassword);
     const arrayOfUsers = await getAll();
     const findUser = arrayOfUsers.find(
       (user) => user.email === userEmail && user.password === userPassword,
