@@ -159,7 +159,7 @@ describe('Rota /register', () => {
 
 
 describe('Rota /register', () => {
-  let errorRespnse;
+  let errorResponse;
 
   before(async () => {
     sinon
@@ -168,7 +168,7 @@ describe('Rota /register', () => {
     sinon
       .stub(User, 'create')
       .throws(new Error)
-    errorRespnse = await chaiRequest(app)
+    errorResponse = await chaiRequest(app)
       .post('/register')
       .send(newUser);
   });
@@ -179,10 +179,10 @@ describe('Rota /register', () => {
   })
 
   it('Testa que não é possivel fazer um registro caso a api não consiga se conectar com o DB', () => {
-    const { body } = errorRespnse;
+    const { body } = errorResponse;
 
     expect(body).to.be.an('object');
-    expect(errorRespnse).to.have.status(INTERNAL_SERVER_ERROR);
+    expect(errorResponse).to.have.status(INTERNAL_SERVER_ERROR);
     expect(body).to.haveOwnProperty('error');
   });
 });
