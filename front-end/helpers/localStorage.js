@@ -12,7 +12,7 @@ const emptyUser = {
 // só passar o nome da chave que quer deletar
 export const removeLocalStorage = (key) => localStorage.removeItem(key);
 
-// funçõe para ler info de user do localStorage
+// funções para ler info de user do localStorage
 export const readUser = () => {
   if (!JSON.parse(localStorage.getItem(USER_KEY))) {
     localStorage.setItem(USER_KEY, JSON.stringify(emptyUser));
@@ -48,5 +48,5 @@ export const addProductInLocalStorage = (product) => {
 // função remove produtos do localStorage quando passar o id do produto
 export const removeProduct = (product) => {
   const allProducts = readProducts();
-  saveproducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
+  saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
 };

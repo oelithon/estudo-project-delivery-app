@@ -11,25 +11,25 @@ function Checkout() {
   const { address, number, currency, setProducts, settingAddress,
     settingNumber } = useContext(LoginContext);
   //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
-  // const myProducts = JSON.stringify([
-  //   {
-  //     name: 'Becks 330ml',
-  //     price: 4.49,
-  //     quantity: 2,
-  //   },
-  //   {
-  //     name: 'Antartica Pilsen 300ml',
-  //     price: 2.49,
-  //     quantity: 5,
-  //   },
-  //   {
-  //     name: 'Heineken 600ml',
-  //     price: 7.5,
-  //     quantity: 3,
-  //   },
-  // ]);
+  const myProducts = JSON.stringify([
+    {
+      name: 'Becks 330ml',
+      price: 4.49,
+      quantity: 2,
+    },
+    {
+      name: 'Antartica Pilsen 300ml',
+      price: 2.49,
+      quantity: 5,
+    },
+    {
+      name: 'Heineken 600ml',
+      price: 7.5,
+      quantity: 3,
+    },
+  ]);
 
-  // localStorage.setItem('myProducts', myProducts);
+  localStorage.setItem('myProducts', myProducts);
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
 
   const handleRemoveClick = (event) => {
