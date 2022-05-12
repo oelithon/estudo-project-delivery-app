@@ -11,7 +11,6 @@ import Navbar from './Navbar';
 import DeliveryCard from './DeliveryCard';
 import DescriptionBox from './DescriptionBox';
 import TotalBox from './TotalBox';
-import HiddenElement from './HiddenElement';
 
 export {
   DropdownMenu,
@@ -27,5 +26,4 @@ export {
   PriceBox,
   DescriptionBox,
   TotalBox,
-  HiddenElement,
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, ItemBox, QuantityBox,
-  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input } from '../components';
+  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function Checkout() {
@@ -72,8 +72,12 @@ function Checkout() {
       });
   };
 
+  const usertype = 'client';
+  const username = 'Rafael';
+
   return (
     <div>
+      <Navbar usertype={ usertype } username={ username } />
       <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>
