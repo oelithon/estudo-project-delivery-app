@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ProductCard } from '../components';
+import { Navbar, ProductCard } from '../components';
 import '../styles/Products.css';
 
 const Products = () => {
@@ -14,17 +14,23 @@ const Products = () => {
       .catch((error) => console.log(JSON.stringify(error)));
   }, []);
 
+  const usertype = 'client';
+  const username = 'Rafael';
+
   return (
-    <div className="Products__div">
-      {products.map((product) => (
-        <ProductCard
-          key={ product.id }
-          price={ product.price }
-          description={ product.name }
-          imgURL={ product.url_image }
-        />
-      ))}
-    </div>
+    <>
+      <Navbar usertype={ usertype } username={ username } />
+      <div className="Products__div">
+        {products.map((product) => (
+          <ProductCard
+            key={ product.id }
+            price={ product.price }
+            description={ product.name }
+            imgURL={ product.url_image }
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
