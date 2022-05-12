@@ -31,7 +31,7 @@ const createUser = async (body) => {
       const token = generateToken({ id, name, email, role });
       return goodResponse(statusCode.CREATED, { id, name, email, role, token });
     }
-    return errorResponse(statusCode.BAD_REQUEST, emailAlreadyRegistered);
+    return errorResponse(statusCode.CONFLICT, emailAlreadyRegistered);
   } catch (err) {
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
