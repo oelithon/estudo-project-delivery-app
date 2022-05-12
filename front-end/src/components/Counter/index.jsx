@@ -9,12 +9,12 @@ const Counter = ({ productId, price }) => {
   const handleClick = (value) => {
     if (value === '+') {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      addProduct(productId, price);
+      addProduct({ productId, price });
     } else if (value === '-' && quantity === 0) {
       console.log('0 é o mínimo');
     } else {
       setQuantity((prevQuantity) => prevQuantity - 1);
-      removeProduct(productId, price);
+      removeProduct({ productId, price });
     }
   };
 

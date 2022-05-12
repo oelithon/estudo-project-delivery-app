@@ -44,6 +44,7 @@ const Products = () => {
       </div>
       <div className="TotalPrice">
         PREÇO TOTAL:
+        <br />
         { getCartTotal() }
       </div>
     </>
