@@ -102,6 +102,33 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 ```
 ---
 
+#### Rota `/users`
+
+> Listar pessoas usuárias do tipo `customer` e `seller`
+
+- O endpoint `/users`, permite que você realize a busca por todos os usuários do tipo `customer` e `seller` cadastrados na base de dados. Desde que a pessoa usuária tipo `administrator` tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/users.
+
+Sua resposta será um array de objetos contendo informações das pessoas consumidoras e vendedoras, como por exemplo:
+
+```json
+[
+	{
+		"id": 2,
+		"name": "Fulana Pereira",
+		"email": "fulana@deliveryapp.com",
+		"role": "seller"
+	},
+	{
+		"id": 3,
+		"name": "Cliente Zé Birita",
+		"email": "zebirita@email.com",
+		"role": "customer"
+	}
+]
+```
+
+---
+
 #### Rota `/checkout`
 
 > Obter lista de vendedores
@@ -118,6 +145,7 @@ Sua resposta será um objeto contendo informações dos vendedores, como por exe
 	"role": "seller" // tipo de pessoa usuária
 }
 ```
+---
 
 > Realizando um pedido
 
@@ -226,7 +254,7 @@ Sua resposta será um array de objetos contendo informações de todos os pedido
 
 > Lista um pedidos realizado pela pessoa usuária de forma específica através do id
 
-- No endpoint `/customer/orders/:id`, é possível realizar a busca de um pedido realizado pela pessoa usuária, através do id do pedido cadastrado, também é necessário que tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/customer/orders/1.
+- No endpoint `/customer/orders/:id`, é possível realizar a busca de um pedido realizado pela pessoa usuária, através do id do pedido cadastrado, também é necessário que tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/customer/orders/id.  Onde `id` é o número do pedido.
 
 Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 
@@ -260,3 +288,15 @@ Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 	"date": "9/5/2022"
 }
 ```
+---
+
+> Editar o status do pedido para `Preparando`, `Em Trânsito` ou `Entregue`.
+
+- Ainda no endpoint `/customer/orders/:id`, é possível fazer a atualização de status do pedido para `Preparando` e `Em Trânsito`, com o login de pessoa tipo `seller` e para o status de `Entregue` somente com o login de pessoa tipo `customer`. O login tipo `customer` poderá editar o campo status para `Entregue`, somente se o status constar como `Em Trânsito`. Para isso, faça uma requisição do tipo PUT na rota http://localhost:3001/customer/orders/id. Onde `id` é o número do pedido.
+
+Com o login tipo `seller`:
+A primeira requisição terá como resposta um objeto contendo informações do pedido e nesse objeto contém a chave `status: "Preparando"`;
+A segunda requisição também retornará o mesmo objeto, porém, com a chave `status: "Em Trânsito"`;
+
+Com o login tipo `customer`:
+A alteração do status só terá sucesso após a segunda requisição do login tipo `seller`. A resposta de sucesso retorna um objeto contendo as informações do pedido e nesse objeto contém a chave `status: "Entregue"`.
