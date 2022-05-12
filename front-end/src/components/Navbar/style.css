@@ -19,7 +19,6 @@ button:active {
   background-color: #036b52;
   display: flex;
   justify-content: space-between;
-  position: fixed;
   top: 0;
   width: 100%;
 }
@@ -31,10 +30,12 @@ button:active {
   justify-content: center;
 }
 
+.Navbar__button--home {
+  margin-left: 0.75rem;
+}
+
 .Navbar__button--home, .Navbar__button--items {
   background-color: #036b52;
-  border: 2px solid #034939;
-  border-radius: 15%;
   height: 3rem;
   width: fit-content;
 }

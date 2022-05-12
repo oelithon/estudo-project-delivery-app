@@ -1,68 +1,77 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Button, Input, HiddenElement } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
+import '../styles/global.css';
+import LoginContext from '../context/LoginContext';
 
 function Login() {
-  const history = useHistory();
+  const { hidden,
+    setHidden,
+    setEmail,
+    handleLoginButton,
+    loading,
+    setPassword,
+    settingEmail,
+    settingPassword,
+    enabledToLogin } = useContext(LoginContext);
 
-  const handleLoginClick = () => {
-    console.log('Clicou no botão de Login!');
-    history.push('/subscribe');
-  };
-
-  const handleEmailChange = (event) => {
-    console.log(event.target.value);
-  };
-
-  const handlePasswordChange = () => {
-    console.log('Alterou o input de Password!');
-  };
+  useEffect(() => {
+    console.error('Verificar useEffect da tela de Login');
+    return () => {
+      setHidden(false);
+      setEmail({
+        email: '',
+      });
+      setPassword({
+        password: '',
+      });
+    };
+  }, [setHidden, setEmail, setPassword]);
 
   return (
-    <div className="Login-div">
+    <div>
       <main className="Login-main">
         <img src={ logo } className="Login-logo" alt="logo" />
         <h3 className="App-name">
           Zeca Delivery!
         </h3>
         <form className="Login-form">
-          <p className="Login-label">
-            Login
-          </p>
-          <input
-            data-testid="common_login__input-email"
+          <Input
+            inputLabel="Login"
+            className="default"
+            dataTestId="common_login__input-email"
             type="text"
+            onChange={ (event) => settingEmail(event) }
             placeholder="email@trybeer.com.br"
-            onChange={ handleEmailChange }
           />
-          <p className="Login-label">
-            Senha
-          </p>
-          <input
-            data-testid="common_login__input-password"
+          <Input
+            inputLabel="Senha"
+            className="default"
+            dataTestId="common_login__input-password"
             type="password"
-            placeholder="***********"
-            onChange={ handlePasswordChange }
+            onChange={ (event) => settingPassword(event) }
+            placeholder="**********"
           />
-          <button
-            data-testid="common_login__button-login"
-            className="Login-button"
-            type="button"
-            onClick={ handleLoginClick }
-          >
-            LOGIN
-          </button>
-          <Link to="/subscribe">
-            <button
-              data-testeid="common_login__button-register"
-              className="Register-button"
-              type="button"
-            >
-              Ainda não tenho conta
-            </button>
-          </Link>
+          <Button
+            path=""
+            dataTestId="common_login__button-login"
+            className="primary-button"
+            buttonText="LOGIN"
+            buttonStatus={ !enabledToLogin }
+            onClick={ handleLoginButton }
+          />
+          <Button
+            path="/register"
+            dataTestId="common_login__button-register"
+            className="tertiary-button"
+            buttonText="Ainda não tenho conta"
+          />
         </form>
+        { loading ? 'Loading...' : ''}
+        { hidden
+          ? <HiddenElement dataTestId="common_login__element-invalid-email" />
+          : '' }
       </main>
     </div>
   );

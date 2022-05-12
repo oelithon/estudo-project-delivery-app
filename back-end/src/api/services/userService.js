@@ -1,6 +1,6 @@
 const { User } = require('../../database/models');
 const { emailAlreadyRegistered, notFound } = require('../helpers/errorMessages');
-const { generateToken } = require('../helpers/jwt');
+const { generateToken, decoder } = require('../helpers/jwt');
 const { encryptPassword } = require('../helpers/md5');
 const { errorResponse, goodResponse } = require('../helpers/response');
 const statusCode = require('../helpers/statusCode');
@@ -38,7 +38,7 @@ const createUser = async (body) => {
   }
 };
 
-const sellerList = async () => {
+const getAllSellers = async () => {
   const list = await User.findAll({ where: { role: 'seller' } });
 
   const { id, name, email, role } = list[0];
@@ -46,9 +46,18 @@ const sellerList = async () => {
   return goodResponse(statusCode.OK, { id, name, email, role });
 };
 
+const getAllUsers = async (token) => {
+  const { role } = await decoder(token);
+  if (role === 'administrator') {
+    const list = await User.findAll({ where: { role: ['customer', 'seller'] } });
+    return goodResponse(statusCode.OK, list);
+  }
+};
+
 module.exports = {
   userData,
   createUser,
   checkEmail,
-  sellerList,
+  getAllSellers,
+  getAllUsers,
 };
