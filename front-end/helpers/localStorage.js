@@ -48,5 +48,5 @@ export const addProductInLocalStorage = (product) => {
 // função remove produtos do localStorage quando passar o id do produto
 export const removeProduct = (product) => {
   const allProducts = readProducts();
-  saveproducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
+  saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
 };
