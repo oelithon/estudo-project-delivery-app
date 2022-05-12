@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -59,10 +61,10 @@ function LoginProvider({ children }) {
   const enabledToRegister = isValidEmail
     && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
-  const getAll = async (userEmail, userPassword) => {
+  const getAll = async () => {
     const body = JSON.stringify({
-      email: userEmail,
-      password: userPassword,
+      email: email.email,
+      password: password.password,
     });
 
     const response = await fetch('http://localhost:3001/login', {
@@ -72,32 +74,22 @@ function LoginProvider({ children }) {
       },
       body,
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((res) => res.json());
 
     return response;
   };
 
   const handleLoginButton = async () => {
     setLoading(true);
-    const userEmail = email.email;
-    const userPassword = password.password;
-    console.log(userEmail);
-    console.log(userPassword);
-    const arrayOfUsers = await getAll(userEmail, userPassword);
-    const findUser = arrayOfUsers.find(
-      (user) => user.email === userEmail && user.password === userPassword,
-    );
-    if (findUser === undefined) {
+    const data = await getAll();
+    if (data.token === undefined) {
       setLoading(false);
-      console.log('Usuário não encontrado...');
       setHidden(true);
-      console.log(hidden);
     } else {
       setLoading(false);
-      console.log('Usuário encontrado!');
+      localStorage.setItem('costumer', JSON.stringify(data));
+      navigate('/customer/products');
       setHidden(false);
-      console.log(hidden);
     }
   };
 
