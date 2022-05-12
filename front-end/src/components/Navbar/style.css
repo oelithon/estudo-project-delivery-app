@@ -19,8 +19,6 @@ button:active {
   background-color: #036b52;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #036B52;
   top: 0;
   width: 100%;
 }
