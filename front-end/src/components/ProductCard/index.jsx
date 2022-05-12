@@ -10,7 +10,7 @@ const formatNumbertoBRL = (numberToFormat) => (
   }).format(numberToFormat)
 );
 
-const ProductCard = ({ price, description, imgURL }) => (
+const ProductCard = ({ price, description, imgURL, productId }) => (
   <div className="ProductCard__div">
     <div className="image-container">
       <img
@@ -26,7 +26,7 @@ const ProductCard = ({ price, description, imgURL }) => (
     <div className="productDescriptionAndCounter" data-testid="15">
       { description }
       <div className="productCounter">
-        <Counter />
+        <Counter productId={ productId } price={ price } />
       </div>
     </div>
   </div>
@@ -36,12 +36,14 @@ ProductCard.defaultProps = {
   price: 'R$ 0,00',
   description: 'Sem descrição',
   imgURL: 'Sem URL',
+  productId: 'sem id',
 };
 
 ProductCard.propTypes = {
   price: PropTypes.string,
   description: PropTypes.string,
   imgURL: PropTypes.string,
+  productId: PropTypes.number,
 };
 
 export default ProductCard;

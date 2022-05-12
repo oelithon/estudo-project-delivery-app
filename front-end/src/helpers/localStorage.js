@@ -12,7 +12,7 @@ const emptyUser = {
 // só passar o nome da chave que quer deletar
 export const removeLocalStorage = (key) => localStorage.removeItem(key);
 
-// funçõe para ler info de user do localStorage
+// função para ler info de user do localStorage
 export const readUser = () => {
   if (!JSON.parse(localStorage.getItem(USER_KEY))) {
     localStorage.setItem(USER_KEY, JSON.stringify(emptyUser));
@@ -20,11 +20,11 @@ export const readUser = () => {
   return JSON.parse(localStorage.getItem(USER_KEY));
 };
 
-// funçõe para salvar info de user do localStorage
+// função para salvar info de user do localStorage
 export const saveUser = (user) => localStorage.setItem(USER_KEY, JSON.stringify(user));
 
 // função para ler produtos no localStorage
-const readProducts = () => {
+export const getAllProducts = () => {
   if (!JSON.parse(localStorage.getItem(PRODUCTS_KEY))) {
     localStorage.setItem(PRODUCTS_KEY, JSON.stringify([]));
   }
@@ -38,7 +38,7 @@ const saveProducts = (products) => {
 
 // função para adicionar um produto no localStorage,
 // ela tb retorna os produtos do localStorage
-export const addProductInLocalStorage = (product) => {
+export const addProduct = (product) => {
   if (product) {
     const allProducts = readProducts();
     return saveProducts([...allProducts, product]);
@@ -48,5 +48,5 @@ export const addProductInLocalStorage = (product) => {
 // função remove produtos do localStorage quando passar o id do produto
 export const removeProduct = (product) => {
   const allProducts = readProducts();
-  saveproducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
+  saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
 };

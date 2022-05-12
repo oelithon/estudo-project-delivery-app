@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { addProduct, removeProduct } from '../../helpers/localStorage';
 import './style.css';
 
-const Counter = () => {
+const Counter = ({ productId, price }) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleClick = (value) => {
-    if (value === '+') setQuantity((prevQuantity) => prevQuantity + 1);
-    else if (value === '-' && quantity === 0) console.log('0 é o mínimo');
-    else setQuantity((prevQuantity) => prevQuantity - 1);
+    if (value === '+') {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+      addProduct(productId, price);
+    } else if (value === '-' && quantity === 0) {
+      console.log('0 é o mínimo');
+    } else {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      removeProduct(productId, price);
+    }
   };
 
   const handleChange = (value) => {
@@ -52,6 +60,16 @@ const Counter = () => {
       </button>
     </div>
   );
+};
+
+Counter.defaultProps = {
+  price: 'R$ 0,00',
+  productId: PropTypes.string,
+};
+
+Counter.propTypes = {
+  price: PropTypes.string,
+  productId: PropTypes.number,
 };
 
 export default Counter;
