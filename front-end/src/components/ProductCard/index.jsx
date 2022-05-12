@@ -36,7 +36,7 @@ ProductCard.defaultProps = {
   price: 'R$ 0,00',
   description: 'Sem descrição',
   imgURL: 'Sem URL',
-  productId: 'sem id',
+  productId: 0,
 };
 
 ProductCard.propTypes = {

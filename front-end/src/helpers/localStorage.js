@@ -33,20 +33,20 @@ export const getAllProducts = () => {
 
 const saveProducts = (products) => {
   localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
-  return readProducts();
+  return getAllProducts();
 };
 
 // função para adicionar um produto no localStorage,
 // ela tb retorna os produtos do localStorage
 export const addProduct = (product) => {
   if (product) {
-    const allProducts = readProducts();
+    const allProducts = getAllProducts();
     return saveProducts([...allProducts, product]);
   }
 };
 
 // função remove produtos do localStorage quando passar o id do produto
 export const removeProduct = (product) => {
-  const allProducts = readProducts();
+  const allProducts = getAllProducts();
   saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
 };

@@ -64,7 +64,7 @@ const Counter = ({ productId, price }) => {
 
 Counter.defaultProps = {
   price: 'R$ 0,00',
-  productId: PropTypes.string,
+  productId: 0,
 };
 
 Counter.propTypes = {
