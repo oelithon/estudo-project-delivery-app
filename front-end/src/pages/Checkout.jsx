@@ -11,25 +11,25 @@ function Checkout() {
   const { address, number, currency, setProducts, settingAddress,
     settingNumber } = useContext(LoginContext);
   //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
-  const myProducts = JSON.stringify([
-    {
-      name: 'Becks 330ml',
-      price: 4.49,
-      quantity: 2,
-    },
-    {
-      name: 'Antartica Pilsen 300ml',
-      price: 2.49,
-      quantity: 5,
-    },
-    {
-      name: 'Heineken 600ml',
-      price: 7.5,
-      quantity: 3,
-    },
-  ]);
+  // const myProducts = JSON.stringify([
+  //   {
+  //     name: 'Becks 330ml',
+  //     price: 4.49,
+  //     quantity: 2,
+  //   },
+  //   {
+  //     name: 'Antartica Pilsen 300ml',
+  //     price: 2.49,
+  //     quantity: 5,
+  //   },
+  //   {
+  //     name: 'Heineken 600ml',
+  //     price: 7.5,
+  //     quantity: 3,
+  //   },
+  // ]);
 
-  localStorage.setItem('myProducts', myProducts);
+  // localStorage.setItem('myProducts', myProducts);
   let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
 
   const handleRemoveClick = (event) => {
@@ -78,7 +78,7 @@ function Checkout() {
   return (
     <div>
       <Navbar usertype={ usertype } username={ username } />
-      <h3>Finalizar Pedido</h3>
+      <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>
           <tr>
@@ -158,7 +158,7 @@ function Checkout() {
           />
         </div>
       </div>
-      <h3>Detalhes e Endereço para Entrega</h3>
+      <h3 className="container-title">Detalhes e Endereço para Entrega</h3>
       <div className="main-box">
         <div className="select-input-container">
           <div className="select-container">
