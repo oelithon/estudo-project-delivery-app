@@ -102,6 +102,35 @@ Sua resposta será um objeto contendo informações do usuário cadastrado, como
 ```
 ---
 
+#### Rota `/users`
+
+> Listar pessoas usuárias do tipo `customer` e `seller`
+
+- O endpoint `/users`, permite que você realize a busca por todos os usuários do tipo `customer` e `seller` cadastrados na base de dados. Desde que a pessoa usuária tipo `administrator` tenha feito login com sucesso. Para isso, faça uma requisição do tipo GET na rota http://localhost:3001/users.
+
+Sua resposta será um array de objetos contendo informações das pessoas consumidoras e vendedoras, como por exemplo:
+
+```json
+[
+	{
+		"id": 2,
+		"name": "Fulana Pereira",
+		"email": "fulana@deliveryapp.com",
+		"password": "3c28d2b0881bf46457a853e0b07531c6",
+		"role": "seller"
+	},
+	{
+		"id": 3,
+		"name": "Cliente Zé Birita",
+		"email": "zebirita@email.com",
+		"password": "1c37466c159755ce1fa181bd247cb925",
+		"role": "customer"
+	}
+]
+```
+
+---
+
 #### Rota `/checkout`
 
 > Obter lista de vendedores
