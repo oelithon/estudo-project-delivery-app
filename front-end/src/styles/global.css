@@ -37,6 +37,12 @@ span {
   color: black;
 }
 
+.hidden-element {
+  color: red;
+  margin-top: 2%;
+}
+
+
 .main-box {
   background-color: #fbfffe;
   border: 1px solid #b1c2be;

@@ -61,7 +61,7 @@ function LoginProvider({ children }) {
   const enabledToRegister = isValidEmail
     && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
-  const getAll = async () => {
+  const login = async () => {
     const body = JSON.stringify({
       email: email.email,
       password: password.password,
@@ -79,34 +79,14 @@ function LoginProvider({ children }) {
     return response;
   };
 
-  const handleLoginButton = async () => {
-    setLoading(true);
-    const data = await getAll();
-    if (data.token === undefined) {
-      setLoading(false);
-      setHidden(true);
-    } else {
-      setLoading(false);
-      localStorage.setItem('costumer', JSON.stringify({
-        name: data.name,
-        email: data.email,
-        role: data.role,
-        token: data.token,
-      }));
-      navigate('/customer/products');
-      setHidden(false);
-    }
-  };
-
   const register = () => {
     const body = JSON.stringify({
       name: name.name,
       email: email.email,
       password: password.password,
-      role: 'client',
     });
 
-    const response = fetch('http://localhost:3001/users', {
+    const response = fetch('http://localhost:3001/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,12 +97,34 @@ function LoginProvider({ children }) {
     return response;
   };
 
-  const handleRegisterButton = () => {
-    if (enabledToRegister === true) {
-      const result = register();
-      console.log('Usuário cadastrado com sucesso!');
+  const verifyData = (data) => {
+    if (data.token === undefined) {
+      setLoading(false);
+      setHidden(true);
+    } else {
+      setLoading(false);
+      localStorage.setItem('customer', JSON.stringify({
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        token: data.token,
+      }));
       setHidden(false);
-      return result;
+      navigate('/customer/products');
+    }
+  }
+
+  const handleLoginButton = async () => {
+    setLoading(true);
+    const data = await login();
+    verifyData(data);
+  };
+
+  const handleRegisterButton = async () => {
+    if (enabledToRegister === true) {
+      const data = await register();
+      verifyData(data);
+      console.log(data);
     }
     setHidden(true);
   };
@@ -158,7 +160,6 @@ function LoginProvider({ children }) {
     settingPassword,
     settingAddress,
     settingNumber,
-    getAll,
     handleLoginButton,
     handleRegisterButton,
   };

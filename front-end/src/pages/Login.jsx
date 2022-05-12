@@ -70,7 +70,12 @@ function Login() {
         </form>
         { loading ? 'Loading...' : ''}
         { hidden
-          ? <HiddenElement dataTestId="common_login__element-invalid-email" />
+          ? <span
+            data-testid="common_login__element-invalid-email"
+            className="hidden-element"
+          >
+            Login ou senha incorretos
+          </span>
           : '' }
       </main>
     </div>

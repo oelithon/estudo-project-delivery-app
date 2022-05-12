@@ -69,7 +69,12 @@ function Register() {
           />
         </form>
         { hidden
-          ? <HiddenElement dataTestId="common_register__element-invalid_register" />
+          ? <span
+          data-testid="common_register__element-invalid_register"
+          className="hidden-element"
+        >
+          Usuário já cadastrado!
+        </span> 
           : '' }
       </main>
     </div>
