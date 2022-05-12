@@ -112,6 +112,16 @@
       "sale_date": "10/5",
       "status": "PENDENTE",
       "id": 4
+    },
+    {
+      "userId": 1,
+      "seller_id": 2,
+      "total_price": "R$ 43,93",
+      "delivery_address": "Rua A",
+      "delivery_number": "200",
+      "sale_date": "11/5",
+      "status": "PENDENTE",
+      "id": 5
     }
   ],
   "salesProduct": [

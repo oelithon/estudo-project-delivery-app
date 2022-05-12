@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, Input, HiddenElement } from '../components';
+import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
 import '../styles/global.css';
@@ -28,6 +28,8 @@ function Login() {
       });
     };
   }, [setHidden, setEmail, setPassword]);
+
+  const id = 'common_login__element-invalid-email';
 
   return (
     <div>
@@ -70,7 +72,7 @@ function Login() {
         </form>
         { loading ? 'Loading...' : ''}
         { hidden
-          ? <HiddenElement dataTestId="common_login__element-invalid-email" />
+          ? <span data-testid={ id } className="hidden">Login ou senha inválidos</span>
           : '' }
       </main>
     </div>
