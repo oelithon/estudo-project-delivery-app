@@ -67,14 +67,10 @@ function Register() {
             onClick={ handleRegisterButton }
             buttonStatus={ !enabledToRegister }
           />
+          common_register__element-invalid_register
         </form>
         { hidden
-          ? <span
-          data-testid="common_register__element-invalid_register"
-          className="hidden-element"
-        >
-          Usuário já cadastrado!
-        </span> 
+          ? <HiddenElement data-testid="common_register__element-invalid_register" />
           : '' }
       </main>
     </div>

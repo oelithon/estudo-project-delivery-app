@@ -112,7 +112,7 @@ function LoginProvider({ children }) {
       setHidden(false);
       navigate('/customer/products');
     }
-  }
+  };
 
   const handleLoginButton = async () => {
     setLoading(true);
