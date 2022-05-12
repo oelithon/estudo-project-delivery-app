@@ -37,10 +37,11 @@ const Products = () => {
           />
         ))}
       </div>
-      <div className="TotalPrice">
-        PREÇO TOTAL:
-        <br />
-        { formatNumbertoBRL(cart) }
+      <div data-testid="21" className="TotalPrice">
+        Ver carrinho:
+        <Link to="/customer/checkout" data-testid="79">
+          { formatNumbertoBRL(cart) }
+        </Link>
       </div>
     </>
   );
