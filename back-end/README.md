@@ -261,7 +261,8 @@ Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 }
 ```
 
-> Edita o status do pedido para `Preparando`, `Em Trânsito` ou `Entregue`.
+
+> Editar o status do pedido para `Preparando`, `Em Trânsito` ou `Entregue`.
 
 - Ainda no endpoint `/customer/orders/:id`, é possível fazer a atualização de status do pedido para `Preparando` e `Em Trânsito`, com o login de pessoa tipo `seller` e para o status de `Entregue` somente com o login de pessoa tipo `customer`. O login tipo `customer` poderá editar o campo status para `Entregue`, somente se o status constar como `Em Trânsito`. Para isso, faça uma requisição do tipo PUT na rota http://localhost:3001/customer/orders/id. Onde `id` é o número do pedido.
 
