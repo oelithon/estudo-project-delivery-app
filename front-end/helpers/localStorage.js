@@ -24,7 +24,7 @@ export const readUser = () => {
 export const saveUser = (user) => localStorage.setItem(USER_KEY, JSON.stringify(user));
 
 // função para ler produtos no localStorage
-const readProducts = () => {
+const getAllProducts = () => {
   if (!JSON.parse(localStorage.getItem(PRODUCTS_KEY))) {
     localStorage.setItem(PRODUCTS_KEY, JSON.stringify([]));
   }
@@ -33,20 +33,63 @@ const readProducts = () => {
 
 const saveProducts = (products) => {
   localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
-  return readProducts();
+  return getAllProducts();
 };
 
 // função para adicionar um produto no localStorage,
 // ela tb retorna os produtos do localStorage
-export const addProductInLocalStorage = (product) => {
+// { productId, quantity, totalProductPrice }
+const checkProductExist = (product, allProducts) => {
+  if (allProducts.length > 0) {
+    return allProducts.some((objProduct) => objProduct.productId === product.productId);
+  }
+  return false;
+};
+
+const incementProduct = (product, allProducts) => {
+  allProducts.forEach((objProduct) => {
+    if (objProduct.productId === product.productId) {
+      objProduct.quantity += 1;
+      objProduct.price += product.price;
+    }
+  });
+  saveProducts(allProducts);
+};
+
+export const addProduct = (product) => {
   if (product) {
-    const allProducts = readProducts();
+    const allProducts = getAllProducts();
+    if (checkProductExist(product, allProducts)) {
+      return incementProduct(product, allProducts);
+    }
     return saveProducts([...allProducts, product]);
   }
 };
 
-// função remove produtos do localStorage quando passar o id do produto
+const checkProductQuantity = (product, allProducts) => {
+  if (allProducts.length > 0) {
+    return allProducts.some((objProduct) => (
+      objProduct.productId === product.productId && objProduct.quantity > 1));
+  }
+  return false;
+};
+
+const decrementProduct = (product, allProducts) => {
+  allProducts.forEach((objProduct) => {
+    if (objProduct.productId === product.productId) {
+      objProduct.quantity -= 1;
+      objProduct.price -= product.price;
+    }
+  });
+  saveProducts(allProducts);
+};
+
+// função remove produtos do localStorage quando passar o productId do produto
 export const removeProduct = (product) => {
-  const allProducts = readProducts();
-  saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
+  const allProducts = getAllProducts();
+  if (checkProductQuantity(product, allProducts)) {
+    return decrementProduct(product, allProducts);
+  }
+  return saveProducts(allProducts.filter((prodCar) => (
+    prodCar.productId !== product.productId)));
 };
