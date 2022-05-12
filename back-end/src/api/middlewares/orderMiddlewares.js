@@ -19,7 +19,9 @@ const schemaOrder = Joi.object({
 });
 
 const orderValidation = (req, res, next) => {
+  console.log(req.body);
   const body = schemaOrder.validate(req.body);
+  console.log(body);
   if ('error' in body) return res.status(BAD_REQUEST).json({ error: body.error.message });
 
   next();

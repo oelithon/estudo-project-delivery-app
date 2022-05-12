@@ -18,16 +18,19 @@ function Checkout() {
 
   const myProducts = JSON.stringify([
     {
+      id: 1,
       name: 'Becks 330ml',
       price: 4.49,
       quantity: 2,
     },
     {
+      id: 2,
       name: 'Antartica Pilsen 300ml',
       price: 2.49,
       quantity: 5,
     },
     {
+      id: 3,
       name: 'Heineken 600ml',
       price: 7.5,
       quantity: 3,
@@ -61,35 +64,40 @@ function Checkout() {
     setProducts(newArrayOfProducts);
   };
 
-  const handleFinishOrderClick = () => {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const todayDate = `${day}/${month}`;
-    const total = currency(arrayOfProducts.reduce((acc, product) => (
-      acc + product.price * product.quantity
-    ), 0), 'R$');
-
-    const body = JSON.stringify({
-      userId: 1,
-      seller_id: 2,
-      total_price: total,
-      delivery_address: address.address,
-      delivery_number: number.number,
-      sale_date: todayDate,
-      status: 'PENDENTE',
-    });
-
-    fetch('http://localhost:3001/sales', {
+  const finishOrder = async (body) => {
+    console.log(body);
+    await fetch('http://localhost:3001/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
       },
       body,
     }).then((res) => res.json())
       .then((data) => {
         navigate(`/customer/orders/${data.id}`);
       });
+  };
+
+  const handleFinishOrderClick = () => {
+    const total = products.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0);
+    const cartProducts = products.map((product) => ({
+      productId: product.id,
+      quantity: product.quantity,
+    }));
+
+    const body = JSON.stringify({
+      // Buscar o sellerId
+      sellerId: 1,
+      totalPrice: total,
+      deliveryAddress: address.address,
+      deliveryNumber: number.number,
+      products: cartProducts,
+    });
+
+    finishOrder(body);
   };
 
   const usertype = JSON.parse(localStorage.getItem('customer')).role;
