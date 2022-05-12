@@ -98,6 +98,7 @@ function LoginProvider({ children }) {
   };
 
   const verifyData = (data) => {
+    console.log(data);
     if (data.token === undefined) {
       setLoading(false);
       setHidden(true);
