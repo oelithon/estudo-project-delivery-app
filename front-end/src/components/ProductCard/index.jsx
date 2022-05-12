@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from '../Counter';
+import formatNumbertoBRL from '../../helpers/formatNumberToBRL';
 import './style.css';
 
-const formatNumbertoBRL = (numberToFormat) => (
-  new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(numberToFormat)
-);
-
-const ProductCard = ({ price, description, imgURL, productId }) => (
+const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
   <div className="ProductCard__div">
     <div className="image-container">
       <img
@@ -26,7 +20,7 @@ const ProductCard = ({ price, description, imgURL, productId }) => (
     <div className="productDescriptionAndCounter" data-testid="15">
       { description }
       <div className="productCounter">
-        <Counter productId={ productId } price={ price } />
+        <Counter setCart={ setCart } productId={ productId } price={ price } />
       </div>
     </div>
   </div>
@@ -43,6 +37,7 @@ ProductCard.propTypes = {
   price: PropTypes.string,
   description: PropTypes.string,
   imgURL: PropTypes.string,
+  setCart: PropTypes.func.isRequired,
   productId: PropTypes.number,
 };
 

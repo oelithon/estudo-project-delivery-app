@@ -38,15 +38,58 @@ const saveProducts = (products) => {
 
 // função para adicionar um produto no localStorage,
 // ela tb retorna os produtos do localStorage
+// { productId, quantity, totalProductPrice }
+const checkProductExist = (product, allProducts) => {
+  if (allProducts.length > 0) {
+    return allProducts.some((objProduct) => objProduct.productId === product.productId);
+  }
+  return false;
+};
+
+const incrementProduct = (product, allProducts) => {
+  allProducts.forEach((objProduct) => {
+    if (objProduct.productId === product.productId) {
+      objProduct.quantity += 1;
+      objProduct.price += product.price;
+    }
+  });
+  saveProducts(allProducts);
+};
+
 export const addProduct = (product) => {
   if (product) {
     const allProducts = getAllProducts();
-    return saveProducts([...allProducts, product]);
+    if (checkProductExist(product, allProducts)) {
+      return incrementProduct(product, allProducts);
+    }
+    return saveProducts([...allProducts, { ...product, quantity: 1 }]);
   }
 };
 
-// função remove produtos do localStorage quando passar o id do produto
+const checkProductQuantity = (product, allProducts) => {
+  if (allProducts.length > 0) {
+    return allProducts.some((objProduct) => (
+      objProduct.productId === product.productId && objProduct.quantity > 1));
+  }
+  return false;
+};
+
+const decrementProduct = (product, allProducts) => {
+  allProducts.forEach((objProduct) => {
+    if (objProduct.productId === product.productId) {
+      objProduct.quantity -= 1;
+      objProduct.price -= product.price;
+    }
+  });
+  saveProducts(allProducts);
+};
+
+// função remove produtos do localStorage quando passar o productId do produto
 export const removeProduct = (product) => {
-  const allProducts = addProduct();
-  saveProducts(allProducts.filter((prodCar) => prodCar.id !== product.id));
+  const allProducts = getAllProducts();
+  if (checkProductQuantity(product, allProducts)) {
+    return decrementProduct(product, allProducts);
+  }
+  return saveProducts(allProducts.filter((prodCar) => (
+    prodCar.productId !== product.productId)));
 };

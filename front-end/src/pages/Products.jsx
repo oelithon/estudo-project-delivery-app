@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navbar, ProductCard } from '../components';
 import '../styles/Products.css';
-import { readUser, getAllProducts } from '../helpers/localStorage';
+import formatNumbertoBRL from '../helpers/formatNumberToBRL';
+
+import { readUser } from '../helpers/localStorage';
 
 const Products = () => {
   const [products, setProducts] = useState(['']);
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
+  const [cart, setCart] = useState(0);
   useEffect(() => {
     axios.get('http://localhost:3001/customer/products', {
       headers: { Authorization: process.env.REACT_APP_TOKEN },
@@ -18,15 +21,6 @@ const Products = () => {
     setUsername(userInfo.name);
     setUserRole(userInfo.role);
   }, []);
-
-  const getCartTotal = () => {
-    const productsInfo = getAllProducts();
-    let totalPrice = 0;
-    productsInfo.forEach((product) => {
-      totalPrice += product.price;
-    });
-    return totalPrice;
-  };
 
   return (
     <>
@@ -39,13 +33,14 @@ const Products = () => {
             price={ product.price }
             description={ product.name }
             imgURL={ product.url_image }
+            setCart={ setCart }
           />
         ))}
       </div>
       <div className="TotalPrice">
         PREÇO TOTAL:
         <br />
-        { getCartTotal() }
+        { formatNumbertoBRL(cart) }
       </div>
     </>
   );
