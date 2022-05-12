@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function Checkout() {
   const navigate = useNavigate();
-  // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
-  const sellers = ['Thereza', 'Rafael', 'Paulo'];
+  const [sellers, setSellers] = useState(['']);
   const { address, number, currency, setProducts, settingAddress,
-    settingNumber } = useContext(LoginContext);
-  //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
+    settingNumber, products } = useContext(LoginContext);
+
   const myProducts = JSON.stringify([
     {
       name: 'Becks 330ml',
@@ -29,16 +29,30 @@ function Checkout() {
     },
   ]);
 
-  localStorage.setItem('myProducts', myProducts);
-  let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+  useEffect(() => {
+    const customerInfo = JSON.parse(localStorage.getItem('customer'));
+    const arrayOfSellers = [];
+    axios.get('http://localhost:3001/checkout', {
+      headers: {
+        authorization: customerInfo.token,
+      },
+    })
+      .then((res) => arrayOfSellers.push(res.data))
+      .then(() => setSellers(arrayOfSellers));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('myProducts', myProducts);
+    const arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    setProducts(arrayOfProducts);
+  }, []);
 
   const handleRemoveClick = (event) => {
-    arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    const newArrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
     const index = event.target.parentElement.parentElement.id;
-    arrayOfProducts.splice(index, 1);
-    localStorage.setItem('myProducts', JSON.stringify(arrayOfProducts));
-    // O setProducts abaixo, nesse momento, está servindo apenas para atualizar a página.
-    setProducts(arrayOfProducts);
+    newArrayOfProducts.splice(index, 1);
+    localStorage.setItem('myProducts', JSON.stringify(newArrayOfProducts));
+    setProducts(newArrayOfProducts);
   };
 
   const handleFinishOrderClick = () => {
@@ -90,7 +104,7 @@ function Checkout() {
             <th className="remove-header">Remover Item</th>
           </tr>
           <tbody>
-            { arrayOfProducts.map((product, index) => (
+            { products.map((product, index) => (
               <tr key={ index } name={ index }>
                 <td
                   className="item-box"
@@ -152,7 +166,7 @@ function Checkout() {
           <TotalBox
             dataTestId="customer_checkout__element-order-total-price"
             className="total-box"
-            inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
+            inputInfo={ currency(products.reduce((acc, product) => (
               acc + product.price * product.quantity
             ), 0), 'R$') }
           />
@@ -167,13 +181,13 @@ function Checkout() {
               data-testid="customer_checkout__select-seller"
               className="select-input"
             >
-              { sellers.map((seller, index) => (
+              { sellers.map((seller) => (
                 <option
                   className="option-input"
-                  value={ seller }
-                  key={ index }
+                  value={ seller.name }
+                  key={ seller.id }
                 >
-                  { seller }
+                  { seller.name }
                 </option>
               )) }
             </select>
