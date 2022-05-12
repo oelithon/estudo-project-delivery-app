@@ -5,7 +5,6 @@ import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -61,23 +60,6 @@ function LoginProvider({ children }) {
   const enabledToRegister = isValidEmail
     && passwordSize >= passwordMinLength && nameSize >= nameMinLength;
 
-  const getSellers = async () => {
-    const customerInfo = JSON.parse(localStorage.getItem('customer'));
-    const arrayOfSeller = [];
-    const response = await fetch('http://localhost:3001/checkout', {
-      method: 'GET',
-      headers: {
-        authorization: customerInfo.token,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => data);
-
-    arrayOfSeller.push(response);
-    setSellers(arrayOfSeller);
-    console.log(sellers[0].name);
-  };
-
   const login = async () => {
     const body = JSON.stringify({
       email: email.email,
@@ -128,7 +110,6 @@ function LoginProvider({ children }) {
         token: data.token,
       }));
       setHidden(false);
-      getSellers();
       navigate('/customer/products');
     }
   };
@@ -156,8 +137,6 @@ function LoginProvider({ children }) {
   }
 
   const context = {
-    products,
-    setProducts,
     address,
     setAddress,
     number,

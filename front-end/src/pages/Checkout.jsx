@@ -8,8 +8,13 @@ import LoginContext from '../context/LoginContext';
 function Checkout() {
   const navigate = useNavigate();
   const [sellers, setSellers] = useState(['']);
-  const { address, number, currency, setProducts, settingAddress,
-    settingNumber, products } = useContext(LoginContext);
+  const [products, setProducts] = useState([{
+    name: '',
+    price: 0,
+    quantity: 0,
+  }]);
+  const { address, number, currency, settingAddress,
+    settingNumber } = useContext(LoginContext);
 
   const myProducts = JSON.stringify([
     {
@@ -29,6 +34,8 @@ function Checkout() {
     },
   ]);
 
+  console.log(myProducts);
+
   useEffect(() => {
     const customerInfo = JSON.parse(localStorage.getItem('customer'));
     const arrayOfSellers = [];
@@ -42,9 +49,8 @@ function Checkout() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('myProducts', myProducts);
-    const arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
-    setProducts(arrayOfProducts);
+    // localStorage.setItem('myProducts', myProducts);
+    setProducts(JSON.parse(localStorage.getItem('myProducts')));
   }, []);
 
   const handleRemoveClick = (event) => {
@@ -86,8 +92,8 @@ function Checkout() {
       });
   };
 
-  const usertype = 'client';
-  const username = 'Rafael';
+  const usertype = JSON.parse(localStorage.getItem('customer')).role;
+  const username = JSON.parse(localStorage.getItem('customer')).name;
 
   return (
     <div>
