@@ -29,7 +29,6 @@ const getOrderById = async (id, token) => {
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
-
 const getAllByUserId = async (token) => {
   try {
     const { id, role } = await decoder(token);
@@ -41,7 +40,6 @@ const getAllByUserId = async (token) => {
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
-
 const createSale = async (receivedSale, token) => {
   const { id } = await decoder(token);
   const create = await Sale.create({ ...receivedSale, userId: id });
