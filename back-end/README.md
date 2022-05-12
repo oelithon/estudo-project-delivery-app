@@ -118,6 +118,7 @@ Sua resposta será um objeto contendo informações dos vendedores, como por exe
 	"role": "seller" // tipo de pessoa usuária
 }
 ```
+---
 
 > Realizando um pedido
 
@@ -260,7 +261,7 @@ Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 	"date": "9/5/2022"
 }
 ```
-
+---
 
 > Editar o status do pedido para `Preparando`, `Em Trânsito` ou `Entregue`.
 
