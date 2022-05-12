@@ -49,7 +49,10 @@ const getAllSellers = async () => {
 const getAllUsers = async (token) => {
   const { role } = await decoder(token);
   if (role === 'administrator') {
-    const list = await User.findAll({ where: { role: ['customer', 'seller'] } });
+    const list = await User.findAll({
+      attributes: { exclude: ['password'] },
+      where: { role: ['customer', 'seller'] },
+    });
     return goodResponse(statusCode.OK, list);
   }
 };
