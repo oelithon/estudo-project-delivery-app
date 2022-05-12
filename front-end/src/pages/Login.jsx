@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, HiddenElement, Input } from '../components';
+import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
 import '../styles/global.css';
@@ -29,7 +29,7 @@ function Login() {
     };
   }, [setHidden, setEmail, setPassword]);
 
-  const id = "common_login__element-invalid-email"
+  const id = 'common_login__element-invalid-email';
 
   return (
     <div>

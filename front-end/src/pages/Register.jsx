@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, HiddenElement, Input } from '../components';
+import { Button, Input } from '../components';
 import LoginContext from '../context/LoginContext';
 import '../styles/Login.css';
 
@@ -28,7 +28,7 @@ function Register() {
     };
   }, [setHidden, setEmail, setPassword]);
 
-  const id = "common_register__element-invalid_register"
+  const id = 'common_register__element-invalid_register';
 
   return (
     <div>
