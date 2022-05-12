@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, HiddenElement, Input } from '../components';
+import { Button, Input } from '../components';
 import LoginContext from '../context/LoginContext';
 import '../styles/Login.css';
 
@@ -27,6 +27,8 @@ function Register() {
       });
     };
   }, [setHidden, setEmail, setPassword]);
+
+  const id = 'common_register__element-invalid_register';
 
   return (
     <div>
@@ -67,9 +69,10 @@ function Register() {
             onClick={ handleRegisterButton }
             buttonStatus={ !enabledToRegister }
           />
+          common_register__element-invalid_register
         </form>
         { hidden
-          ? <HiddenElement dataTestId="common_register__element-invalid_register" />
+          ? <span data-testid={ id } className="hidden">Login ou senha inválidos</span>
           : '' }
       </main>
     </div>

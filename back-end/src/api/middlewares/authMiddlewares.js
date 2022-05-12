@@ -4,7 +4,6 @@ const { NOT_FOUND, UNAUTHORIZED } = require('../helpers/statusCode');
 
 async function validToken(request, response, next) {
   const token = request.headers.authorization;
-
   if (!token) {
     return response.status(NOT_FOUND).json(tokenIsRequired);
   }
@@ -12,7 +11,6 @@ async function validToken(request, response, next) {
   if (error) return response.status(UNAUTHORIZED).json(invalidCredentials);
   next();
 }
-
 module.exports = {
   validToken,
-}; 
+};
