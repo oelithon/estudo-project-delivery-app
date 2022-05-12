@@ -87,7 +87,12 @@ function LoginProvider({ children }) {
       setHidden(true);
     } else {
       setLoading(false);
-      localStorage.setItem('costumer', JSON.stringify(data));
+      localStorage.setItem('costumer', JSON.stringify({
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        token: data.token,
+      }));
       navigate('/customer/products');
       setHidden(false);
     }
