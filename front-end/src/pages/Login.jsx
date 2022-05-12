@@ -29,6 +29,8 @@ function Login() {
     };
   }, [setHidden, setEmail, setPassword]);
 
+  const id = "common_login__element-invalid-email"
+
   return (
     <div>
       <main className="Login-main">
@@ -70,7 +72,7 @@ function Login() {
         </form>
         { loading ? 'Loading...' : ''}
         { hidden
-          ? <HiddenElement data-testid="common_login__element-invalid-email" />
+          ? <span data-testid={ id } className="hidden">Login ou senha inválidos</span>
           : '' }
       </main>
     </div>

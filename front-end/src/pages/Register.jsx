@@ -28,6 +28,8 @@ function Register() {
     };
   }, [setHidden, setEmail, setPassword]);
 
+  const id = "common_register__element-invalid_register"
+
   return (
     <div>
       <main className="Login-main">
@@ -70,7 +72,7 @@ function Register() {
           common_register__element-invalid_register
         </form>
         { hidden
-          ? <HiddenElement data-testid="common_register__element-invalid_register" />
+          ? <span data-testid={ id } className="hidden">Login ou senha inválidos</span>
           : '' }
       </main>
     </div>
