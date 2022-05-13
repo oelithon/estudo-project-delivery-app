@@ -6,11 +6,6 @@ import { ItemBox, QuantityBox,
 import LoginContext from '../context/LoginContext';
 
 function CustomerOrderDetails() {
-  const [seller, setSeller] = useState({
-    id: 0,
-    name: '',
-  });
-
   const [order, setOrder] = useState(
     {
       id: 0, // id do pedido realizado
@@ -31,7 +26,7 @@ function CustomerOrderDetails() {
           quantity: 0,
         },
       ],
-      date: '9/5/2022',
+      date: '',
     },
   );
   const { id } = useParams();
@@ -48,19 +43,7 @@ function CustomerOrderDetails() {
       .catch((error) => console.log(JSON.stringify(error)));
   }, [id]);
 
-  useEffect(() => {
-    // Obs: Esse useEffect possui uma limitação que resultará em um possível erro caso tenhamos
-    // mais de um vendedor cadastrado.
-    axios.get('http://localhost:3001/checkout', {
-      headers: {
-        authorization: JSON.parse(localStorage.getItem('customer')).token,
-      },
-    })
-      .then((res) => setSeller(res.data));
-  }, []);
-
   const handleDeliveryCheckClick = async () => {
-    // Bloquear o botão caso o status esteja diferente de "Saiu para entrega"
     await fetch(`http://localhost:3001/customer/orders/${id}`, {
       method: 'PUT',
       headers: {
@@ -72,11 +55,6 @@ function CustomerOrderDetails() {
         status: 'Entregue',
       }),
     }).then((res) => res.json());
-
-    setOrder({
-      ...order,
-      status: 'Entregue',
-    });
   };
 
   return (
@@ -90,38 +68,30 @@ function CustomerOrderDetails() {
         <div className="number-seller">
           <div
             className="order-number"
-            data-testid="customer_order_details__element-order-details-label-order-id"
+            data-testid="seller_order_details__element-order-details-label-order-id"
           >
             <strong>
               PEDIDO
               { ` 000${order.id}` }
             </strong>
           </div>
-          <div
-            className="order-seller"
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            ; P. Vend:
-            { seller.name}
-          </div>
-
         </div>
         <div
           className="order-date"
-          data-testid="customer_order_details__element-order-details-label-order-date"
+          data-testid="seller_order_details__element-order-details-label-order-date"
         >
           { order.date }
         </div>
         <div
           className="delivery-status"
-          data-testid={ `customer_order_details__element
+          data-testid={ `seller_order_details__element
             -order-details-label-delivery-status` }
         >
           { order.status.toUpperCase() }
         </div>
         <button
           className="delivery-check-button"
-          data-testid="customer_order_details__button-delivery-check"
+          data-testid="seller_order_details__button-delivery-check"
           type="button"
           onClick={ handleDeliveryCheckClick }
         >
@@ -145,7 +115,7 @@ function CustomerOrderDetails() {
                 >
                   <ItemBox
                     dataTestId={
-                      `customer_order_details__element-order-table-item-number-<${index}>`
+                      `seller_order_details__element-order-table-item-number-<${index}>`
                     }
                     inputInfo={ index + 1 }
                   />
@@ -153,7 +123,7 @@ function CustomerOrderDetails() {
                 <td className="description-box">
                   <DescriptionBox
                     dataTestId={
-                      `customer_order_details__element-order-table-name-<${index}>`
+                      `seller_order_details__element-order-table-name-<${index}>`
                     }
                     inputInfo={ product.name }
                   />
@@ -161,7 +131,7 @@ function CustomerOrderDetails() {
                 <td className="quantity-box">
                   <QuantityBox
                     dataTestId={
-                      `customer_order_details__element-order-table-quantity-<${index}>`
+                      `seller_order_details__element-order-table-quantity-<${index}>`
                     }
                     inputInfo={ product.quantity }
                   />
@@ -169,7 +139,7 @@ function CustomerOrderDetails() {
                 <td className="price-box">
                   <PriceBox
                     dataTestId={
-                      `customer_order_details__element-order-table-unit-price-<${index}>`
+                      `seller_order_details__element-order-table-unit-price-<${index}>`
                     }
                     inputInfo={ currency(product.price, 'R$') }
                   />
@@ -177,7 +147,7 @@ function CustomerOrderDetails() {
                 <td className="subtotal-box-order">
                   <SubTotalBox
                     dataTestId={
-                      `customer_order_details__element-order-table-sub-total-<${index}>`
+                      `seller_order_details__element-order-table-sub-total-<${index}>`
                     }
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />
@@ -187,7 +157,7 @@ function CustomerOrderDetails() {
         </table>
         <div className="total-box-container">
           <TotalBox
-            dataTestId="customer_order_details__element-order-total-price"
+            dataTestId="seller_order_details__element-order-total-price"
             className="total-box"
             inputInfo={ currency(order.totalPrice, 'R$') }
           />
