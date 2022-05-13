@@ -54,7 +54,13 @@ const Navbar = ({ usertype, username }) => {
         </button>
         <Link to="/">
           {/* Apagar local storage */}
-          <button data-testid="14" className="Navbar__button--exit" type="button">sair</button>
+          <button
+            data-testid="14"
+            className="Navbar__button--exit"
+            type="button"
+          >
+            sair
+          </button>
         </Link>
       </div>
     </header>

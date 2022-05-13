@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
-  import LoginContext from '../context/LoginContext';
-  import { readUser } from '../helpers/localStorage';
+import LoginContext from '../context/LoginContext';
+import { readUser } from '../helpers/localStorage';
   
-  function Checkout() {
-    const [userRole, setUserRole] = useState('');
-    const [username, setUsername] = useState('');
-    const navigate = useNavigate();
+function Checkout() {
+  const [userRole, setUserRole] = useState('');
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
   // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
   const sellers = ['Thereza', 'Rafael', 'Paulo'];
   const { address, number, currency, setProducts, settingAddress,
@@ -43,7 +43,7 @@ import { Button, ItemBox, QuantityBox,
     // O setProducts abaixo, nesse momento, está servindo apenas para atualizar a página.
     setProducts(arrayOfProducts);
   };
-  
+
   const handleFinishOrderClick = () => {
     const today = new Date();
     const day = today.getDate();
@@ -74,7 +74,6 @@ import { Button, ItemBox, QuantityBox,
         navigate(`/customer/orders/${data.id}`);
       });
   };
-
 
   useEffect(() => {
     const userInfo = readUser();
