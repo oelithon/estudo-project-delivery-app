@@ -4,7 +4,7 @@ import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 import { readUser } from '../helpers/localStorage';
-  
+
 function Checkout() {
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
