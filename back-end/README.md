@@ -268,7 +268,9 @@ Sua resposta será um objeto contendo informações do pedido, como por exemplo:
 	"deliveryNumber": "n 301", // número do local de entrega
 	"saleDate": "2022-05-09T19:01:52.000Z", // datetime do momento da venda
 	"status": "Pendente", // status de pedido
-	"user_id": 3,
+	"seller": {
+		"name": "Fulana Pereira"
+	},
 	"products": [ // array com os itens do pedido
 		{
 			"id": 2,
