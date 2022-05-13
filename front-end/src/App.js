@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoginProvider from './context/LoginProvider';
 import { Login, Register, Checkout, Products, SalesTest } from './pages';
+import AllOrders from './pages/AllOrders';
 import './styles/global.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/subscribe" element={ <Register /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
           <Route path="/customer/orders/:id" element={ <SalesTest /> } />
+          <Route path="/customer/orders" element={ <AllOrders /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route exact path="/" element={ <Navigate to="/login" /> } />
         </Routes>
