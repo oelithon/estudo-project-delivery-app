@@ -106,7 +106,7 @@ function Checkout() {
   return (
     <div>
       <Navbar
-        usertype={ JSON.parse(localStorage.getItem('customer')).role } 
+        usertype={ JSON.parse(localStorage.getItem('customer')).role }
         username={ JSON.parse(localStorage.getItem('customer')).name }
       />
       <h3 className="container-title">Finalizar Pedido</h3>

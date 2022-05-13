@@ -1,40 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
-function OrderPage() {
+function OrderDetails() {
+  const [order, setOrder] = useState(
+    {
+      id: 0, // id do pedido realizado
+      userId: 0, // id da pessoa usuária logada que realizou o pedido
+      sellerId: 0, // id do vendedor selecionado
+      totalPrice: 0, // valor total da compra realizada
+      deliveryAddress: '', // endereço para entrega do pedido
+      deliveryNumber: '', // número do local de entrega
+      saleDate: '', // datetime do momento da venda
+      status: '', // status de pedido
+      user_id: 0,
+      products: [
+        {
+          id: 0,
+          name: '',
+          price: 0,
+          url_image: '',
+          quantity: 0,
+        },
+      ],
+      date: '9/5/2022',
+    },
+  );
+  const { id } = useParams();
   const { currency } = useContext(LoginContext);
-  // O arrayOfProducts e orderInfo serão enviados pelo backend:
-  const arrayOfProducts = [
-    {
-      name: 'Becks 330ml',
-      price: 4.49,
-      quantity: 2,
-    },
-    {
-      name: 'Antartica Pilsen 300ml',
-      price: 2.49,
-      quantity: 5,
-    },
-    {
-      name: 'Heineken 600ml',
-      price: 7.5,
-      quantity: 3,
-    },
-  ];
 
-  const orderInfo = {
-    saleNumber: '0001',
-    seller: 'Thereza',
-    date: '07/04/2021',
-    status: 'ENTREGUE',
-  };
+  useEffect(() => {
+    const customerInfo = JSON.parse(localStorage.getItem('customer'));
+    axios.get(`http://localhost:3001/customer/orders/${id}`, {
+      headers: {
+        authorization: customerInfo.token,
+      },
+    })
+      .then((res) => setOrder(res.data))
+      .catch((error) => console.log(JSON.stringify(error)));
+  }, []);
+
+  console.log(order);
 
   return (
     <div>
       <Navbar
-        usertype={ JSON.parse(localStorage.getItem('customer')).role } 
+        usertype={ JSON.parse(localStorage.getItem('customer')).role }
         username={ JSON.parse(localStorage.getItem('customer')).name }
       />
       <h3 className="container-title">Detalhe do Pedido</h3>
@@ -42,13 +56,13 @@ function OrderPage() {
         <div className="order-number">
           <strong>
             PEDIDO
-            { orderInfo.saleNumber }
+            { order.id }
           </strong>
           ; P. Vend:
-          { orderInfo.seller }
+          { order.sellerId }
         </div>
-        <div className="order-date">{ orderInfo.date }</div>
-        <div className="order-status">{ orderInfo.status }</div>
+        <div className="order-date">{ order.date }</div>
+        <div className="order-status">{ order.status }</div>
         <Button
           className="delivery-check-button"
           dataTestId="customer_order_details__button-delivery-check"
@@ -67,7 +81,7 @@ function OrderPage() {
             <th className="sub-total-header">Sub-total</th>
           </tr>
           <tbody>
-            { arrayOfProducts.map((product, index) => (
+            { order.products.map((product, index) => (
               <tr key={ index } name={ index }>
                 <td
                   className="item-box"
@@ -118,9 +132,7 @@ function OrderPage() {
           <TotalBox
             dataTestId="customer_order_details__element-order-total-price"
             className="total-box"
-            inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
-              acc + product.price * product.quantity
-            ), 0), 'R$') }
+            inputInfo={ currency(order.totalPrice, 'R$') }
           />
         </div>
       </div>
@@ -128,4 +140,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default OrderDetails;

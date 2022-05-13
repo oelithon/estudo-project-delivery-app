@@ -129,7 +129,13 @@ function LoginProvider({ children }) {
   };
 
   function currency(value, coin) {
-    const fixedValue = value.toFixed(2);
+    let newValue = 0;
+    if (typeof value === 'string') {
+      newValue = Number(value);
+    } else {
+      newValue = value;
+    }
+    const fixedValue = newValue.toFixed(2);
     const modifiedValue = fixedValue.replace('.', ',');
     const newCurrency = `${coin} ${modifiedValue}`;
     return newCurrency;
