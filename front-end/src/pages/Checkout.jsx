@@ -65,7 +65,6 @@ function Checkout() {
   };
 
   const finishOrder = async (body) => {
-    console.log(body);
     await fetch('http://localhost:3001/checkout', {
       method: 'POST',
       headers: {
@@ -92,7 +91,6 @@ function Checkout() {
     }));
 
     const body = JSON.stringify({
-      // Buscar o sellerId
       sellerId: myOption.id,
       totalPrice: total,
       deliveryAddress: address.address,

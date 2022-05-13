@@ -2,10 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ItemBox, QuantityBox,
-  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button, Navbar } from '../components';
+  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
-function OrderDetails() {
+function CustomerOrderDetails() {
+  const [seller, setSeller] = useState({
+    id: 0,
+    name: '',
+  });
+
   const [order, setOrder] = useState(
     {
       id: 0, // id do pedido realizado
@@ -30,20 +35,48 @@ function OrderDetails() {
     },
   );
   const { id } = useParams();
+
   const { currency } = useContext(LoginContext);
 
   useEffect(() => {
-    const customerInfo = JSON.parse(localStorage.getItem('customer'));
     axios.get(`http://localhost:3001/customer/orders/${id}`, {
       headers: {
-        authorization: customerInfo.token,
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
       },
     })
       .then((res) => setOrder(res.data))
       .catch((error) => console.log(JSON.stringify(error)));
+  }, [id]);
+
+  useEffect(() => {
+    // Obs: Esse useEffect possui uma limitação que resultará em um possível erro caso tenhamos
+    // mais de um vendedor cadastrado.
+    axios.get('http://localhost:3001/checkout', {
+      headers: {
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
+      },
+    })
+      .then((res) => setSeller(res.data));
   }, []);
 
-  console.log(order);
+  const handleDeliveryCheckClick = async () => {
+    await fetch(`http://localhost:3001/customer/orders/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
+      },
+      body: JSON.stringify({
+        ...order,
+        status: 'Entregue',
+      }),
+    }).then((res) => res.json());
+
+    setOrder({
+      ...order,
+      status: 'Entregue',
+    });
+  };
 
   return (
     <div>
@@ -53,23 +86,46 @@ function OrderDetails() {
       />
       <h3 className="container-title">Detalhe do Pedido</h3>
       <div className="order-box">
-        <div className="order-number">
-          <strong>
-            PEDIDO
-            { order.id }
-          </strong>
-          ; P. Vend:
-          { order.sellerId }
+        <div className="number-seller">
+          <div
+            className="order-number"
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            <strong>
+              PEDIDO
+              { ` 000${order.id}` }
+            </strong>
+          </div>
+          <div
+            className="order-seller"
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+          >
+            ; P. Vend:
+            { seller.name}
+          </div>
+
         </div>
-        <div className="order-date">{ order.date }</div>
-        <div className="order-status">{ order.status }</div>
-        <Button
+        <div
+          className="order-date"
+          data-testid="customer_order_details__element-order-details-label-order-date"
+        >
+          { order.date }
+        </div>
+        <div
+          className="delivery-status"
+          data-testid={ `customer_order_details__element
+            -order-details-label-delivery-status` }
+        >
+          { order.status.toUpperCase() }
+        </div>
+        <button
           className="delivery-check-button"
-          dataTestId="customer_order_details__button-delivery-check"
-          path=""
-          buttonText="MARCAR COMO ENTREGUE"
-          // onClick={ handleDeliveryCheckClick }
-        />
+          data-testid="customer_order_details__button-delivery-check"
+          type="button"
+          onClick={ handleDeliveryCheckClick }
+        >
+          MARCAR COMO ENTREGUE
+        </button>
       </div>
       <div className="main-box-order">
         <table>
@@ -140,4 +196,4 @@ function OrderDetails() {
   );
 }
 
-export default OrderDetails;
+export default CustomerOrderDetails;

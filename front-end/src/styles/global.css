@@ -67,9 +67,37 @@ span {
   border-bottom: none;
   box-shadow: 0 2px 4px 0 #b1c2be , 0 3px 4px 0 #b1c2be;
   display: flex;
+  font-size: 22px;
   justify-content: space-between;
   margin: 0 7%;
   padding: 5px;
+}
+
+.order-date {
+  background-color: #f2fffc;
+  border-radius: 5px;
+  padding: 0.5%;
+}
+
+.delivery-status {
+  background-color: #00cc9b;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 0.5% 3%;
+}
+
+.delivery-check-button {
+  background-color: #036b52;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0.5%;
+  white-space: nowrap;
+}
+
+.number-seller {
+  align-items: center;
+  display: flex;
 }
 
 .products-header {
