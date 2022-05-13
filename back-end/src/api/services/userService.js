@@ -8,10 +8,9 @@ const statusCode = require('../helpers/statusCode');
 const userData = async (email, password) => {
   try {
     const encryptedPass = encryptPassword(password);
-    const userMatch = await User.findOne({ where: { email, password: encryptedPass } });
-    const { id, name, role } = userMatch;
-    const user = { id, name, email, role };
-    const token = generateToken(user);
+    const { id, name, role } = await User.findOne({ where: { email, password: encryptedPass } });
+
+    const token = generateToken({ id, name, email, role });
     return goodResponse(statusCode.OK, { id, name, email, role, token });
   } catch (error) {
     return errorResponse(statusCode.NOT_FOUND, notFound);
@@ -32,7 +31,7 @@ const createUser = async (body) => {
       const token = generateToken({ id, name, email, role });
       return goodResponse(statusCode.CREATED, { id, name, email, role, token });
     }
-    return errorResponse(statusCode.BAD_REQUEST, emailAlreadyRegistered);
+    return errorResponse(statusCode.CONFLICT, emailAlreadyRegistered);
   } catch (err) {
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
@@ -49,7 +48,10 @@ const getAllSellers = async () => {
 const getAllUsers = async (token) => {
   const { role } = await decoder(token);
   if (role === 'administrator') {
-    const list = await User.findAll({ where: { role: ['customer', 'seller'] } });
+    const list = await User.findAll({ 
+      attributes: { exclude: ['password'] },
+      where: { role: ['customer', 'seller'] }, 
+    });
     return goodResponse(statusCode.OK, list);
   }
 };
