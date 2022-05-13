@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, ProductCard } from '../components';
 import '../styles/Products.css';
 import formatNumbertoBRL from '../helpers/formatNumberToBRL';
-import { readUser } from '../helpers/localStorage';
+import { readUser, savePrice } from '../helpers/localStorage';
 
 const Products = () => {
   const [products, setProducts] = useState(['']);
@@ -44,26 +44,17 @@ const Products = () => {
         className="TotalPrice"
       >
         Ver carrinho:
-        {
-          cart > 0 ? (
-            <Link
-              to="/customer/checkout"
-              data-testid="customer_products__button-cart"
-            >
-              <p
-                data-testid={ `${userRole}_products__checkout-bottom-value` }
-              >
-                { formatNumbertoBRL(cart) }
-              </p>
-            </Link>
-          ) : (
-            <p
-              data-testid={ `${userRole}_products__checkout-bottom-value` }
-            >
-              R$ 0,00
-            </p>
-          )
-        }
+        <Link
+          to="/customer/checkout"
+          onClick={ () => savePrice(cart) }
+          data-testid="customer_products__button-cart"
+        >
+          <p
+            data-testid={ `${userRole}_products__checkout-bottom-value` }
+          >
+            { formatNumbertoBRL(cart) }
+          </p>
+        </Link>
       </div>
     </>
   );
