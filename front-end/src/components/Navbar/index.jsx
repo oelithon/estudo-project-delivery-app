@@ -46,7 +46,6 @@ const Navbar = ({ usertype, username }) => {
           <button
             className="Navbar__button--home"
             type="button"
-            data-testid={ `${prefix}element-navbar-user-full-name` }
           >
             ZECA DELIVERY
           </button>
@@ -63,7 +62,7 @@ const Navbar = ({ usertype, username }) => {
       <button className="Navbar__button--items" type="button">{ items.item2 }</button>
       <div className="Navbar__buttons--exit--username">
         <button
-          data-testid={ `${prefix}element-navbar-logout` }
+          data-testid={ `${prefix}element-navbar-user-full-name` }
           className="Navbar__button--username"
           type="button"
         >

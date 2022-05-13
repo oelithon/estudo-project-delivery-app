@@ -41,13 +41,29 @@ const Products = () => {
         ))}
       </div>
       <div
-        data-testid={ `${userRole}_products__checkout-bottom-value` }
         className="TotalPrice"
       >
         Ver carrinho:
-        <Link to="/customer/checkout" data-testid="79">
-          { formatNumbertoBRL(cart) }
-        </Link>
+        {
+          cart > 0 ? (
+            <Link
+              to="/customer/checkout"
+              data-testid="customer_products__button-cart"
+            >
+              <p
+                data-testid={ `${userRole}_products__checkout-bottom-value` }
+              >
+                { formatNumbertoBRL(cart) }
+              </p>
+            </Link>
+          ) : (
+            <p
+              data-testid={ `${userRole}_products__checkout-bottom-value` }
+            >
+              R$ 0,00
+            </p>
+          )
+        }
       </div>
     </>
   );

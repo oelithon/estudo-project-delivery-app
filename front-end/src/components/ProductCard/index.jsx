@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Counter from '../Counter';
 import formatNumbertoBRL from '../../helpers/formatNumberToBRL';
 import './style.css';
-import { readUser } from '../../helpers/localStorage';
+// import { readUser } from '../../helpers/localStorage';
 
-const userRole = readUser().role;
+// const userRole = readUser().role;
 
 const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
   <div className="ProductCard__div">
@@ -14,18 +14,18 @@ const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
         src={ imgURL }
         alt="Product logo"
         className="productImage"
-        data-testid={ `${userRole}_products__img-card-bg-image-${productId}` }
+        data-testid={ `customer_products__img-card-bg-image-${productId}` }
       />
     </div>
     <div
       className="productPrice"
-      data-testid={ `${userRole}_products__element-card-price-${productId}` }
+      data-testid={ `customer_products__element-card-price-${productId}` }
     >
       {formatNumbertoBRL(price)}
     </div>
     <div
       className="productDescriptionAndCounter"
-      data-testid={ `${userRole}_products__element-card-title-${productId}` }
+      data-testid={ `customer_products__element-card-title-${productId}` }
     >
       {description}
       <div className="productCounter">

@@ -30,7 +30,7 @@ beforeEach(async () => {
 });
 
 describe(requirement(11), () => {
-  test.only("O avaliador testará a existência dos data-testids referentes ao navbar", async () => {
+  test("O avaliador testará a existência dos data-testids referentes ao navbar", async () => {
     await expect(page).toFindElement(
       customerProductsPage.element.navbar.links.products
     );
