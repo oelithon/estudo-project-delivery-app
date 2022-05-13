@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { addProduct, removeProduct, getAllProducts } from '../../helpers/localStorage';
+import {
+  addProduct,
+  removeProduct,
+  getAllProducts,
+  readUser,
+} from '../../helpers/localStorage';
 import './style.css';
 
 const Counter = ({ productId, price, setCart }) => {
   const [quantity, setQuantity] = useState(0);
+  const userRole = readUser().role;
 
   const handleClick = (value) => {
     if (value === '+') {
@@ -36,7 +42,7 @@ const Counter = ({ productId, price, setCart }) => {
     <div className="Counter__div">
       <button
         className="Counter__button --left"
-        data-testid="19"
+        data-testid={ `${userRole}_products__button-card-rm-item-${productId}` }
         type="button"
         value="-"
         onClick={ ({ target }) => handleClick(target.value) }
@@ -46,7 +52,7 @@ const Counter = ({ productId, price, setCart }) => {
       <label htmlFor="Counter-input" className="Counter__label">
         <input
           id="Counter-input"
-          data-testid="20"
+          data-testid={ `${userRole}_products__input-card-quantity-${productId}` }
           className="Counter__input"
           type="text"
           value={ quantity }
@@ -59,7 +65,7 @@ const Counter = ({ productId, price, setCart }) => {
         className="Counter__button --right"
         type="button"
         value="+"
-        data-testid="18"
+        data-testid={ `${userRole}_products__button-card-add-item-${productId}` }
         onClick={ ({ target }) => handleClick(target.value) }
       >
         +

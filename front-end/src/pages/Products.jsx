@@ -11,6 +11,8 @@ const Products = () => {
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
   const [cart, setCart] = useState(0);
+  // const userRole = readUser().role;
+
   useEffect(() => {
     axios.get('http://localhost:3001/customer/products', {
       headers: { Authorization: process.env.REACT_APP_TOKEN },
@@ -20,6 +22,7 @@ const Products = () => {
     const userInfo = readUser();
     setUsername(userInfo.name);
     setUserRole(userInfo.role);
+    console.log('AQUI');
   }, []);
 
   return (
@@ -37,7 +40,10 @@ const Products = () => {
           />
         ))}
       </div>
-      <div data-testid="21" className="TotalPrice">
+      <div
+        data-testid={ `${userRole}_products__checkout-bottom-value` }
+        className="TotalPrice"
+      >
         Ver carrinho:
         <Link to="/customer/checkout" data-testid="79">
           { formatNumbertoBRL(cart) }

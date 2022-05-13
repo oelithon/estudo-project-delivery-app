@@ -104,7 +104,7 @@ function LoginProvider({ children }) {
       setHidden(true);
     } else {
       setLoading(false);
-      localStorage.setItem('customer', JSON.stringify({
+      localStorage.setItem('user', JSON.stringify({
         name: data.name,
         email: data.email,
         role: data.role,
