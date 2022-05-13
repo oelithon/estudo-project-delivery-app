@@ -103,12 +103,12 @@ function Checkout() {
     finishOrder(body);
   };
 
-  const usertype = JSON.parse(localStorage.getItem('customer')).role;
-  const username = JSON.parse(localStorage.getItem('customer')).name;
-
   return (
     <div>
-      <Navbar usertype={ usertype } username={ username } />
+      <Navbar
+        usertype={ JSON.parse(localStorage.getItem('customer')).role } 
+        username={ JSON.parse(localStorage.getItem('customer')).name }
+      />
       <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>

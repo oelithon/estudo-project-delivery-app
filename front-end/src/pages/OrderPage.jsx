@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ItemBox, QuantityBox,
-  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button } from '../components';
+  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function OrderPage() {
@@ -33,6 +33,10 @@ function OrderPage() {
 
   return (
     <div>
+      <Navbar
+        usertype={ JSON.parse(localStorage.getItem('customer')).role } 
+        username={ JSON.parse(localStorage.getItem('customer')).name }
+      />
       <h3 className="container-title">Detalhe do Pedido</h3>
       <div className="order-box">
         <div className="order-number">
