@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Navbar, ProductCard } from '../components';
 import '../styles/Products.css';
 import formatNumbertoBRL from '../helpers/formatNumberToBRL';
-
 import { readUser } from '../helpers/localStorage';
 
 const Products = () => {
