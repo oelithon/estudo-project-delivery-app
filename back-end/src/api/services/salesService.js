@@ -40,13 +40,19 @@ const getAllByUserId = async (token) => {
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
+
+const createSaleProduct = async (receivedSale, create) => {
+  const createSaleProducts = receivedSale.products.map(async ({ productId, quantity }) => (
+    SaleProduct.create({ saleId: create.id, productId, quantity })));
+
+  await Promise.all(createSaleProducts);
+};
+
 const createSale = async (receivedSale, token) => {
   const { id } = await decoder(token);
   const create = await Sale.create({ ...receivedSale, userId: id });
-  const createSaleProducts = receivedSale.products.map(async ({ productId, quantity }) => (
-    SaleProduct.create({ saleId: create.id, productId, quantity })));
+  await createSaleProduct(receivedSale, create);
   create.dataValues.date = filterDate(create.saleDate);
-  create.products = await Promise.all(createSaleProducts);
   return goodResponse(statusCode.OK, create);
 };
 
@@ -98,4 +104,5 @@ module.exports = {
   getAllByUserId,
   createSale,
   editSale,
+  createSaleProduct,
 };

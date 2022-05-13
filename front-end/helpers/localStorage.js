@@ -20,7 +20,7 @@ export const readUser = () => {
   return JSON.parse(localStorage.getItem(USER_KEY));
 };
 
-// funçõe para salvar info de user do localStorage
+// funções para salvar info de user do localStorage
 export const saveUser = (user) => localStorage.setItem(USER_KEY, JSON.stringify(user));
 
 // função para ler produtos no localStorage

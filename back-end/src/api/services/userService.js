@@ -8,10 +8,9 @@ const statusCode = require('../helpers/statusCode');
 const userData = async (email, password) => {
   try {
     const encryptedPass = encryptPassword(password);
-    const userMatch = await User.findOne({ where: { email, password: encryptedPass } });
-    const { id, name, role } = userMatch;
-    const user = { id, name, email, role };
-    const token = generateToken(user);
+    const { id, name, role } = await User.findOne({ where: { email, password: encryptedPass } });
+
+    const token = generateToken({ id, name, email, role });
     return goodResponse(statusCode.OK, { id, name, email, role, token });
   } catch (error) {
     return errorResponse(statusCode.NOT_FOUND, notFound);
@@ -49,9 +48,9 @@ const getAllSellers = async () => {
 const getAllUsers = async (token) => {
   const { role } = await decoder(token);
   if (role === 'administrator') {
-    const list = await User.findAll({
+    const list = await User.findAll({ 
       attributes: { exclude: ['password'] },
-      where: { role: ['customer', 'seller'] },
+      where: { role: ['customer', 'seller'] }, 
     });
     return goodResponse(statusCode.OK, list);
   }
