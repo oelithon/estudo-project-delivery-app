@@ -7,7 +7,7 @@ const productDataProcessing = require('../helpers/productDataProcessing');
 const { BAD_REQUEST, OK } = require('../helpers/statusCode');
 const { editingNotAllowed } = require('../helpers/errorMessages');
 
-const arrayStatus = ['Pendente', 'Preparando', 'Em trânsito', 'Entregue'];
+const arrayStatus = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue'];
 
 const findOneOrder = async (param) => {
   const order = await Sale.findOne({

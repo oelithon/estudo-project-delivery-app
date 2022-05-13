@@ -69,7 +69,6 @@ function Register() {
             onClick={ handleRegisterButton }
             buttonStatus={ !enabledToRegister }
           />
-          common_register__element-invalid_register
         </form>
         { hidden
           ? <span data-testid={ id } className="hidden">Login ou senha inválidos</span>

@@ -1,72 +1,75 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
-import { readUser } from '../helpers/localStorage';
 
 function Checkout() {
-  const [userRole, setUserRole] = useState('');
-  const [username, setUsername] = useState('');
   const navigate = useNavigate();
-  // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
-  const sellers = ['Thereza', 'Rafael', 'Paulo'];
-  const { address, number, currency, setProducts, settingAddress,
+  const [sellers, setSellers] = useState(['']);
+  const [products, setProducts] = useState([{
+    name: '',
+    price: 0,
+    quantity: 0,
+  }]);
+  const { address, number, currency, settingAddress,
     settingNumber } = useContext(LoginContext);
-  //  Para passar no avaliador, as linhas 12-30 devem ser comentadas. Deletar na versão final.
-  // const myProducts = JSON.stringify([
-  //   {
-  //     name: 'Becks 330ml',
-  //     price: 4.49,
-  //     quantity: 2,
-  //   },
-  //   {
-  //     name: 'Antartica Pilsen 300ml',
-  //     price: 2.49,
-  //     quantity: 5,
-  //   },
-  //   {
-  //     name: 'Heineken 600ml',
-  //     price: 7.5,
-  //     quantity: 3,
-  //   },
-  // ]);
 
-  // localStorage.setItem('myProducts', myProducts);
-  let arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+  const myProducts = JSON.stringify([
+    {
+      id: 1,
+      name: 'Becks 330ml',
+      price: 4.49,
+      quantity: 2,
+    },
+    {
+      id: 2,
+      name: 'Antartica Pilsen 300ml',
+      price: 2.49,
+      quantity: 5,
+    },
+    {
+      id: 3,
+      name: 'Heineken 600ml',
+      price: 7.5,
+      quantity: 3,
+    },
+  ]);
+
+  console.log(myProducts);
+
+  useEffect(() => {
+    const customerInfo = JSON.parse(localStorage.getItem('customer'));
+    const arrayOfSellers = [];
+    axios.get('http://localhost:3001/checkout', {
+      headers: {
+        authorization: customerInfo.token,
+      },
+    })
+      .then((res) => arrayOfSellers.push(res.data))
+      .then(() => setSellers(arrayOfSellers));
+  }, []);
+
+  useEffect(() => {
+    // localStorage.setItem('myProducts', myProducts);
+    setProducts(JSON.parse(localStorage.getItem('myProducts')));
+  }, []);
 
   const handleRemoveClick = (event) => {
-    arrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    const newArrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
     const index = event.target.parentElement.parentElement.id;
-    arrayOfProducts.splice(index, 1);
-    localStorage.setItem('myProducts', JSON.stringify(arrayOfProducts));
-    // O setProducts abaixo, nesse momento, está servindo apenas para atualizar a página.
-    setProducts(arrayOfProducts);
+    newArrayOfProducts.splice(index, 1);
+    localStorage.setItem('myProducts', JSON.stringify(newArrayOfProducts));
+    setProducts(newArrayOfProducts);
   };
 
-  const handleFinishOrderClick = () => {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const todayDate = `${day}/${month}`;
-    const total = currency(arrayOfProducts.reduce((acc, product) => (
-      acc + product.price * product.quantity
-    ), 0), 'R$');
-
-    const body = JSON.stringify({
-      userId: 1,
-      seller_id: 2,
-      total_price: total,
-      delivery_address: address.address,
-      delivery_number: number.number,
-      sale_date: todayDate,
-      status: 'PENDENTE',
-    });
-
-    fetch('http://localhost:3001/sales', {
+  const finishOrder = async (body) => {
+    await fetch('http://localhost:3001/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
       },
       body,
     }).then((res) => res.json())
@@ -75,15 +78,35 @@ function Checkout() {
       });
   };
 
-  useEffect(() => {
-    const userInfo = readUser();
-    setUsername(userInfo.name);
-    setUserRole(userInfo.role);
-  }, []);
+  const handleFinishOrderClick = () => {
+    // https://metring.com.br/como-obter-o-valor-de-um-select-em-javascript#:~:text=Para%20obter%20o%20valor%20de,selecionado%20atrav%C3%A9s%20da%20propriedade%20selectedIndex.&text=Ser%C3%A1%20impresso%20no%20console%20o,J%20para%20abrir%20o%20console).
+    const mySelect = document.getElementById('select');
+    const myOption = mySelect.options[mySelect.selectedIndex];
+    const total = products.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0);
+    const cartProducts = products.map((product) => ({
+      productId: product.id,
+      quantity: product.quantity,
+    }));
+
+    const body = JSON.stringify({
+      sellerId: myOption.id,
+      totalPrice: total,
+      deliveryAddress: address.address,
+      deliveryNumber: number.number,
+      products: cartProducts,
+    });
+
+    finishOrder(body);
+  };
 
   return (
     <div>
-      <Navbar usertype={ userRole } username={ username } />
+      <Navbar
+        usertype={ JSON.parse(localStorage.getItem('customer')).role }
+        username={ JSON.parse(localStorage.getItem('customer')).name }
+      />
       <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>
@@ -96,7 +119,7 @@ function Checkout() {
             <th className="remove-header">Remover Item</th>
           </tr>
           <tbody>
-            { arrayOfProducts.map((product, index) => (
+            { products.map((product, index) => (
               <tr key={ index } name={ index }>
                 <td
                   className="item-box"
@@ -158,7 +181,7 @@ function Checkout() {
           <TotalBox
             dataTestId="customer_checkout__element-order-total-price"
             className="total-box"
-            inputInfo={ currency(arrayOfProducts.reduce((acc, product) => (
+            inputInfo={ currency(products.reduce((acc, product) => (
               acc + product.price * product.quantity
             ), 0), 'R$') }
           />
@@ -172,14 +195,16 @@ function Checkout() {
             <select
               data-testid="customer_checkout__select-seller"
               className="select-input"
+              id="select"
             >
-              { sellers.map((seller, index) => (
+              { sellers.map((seller) => (
                 <option
                   className="option-input"
-                  value={ seller }
-                  key={ index }
+                  value={ seller.name }
+                  key={ seller.id }
+                  id={ seller.id }
                 >
-                  { seller }
+                  { seller.name }
                 </option>
               )) }
             </select>

@@ -5,7 +5,6 @@ import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -98,7 +97,6 @@ function LoginProvider({ children }) {
   };
 
   const verifyData = (data) => {
-    console.log(data);
     if (data.token === undefined) {
       setLoading(false);
       setHidden(true);
@@ -131,15 +129,19 @@ function LoginProvider({ children }) {
   };
 
   function currency(value, coin) {
-    const fixedValue = value.toFixed(2);
+    let newValue = 0;
+    if (typeof value === 'string') {
+      newValue = Number(value);
+    } else {
+      newValue = value;
+    }
+    const fixedValue = newValue.toFixed(2);
     const modifiedValue = fixedValue.replace('.', ',');
     const newCurrency = `${coin} ${modifiedValue}`;
     return newCurrency;
   }
 
   const context = {
-    products,
-    setProducts,
     address,
     setAddress,
     number,

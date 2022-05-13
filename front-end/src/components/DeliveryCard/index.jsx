@@ -5,10 +5,6 @@ import './style.css';
 const DeliveryCard = (props) => {
   const { id, status, date, price } = props;
 
-  // const orderNumber = '0001';
-  // const orderStatus = 'PENDENTE';
-  // const dateNow = '05/05/2022';
-  // const price = 'R$ 10,00';
   const [deliveryStatusClassName, setDeliveryStatusClassName] = useState('ENTREGUE');
 
   useEffect(() => {
