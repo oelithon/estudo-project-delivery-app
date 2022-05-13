@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, ItemBox, QuantityBox,
   PriceBox, SubTotalBox, DescriptionBox, TotalBox, Input, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
+import { readUser } from '../helpers/localStorage';
 
 function Checkout() {
+  const [userRole, setUserRole] = useState('');
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
   // A variável abaixo foi incluída por conta da dificuldade no uso do useEffect para buscar os vendedores.
   const sellers = ['Thereza', 'Rafael', 'Paulo'];
@@ -72,12 +75,15 @@ function Checkout() {
       });
   };
 
-  const usertype = 'client';
-  const username = 'Rafael';
+  useEffect(() => {
+    const userInfo = readUser();
+    setUsername(userInfo.name);
+    setUserRole(userInfo.role);
+  }, []);
 
   return (
     <div>
-      <Navbar usertype={ usertype } username={ username } />
+      <Navbar usertype={ userRole } username={ username } />
       <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
         <table>

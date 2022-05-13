@@ -33,6 +33,7 @@ const Navbar = ({ usertype, username }) => {
           <button
             className="Navbar__button--home"
             type="button"
+            data-testid="12"
           >
             ZECA DELIVERY
           </button>
@@ -48,12 +49,18 @@ const Navbar = ({ usertype, username }) => {
       </Link>
       <button className="Navbar__button--items" type="button">{ items.item2 }</button>
       <div className="Navbar__buttons--exit--username">
-        <button className="Navbar__button--username" type="button">
+        <button data-testid="13" className="Navbar__button--username" type="button">
           { username }
         </button>
         <Link to="/">
           {/* Apagar local storage */}
-          <button className="Navbar__button--exit" type="button">sair</button>
+          <button
+            data-testid="14"
+            className="Navbar__button--exit"
+            type="button"
+          >
+            sair
+          </button>
         </Link>
       </div>
     </header>

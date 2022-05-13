@@ -1,10 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ItemBox, QuantityBox,
-  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button } from '../components';
+  PriceBox, SubTotalBox, DescriptionBox, TotalBox, Button, Navbar } from '../components';
 import LoginContext from '../context/LoginContext';
 
 function OrderPage() {
   const { currency } = useContext(LoginContext);
+  const [userRole, setUserRole] = useState('');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const userInfo = readUser();
+    setUsername(userInfo.name);
+    setUserRole(userInfo.role);
+  }, []);
+
   // O arrayOfProducts e orderInfo serão enviados pelo backend:
   const arrayOfProducts = [
     {
@@ -33,6 +42,7 @@ function OrderPage() {
 
   return (
     <div>
+      <Navbar usertype={ userRole } username={ username } />
       <h3 className="container-title">Detalhe do Pedido</h3>
       <div className="order-box">
         <div className="order-number">
