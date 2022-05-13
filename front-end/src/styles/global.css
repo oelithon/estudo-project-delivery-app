@@ -86,7 +86,32 @@ span {
   padding: 0.5% 3%;
 }
 
+.delivery-status-seller {
+  background-color: #ccb800bf;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 0.5% 3%;
+}
+
 .delivery-check-button {
+  background-color: #036b52;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0.5%;
+  white-space: nowrap;
+}
+
+.preparing-check-button {
+  background-color: #00cc9b;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0.5%;
+  white-space: nowrap;
+}
+
+.dispatch-check-button {
   background-color: #036b52;
   border-radius: 5px;
   font-size: 22px;

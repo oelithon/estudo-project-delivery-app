@@ -52,7 +52,7 @@ function Checkout() {
   }, []);
 
   useEffect(() => {
-    // localStorage.setItem('myProducts', myProducts);
+    localStorage.setItem('myProducts', myProducts);
     setProducts(JSON.parse(localStorage.getItem('myProducts')));
   }, []);
 

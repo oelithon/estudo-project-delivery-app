@@ -38,6 +38,10 @@ function CustomerOrderDetails() {
 
   const { currency } = useContext(LoginContext);
 
+  const buttonStatus = order.status === 'Em Trânsito';
+
+  console.log(order);
+
   useEffect(() => {
     axios.get(`http://localhost:3001/customer/orders/${id}`, {
       headers: {
@@ -60,7 +64,6 @@ function CustomerOrderDetails() {
   }, []);
 
   const handleDeliveryCheckClick = async () => {
-    // Bloquear o botão caso o status esteja diferente de "Saiu para entrega"
     await fetch(`http://localhost:3001/customer/orders/${id}`, {
       method: 'PUT',
       headers: {
@@ -123,6 +126,7 @@ function CustomerOrderDetails() {
           className="delivery-check-button"
           data-testid="customer_order_details__button-delivery-check"
           type="button"
+          disabled={ !buttonStatus }
           onClick={ handleDeliveryCheckClick }
         >
           MARCAR COMO ENTREGUE

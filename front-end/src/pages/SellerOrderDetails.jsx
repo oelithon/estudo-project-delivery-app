@@ -33,6 +33,9 @@ function CustomerOrderDetails() {
 
   const { currency } = useContext(LoginContext);
 
+  const preparingButtonStatus = order.status === 'Pendente';
+  const dispatchButtonStatus = order.status === 'Preparando';
+
   useEffect(() => {
     axios.get(`http://localhost:3001/customer/orders/${id}`, {
       headers: {
@@ -43,7 +46,7 @@ function CustomerOrderDetails() {
       .catch((error) => console.log(JSON.stringify(error)));
   }, [id]);
 
-  const handleDeliveryCheckClick = async () => {
+  const handleDispatchClick = async () => {
     await fetch(`http://localhost:3001/customer/orders/${id}`, {
       method: 'PUT',
       headers: {
@@ -52,9 +55,33 @@ function CustomerOrderDetails() {
       },
       body: JSON.stringify({
         ...order,
-        status: 'Entregue',
+        status: 'Em Trânsito',
       }),
     }).then((res) => res.json());
+
+    setOrder({
+      ...order,
+      status: 'Em Trânsito',
+    });
+  };
+
+  const handlePreparingClick = async () => {
+    await fetch(`http://localhost:3001/customer/orders/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('customer')).token,
+      },
+      body: JSON.stringify({
+        ...order,
+        status: 'Preparando',
+      }),
+    }).then((res) => res.json());
+
+    setOrder({
+      ...order,
+      status: 'Preparando',
+    });
   };
 
   return (
@@ -83,19 +110,29 @@ function CustomerOrderDetails() {
           { order.date }
         </div>
         <div
-          className="delivery-status"
+          className="delivery-status-seller"
           data-testid={ `seller_order_details__element
             -order-details-label-delivery-status` }
         >
           { order.status.toUpperCase() }
         </div>
         <button
-          className="delivery-check-button"
-          data-testid="seller_order_details__button-delivery-check"
+          className="preparing-check-button"
+          data-testid="seller_order_details__button-preparing-check"
           type="button"
-          onClick={ handleDeliveryCheckClick }
+          disabled={ !preparingButtonStatus }
+          onClick={ handlePreparingClick }
         >
-          MARCAR COMO ENTREGUE
+          PREPARAR PEDIDO
+        </button>
+        <button
+          className="dispatch-check-button"
+          data-testid="seller_order_details__button-dispatch-check"
+          type="button"
+          disabled={ !dispatchButtonStatus }
+          onClick={ handleDispatchClick }
+        >
+          SAIU PARA ENTREGA
         </button>
       </div>
       <div className="main-box-order">
