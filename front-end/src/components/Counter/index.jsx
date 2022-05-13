@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { addProduct, removeProduct, getAllProducts } from '../../helpers/localStorage';
 import './style.css';
 
-const Counter = () => {
+const Counter = ({ productId, price, setCart }) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleClick = (value) => {
-    if (value === '+') setQuantity((prevQuantity) => prevQuantity + 1);
-    else if (value === '-' && quantity === 0) console.log('0 é o mínimo');
-    else setQuantity((prevQuantity) => prevQuantity - 1);
+    if (value === '+') {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+      addProduct({ productId, price: Number(price) });
+    } else if (value === '-' && quantity === 0) {
+      console.log('0 é o mínimo');
+    } else {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      removeProduct({ productId, price: Number(price) });
+    }
+    const productsInfo = getAllProducts();
+    let totalPrice = 0;
+    productsInfo.forEach((product) => {
+      totalPrice += product.price;
+    });
+    setCart(totalPrice);
   };
 
   const handleChange = (value) => {
@@ -52,6 +66,17 @@ const Counter = () => {
       </button>
     </div>
   );
+};
+
+Counter.defaultProps = {
+  price: 'R$ 0,00',
+  productId: 0,
+};
+
+Counter.propTypes = {
+  price: PropTypes.string,
+  productId: PropTypes.number,
+  setCart: PropTypes.func.isRequired,
 };
 
 export default Counter;

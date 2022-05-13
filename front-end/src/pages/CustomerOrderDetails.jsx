@@ -6,11 +6,6 @@ import { ItemBox, QuantityBox,
 import LoginContext from '../context/LoginContext';
 
 function CustomerOrderDetails() {
-  const [seller, setSeller] = useState({
-    id: 0,
-    name: '',
-  });
-
   const [order, setOrder] = useState(
     {
       id: 0, // id do pedido realizado
@@ -20,6 +15,9 @@ function CustomerOrderDetails() {
       deliveryAddress: '', // endereço para entrega do pedido
       deliveryNumber: '', // número do local de entrega
       saleDate: '', // datetime do momento da venda
+      seller: {
+        name: '',
+      },
       status: '', // status de pedido
       user_id: 0,
       products: [
@@ -31,7 +29,7 @@ function CustomerOrderDetails() {
           quantity: 0,
         },
       ],
-      date: '9/5/2022',
+      date: '',
     },
   );
   const { id } = useParams();
@@ -39,8 +37,6 @@ function CustomerOrderDetails() {
   const { currency } = useContext(LoginContext);
 
   const buttonStatus = order.status === 'Em Trânsito';
-
-  console.log(order);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/customer/orders/${id}`, {
@@ -51,17 +47,6 @@ function CustomerOrderDetails() {
       .then((res) => setOrder(res.data))
       .catch((error) => console.log(JSON.stringify(error)));
   }, [id]);
-
-  useEffect(() => {
-    // Obs: Esse useEffect possui uma limitação que resultará em um possível erro caso tenhamos
-    // mais de um vendedor cadastrado.
-    axios.get('http://localhost:3001/checkout', {
-      headers: {
-        authorization: JSON.parse(localStorage.getItem('customer')).token,
-      },
-    })
-      .then((res) => setSeller(res.data));
-  }, []);
 
   const handleDeliveryCheckClick = async () => {
     await fetch(`http://localhost:3001/customer/orders/${id}`, {
@@ -105,7 +90,7 @@ function CustomerOrderDetails() {
             data-testid="customer_order_details__element-order-details-label-seller-name"
           >
             ; P. Vend:
-            { seller.name}
+            { order.seller.name}
           </div>
 
         </div>

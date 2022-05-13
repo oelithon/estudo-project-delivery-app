@@ -1,4 +1,4 @@
-const { Sale, SaleProduct, Product } = require('../../database/models');
+const { Sale, SaleProduct, Product, User } = require('../../database/models');
 const { errorResponse, goodResponse } = require('../helpers/response');
 const { decoder } = require('../helpers/jwt');
 const statusCode = require('../helpers/statusCode');
@@ -13,7 +13,8 @@ const findOneOrder = async (param) => {
   const order = await Sale.findOne({
     where: param,
     include: [
-      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+      { model: User, as: 'seller', attributes: { exclude: ['password', 'role', 'email', 'id'] } },
+      { model: Product, as: 'products' },
     ],
   });
   return order;
@@ -26,6 +27,7 @@ const getOrderById = async (id, token) => {
     const order = await findOneOrder({ id, ...userType });
     return goodResponse(statusCode.OK, productDataProcessing(order));
   } catch (err) {
+    console.log(err);
     return errorResponse(statusCode.INTERNAL_SERVER_ERROR, { error: err });
   }
 };
