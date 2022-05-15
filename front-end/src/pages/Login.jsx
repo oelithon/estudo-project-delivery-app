@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Input } from '../components';
 import logo from '../images/Zeca.png';
 import '../styles/Login.css';
@@ -15,6 +16,29 @@ function Login() {
     settingEmail,
     settingPassword,
     enabledToLogin } = useContext(LoginContext);
+
+  const navigate = useNavigate();
+
+  const verifyUser = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user !== null) {
+      switch (user.role) {
+      case 'seller':
+        navigate('/seller/orders');
+        break;
+      case 'customer':
+        navigate('/customer/products');
+        break;
+      default:
+        navigate('/login');
+        break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    verifyUser();
+  });
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');
