@@ -8,14 +8,14 @@ import {
 } from '../../helpers/localStorage';
 import './style.css';
 
-const Counter = ({ productId, price, setCart }) => {
+const Counter = ({ productId, price, setCart, description }) => {
   const [quantity, setQuantity] = useState(0);
   const userRole = readUser().role;
 
   const handleClick = (value) => {
     if (value === '+') {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      addProduct({ productId, price: Number(price) });
+      addProduct({ productId, description, price: Number(price) });
     } else if (value === '-' && quantity === 0) {
       console.log('0 é o mínimo');
     } else {
@@ -77,11 +77,13 @@ const Counter = ({ productId, price, setCart }) => {
 Counter.defaultProps = {
   price: 'R$ 0,00',
   productId: 0,
+  description: '',
 };
 
 Counter.propTypes = {
   price: PropTypes.string,
   productId: PropTypes.number,
+  description: PropTypes.string,
   setCart: PropTypes.func.isRequired,
 };
 

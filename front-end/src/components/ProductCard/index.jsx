@@ -29,7 +29,12 @@ const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
     >
       {description}
       <div className="productCounter">
-        <Counter setCart={ setCart } productId={ productId } price={ price } />
+        <Counter
+          setCart={ setCart }
+          description={ description }
+          productId={ productId }
+          price={ price }
+        />
       </div>
     </div>
   </div>

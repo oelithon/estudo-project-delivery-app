@@ -9,38 +9,15 @@ function Checkout() {
   const navigate = useNavigate();
   const [sellers, setSellers] = useState(['']);
   const [products, setProducts] = useState([{
-    name: '',
+    description: '',
     price: 0,
     quantity: 0,
   }]);
   const { address, number, currency, settingAddress,
     settingNumber } = useContext(LoginContext);
 
-  const myProducts = JSON.stringify([
-    {
-      id: 1,
-      name: 'Becks 330ml',
-      price: 4.49,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      name: 'Antartica Pilsen 300ml',
-      price: 2.49,
-      quantity: 5,
-    },
-    {
-      id: 3,
-      name: 'Heineken 600ml',
-      price: 7.5,
-      quantity: 3,
-    },
-  ]);
-
-  console.log(myProducts);
-
   useEffect(() => {
-    const customerInfo = JSON.parse(localStorage.getItem('customer'));
+    const customerInfo = JSON.parse(localStorage.getItem('user'));
     const arrayOfSellers = [];
     axios.get('http://localhost:3001/checkout', {
       headers: {
@@ -52,8 +29,7 @@ function Checkout() {
   }, []);
 
   useEffect(() => {
-    // localStorage.setItem('myProducts', myProducts);
-    setProducts(JSON.parse(localStorage.getItem('myProducts')));
+    setProducts(JSON.parse(localStorage.getItem('products')));
   }, []);
 
   const handleRemoveClick = (event) => {
@@ -69,7 +45,7 @@ function Checkout() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: JSON.parse(localStorage.getItem('customer')).token,
+        authorization: JSON.parse(localStorage.getItem('user')).token,
       },
       body,
     }).then((res) => res.json())
@@ -104,8 +80,8 @@ function Checkout() {
   return (
     <div>
       <Navbar
-        usertype={ JSON.parse(localStorage.getItem('customer')).role }
-        username={ JSON.parse(localStorage.getItem('customer')).name }
+        usertype={ JSON.parse(localStorage.getItem('user')).role }
+        username={ JSON.parse(localStorage.getItem('user')).name }
       />
       <h3 className="container-title">Finalizar Pedido</h3>
       <div className="main-box">
@@ -136,7 +112,7 @@ function Checkout() {
                     dataTestId={
                       `customer_checkout__element-order-table-name-<${index}>`
                     }
-                    inputInfo={ product.name }
+                    inputInfo={ product.description }
                   />
                 </td>
                 <td className="quantity-box">
