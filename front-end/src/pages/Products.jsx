@@ -47,14 +47,17 @@ const Products = () => {
         Ver carrinho:
         <Link
           to="/customer/checkout"
-          onClick={ () => savePrice(cart) }
-          data-testid="customer_products__button-cart"
         >
-          <p
-            data-testid={ `${userRole}_products__checkout-bottom-value` }
+          <button
+            data-testid="customer_products__button-cart"
+            onClick={ () => savePrice(cart) }
           >
-            { formatNumbertoBRL(cart) }
-          </p>
+            <p
+              data-testid={ `${userRole}_products__checkout-bottom-value` }
+            >
+              { formatNumbertoBRL(cart) }
+            </p>
+          </button>
         </Link>
       </div>
     </>
