@@ -41,7 +41,7 @@ function CustomerOrderDetails() {
   useEffect(() => {
     axios.get(`http://localhost:3001/customer/orders/${id}`, {
       headers: {
-        authorization: JSON.parse(localStorage.getItem('customer')).token,
+        authorization: JSON.parse(localStorage.getItem('user')).token,
       },
     })
       .then((res) => setOrder(res.data))
@@ -53,7 +53,7 @@ function CustomerOrderDetails() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        authorization: JSON.parse(localStorage.getItem('customer')).token,
+        authorization: JSON.parse(localStorage.getItem('user')).token,
       },
       body: JSON.stringify({
         ...order,
@@ -70,8 +70,8 @@ function CustomerOrderDetails() {
   return (
     <div>
       <Navbar
-        usertype={ JSON.parse(localStorage.getItem('customer')).role }
-        username={ JSON.parse(localStorage.getItem('customer')).name }
+        usertype={ JSON.parse(localStorage.getItem('user')).role }
+        username={ JSON.parse(localStorage.getItem('user')).name }
       />
       <h3 className="container-title">Detalhe do Pedido</h3>
       <div className="order-box">

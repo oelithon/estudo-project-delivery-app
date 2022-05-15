@@ -33,10 +33,10 @@ function Checkout() {
   }, []);
 
   const handleRemoveClick = (event) => {
-    const newArrayOfProducts = JSON.parse(localStorage.getItem('myProducts'));
+    const newArrayOfProducts = JSON.parse(localStorage.getItem('products'));
     const index = event.target.parentElement.parentElement.id;
     newArrayOfProducts.splice(index, 1);
-    localStorage.setItem('myProducts', JSON.stringify(newArrayOfProducts));
+    localStorage.setItem('products', JSON.stringify(newArrayOfProducts));
     setProducts(newArrayOfProducts);
   };
 
@@ -62,7 +62,7 @@ function Checkout() {
       acc + product.price * product.quantity
     ), 0);
     const cartProducts = products.map((product) => ({
-      productId: product.id,
+      productId: product.productId,
       quantity: product.quantity,
     }));
 
