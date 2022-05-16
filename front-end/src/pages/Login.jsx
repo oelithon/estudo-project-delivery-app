@@ -19,7 +19,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const verifyUser = () => {
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user !== null) {
       switch (user.role) {
@@ -33,13 +33,8 @@ function Login() {
         navigate('/login');
         break;
       }
-    return {};
     }
-  };
-
-  useEffect(() => {
-    verifyUser();
-  }, [verifyUser]);
+  }, []);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');
