@@ -214,6 +214,7 @@ function Checkout() {
             className="finish-order-button"
             dataTestId="customer_checkout__button-submit-order"
             onClick={ handleFinishOrderClick }
+            type="button"
           >
             FINALIZAR PEDIDO
           </button>
