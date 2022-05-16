@@ -8,7 +8,7 @@ const Navbar = ({ usertype, username }) => {
   const [items, setItems] = useState({ item1: '', item2: '' });
   const [menuLink, setMenuLink] = useState('/');
   const [prefix, setPrefix] = useState('customer_products__');
-  const [secondLink, setSecondLink] = useState('/')
+  const [secondLink, setSecondLink] = useState('/');
 
   useEffect(() => {
     switch (usertype) {
@@ -23,7 +23,7 @@ const Navbar = ({ usertype, username }) => {
     case 'customer':
       setItems({ item1: 'Produtos', item2: 'Pedidos' });
       setMenuLink('/customer/products');
-      setSecondLink('/customer/orders/:id')
+      setSecondLink('/customer/orders/:id');
       setPrefix('customer_products__');
       break;
     default:
@@ -61,7 +61,7 @@ const Navbar = ({ usertype, username }) => {
           { items.item1 }
         </button>
       </Link>
-      <Link to={secondLink}>
+      <Link to={ secondLink }>
         <button className="Navbar__button--items" type="button">
           { items.item2 }
         </button>

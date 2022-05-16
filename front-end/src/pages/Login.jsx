@@ -30,7 +30,6 @@ function Login() {
         navigate('/customer/products');
         break;
       default:
-        navigate('/login');
         break;
       }
     }
