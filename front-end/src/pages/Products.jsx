@@ -53,7 +53,7 @@ const Products = () => {
             type="button"
           >
             <p
-              data-testid={ `${userRole}_products__checkout-bottom-value` }
+              data-testid="customer_products__checkout-bottom-value"
             >
               { formatNumbertoBRL(cart) }
             </p>

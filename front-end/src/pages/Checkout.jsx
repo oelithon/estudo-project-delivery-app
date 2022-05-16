@@ -203,13 +203,20 @@ function Checkout() {
           />
         </div>
         <div className="finish-button-container">
-          <Button
+          {/* <Button
             className="finish-order-button"
             dataTestId="customer_checkout__button-submit-order"
             path=""
             buttonText="FINALIZAR PEDIDO"
             onClick={ handleFinishOrderClick }
-          />
+          /> */}
+          <button
+            className="finish-order-button"
+            dataTestId="customer_checkout__button-submit-order"
+            onClick={ handleFinishOrderClick }
+          >
+            FINALIZAR PEDIDO
+          </button>
         </div>
       </div>
     </div>
