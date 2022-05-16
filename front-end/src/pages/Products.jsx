@@ -11,6 +11,7 @@ const Products = () => {
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
   const [cart, setCart] = useState(0);
+  console.log(cart);
   // const userRole = readUser().role;
 
   useEffect(() => {
@@ -23,7 +24,6 @@ const Products = () => {
     })
       .then((res) => setProducts(res.data))
       .catch((error) => console.log(JSON.stringify(error)));
-    console.log('AQUI');
   }, []);
 
   return (

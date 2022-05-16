@@ -62,6 +62,7 @@ const incrementProduct = (product, allProducts) => {
   allProducts.forEach((objProduct) => {
     if (objProduct.productId === product.productId) {
       objProduct.quantity += 1;
+      // objProduct.price += product.price;
     }
   });
   saveProducts(allProducts);
@@ -89,6 +90,7 @@ const decrementProduct = (product, allProducts) => {
   allProducts.forEach((objProduct) => {
     if (objProduct.productId === product.productId) {
       objProduct.quantity -= 1;
+      // objProduct.price -= product.price;
     }
   });
   saveProducts(allProducts);

@@ -38,7 +38,7 @@ function Login() {
 
   useEffect(() => {
     verifyUser();
-  });
+  }, []);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');

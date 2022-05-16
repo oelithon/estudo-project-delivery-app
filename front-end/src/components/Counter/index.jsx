@@ -23,10 +23,13 @@ const Counter = ({ productId, price, setCart, description }) => {
       removeProduct({ productId, price: Number(price) });
     }
     const productsInfo = getAllProducts();
-    let totalPrice = 0;
-    productsInfo.forEach((product) => {
-      totalPrice += product.price;
-    });
+    // let totalPrice = 0;
+    // productsInfo.forEach((product) => {
+    //   totalPrice += product.price;
+    // });
+    const totalPrice = productsInfo.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0)
     setCart(totalPrice);
   };
 
