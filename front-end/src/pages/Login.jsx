@@ -33,12 +33,13 @@ function Login() {
         navigate('/login');
         break;
       }
+    return {};
     }
   };
 
   useEffect(() => {
     verifyUser();
-  }, []);
+  }, [verifyUser]);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');

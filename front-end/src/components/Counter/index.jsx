@@ -29,7 +29,7 @@ const Counter = ({ productId, price, setCart, description }) => {
     // });
     const totalPrice = productsInfo.reduce((acc, product) => (
       acc + product.price * product.quantity
-    ), 0)
+    ), 0);
     setCart(totalPrice);
   };
 
