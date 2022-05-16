@@ -21,11 +21,11 @@ function LoginProvider({ children }) {
   });
 
   const [address, setAddress] = useState({
-    address: '',
+    address: 'A',
   });
 
   const [number, setNumber] = useState({
-    number: '',
+    number: 0,
   });
 
   const settingName = ({ target }) => {
