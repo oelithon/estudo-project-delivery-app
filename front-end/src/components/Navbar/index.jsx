@@ -8,20 +8,22 @@ const Navbar = ({ usertype, username }) => {
   const [items, setItems] = useState({ item1: '', item2: '' });
   const [menuLink, setMenuLink] = useState('/');
   const [prefix, setPrefix] = useState('customer_products__');
+  const [secondLink, setSecondLink] = useState('/')
 
   useEffect(() => {
     switch (usertype) {
     case 'admin':
       setItems({ item1: 'Gerenciar usuários' });
-      setMenuLink('/'); // Apontar para o link correto quando pronto
+      setMenuLink('/users');
       break;
-    case 'delivery':
+    case 'seller':
       setItems({ item1: 'Pedidos' });
-      setMenuLink('/'); // Apontar para o link correto quando pronto
+      setMenuLink('/customer/orders/:id');
       break;
-    case 'client':
-      setItems({ item1: 'Produtos', item2: 'Meus pedidos' });
+    case 'customer':
+      setItems({ item1: 'Produtos', item2: 'Pedidos' });
       setMenuLink('/customer/products');
+      setSecondLink('/customer/orders/:id')
       setPrefix('customer_products__');
       break;
     default:
@@ -59,7 +61,11 @@ const Navbar = ({ usertype, username }) => {
           { items.item1 }
         </button>
       </Link>
-      <button className="Navbar__button--items" type="button">{ items.item2 }</button>
+      <Link to={secondLink}>
+        <button className="Navbar__button--items" type="button">
+          { items.item2 }
+        </button>
+      </Link>
       <div className="Navbar__buttons--exit--username">
         <button
           data-testid={ `${prefix}element-navbar-user-full-name` }
@@ -69,7 +75,6 @@ const Navbar = ({ usertype, username }) => {
           { username }
         </button>
         <Link onClick={ () => removeLocalStorage('user') } to="/">
-          {/* Apagar local storage */}
           <button
             data-testid={ `${prefix}element-navbar-link-logout` }
             className="Navbar__button--exit"
