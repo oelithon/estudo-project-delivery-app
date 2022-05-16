@@ -41,17 +41,16 @@ function Checkout() {
   };
 
   const finishOrder = async (body) => {
-    await fetch('http://localhost:3001/checkout', {
+    const response = await fetch('http://localhost:3001/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         authorization: JSON.parse(localStorage.getItem('user')).token,
       },
       body,
-    }).then((res) => res.json())
-      .then((data) => {
-        navigate(`/customer/orders/${data.id}`);
-      });
+    }).then((res) => res.json());
+    
+    navigate(`/customer/orders/${response.id}`);
   };
 
   const handleFinishOrderClick = () => {
