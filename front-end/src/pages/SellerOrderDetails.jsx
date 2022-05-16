@@ -152,7 +152,7 @@ function CustomerOrderDetails() {
                 >
                   <ItemBox
                     dataTestId={
-                      `seller_order_details__element-order-table-item-number-<${index}>`
+                      `seller_order_details__element-order-table-item-number-${index}`
                     }
                     inputInfo={ index + 1 }
                   />
@@ -160,7 +160,7 @@ function CustomerOrderDetails() {
                 <td className="description-box">
                   <DescriptionBox
                     dataTestId={
-                      `seller_order_details__element-order-table-name-<${index}>`
+                      `seller_order_details__element-order-table-name-${index}`
                     }
                     inputInfo={ product.name }
                   />
@@ -168,7 +168,7 @@ function CustomerOrderDetails() {
                 <td className="quantity-box">
                   <QuantityBox
                     dataTestId={
-                      `seller_order_details__element-order-table-quantity-<${index}>`
+                      `seller_order_details__element-order-table-quantity-${index}`
                     }
                     inputInfo={ product.quantity }
                   />
@@ -176,7 +176,7 @@ function CustomerOrderDetails() {
                 <td className="price-box">
                   <PriceBox
                     dataTestId={
-                      `seller_order_details__element-order-table-unit-price-<${index}>`
+                      `seller_order_details__element-order-table-unit-price-${index}`
                     }
                     inputInfo={ currency(product.price, 'R$') }
                   />
@@ -184,7 +184,7 @@ function CustomerOrderDetails() {
                 <td className="subtotal-box-order">
                   <SubTotalBox
                     dataTestId={
-                      `seller_order_details__element-order-table-sub-total-<${index}>`
+                      `seller_order_details__element-order-table-sub-total-${index}`
                     }
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />

@@ -102,7 +102,7 @@ function Checkout() {
                 >
                   <ItemBox
                     dataTestId={
-                      `customer_checkout__element-order-table-item-number-<${index}>`
+                      `customer_checkout__element-order-table-item-number-${index}`
                     }
                     inputInfo={ index + 1 }
                   />
@@ -110,7 +110,7 @@ function Checkout() {
                 <td className="description-box">
                   <DescriptionBox
                     dataTestId={
-                      `customer_checkout__element-order-table-name-<${index}>`
+                      `customer_checkout__element-order-table-name-${index}`
                     }
                     inputInfo={ product.description }
                   />
@@ -118,7 +118,7 @@ function Checkout() {
                 <td className="quantity-box">
                   <QuantityBox
                     dataTestId={
-                      `customer_checkout__element-order-table-quantity-<${index}>`
+                      `customer_checkout__element-order-table-quantity-${index}`
                     }
                     inputInfo={ product.quantity }
                   />
@@ -126,7 +126,7 @@ function Checkout() {
                 <td className="price-box">
                   <PriceBox
                     dataTestId={
-                      `customer_checkout__element-order-table-unit-price-<${index}>`
+                      `customer_checkout__element-order-table-unit-price-${index}`
                     }
                     inputInfo={ currency(product.price, 'R$') }
                   />
@@ -134,7 +134,7 @@ function Checkout() {
                 <td className="subtotal-box">
                   <SubTotalBox
                     dataTestId={
-                      `customer_checkout__element-order-table-sub-total-<${index}>`
+                      `customer_checkout__element-order-table-sub-total-${index}`
                     }
                     inputInfo={ currency(product.quantity * product.price, 'R$') }
                   />
@@ -142,7 +142,7 @@ function Checkout() {
                 <td id={ index } className="remove-button">
                   <Button
                     dataTestId={
-                      `customer_checkout__element-order-table-remove-<${index}>`
+                      `customer_checkout__element-order-table-remove-${index}`
                     }
                     path=""
                     buttonText="Remover"
