@@ -49,7 +49,7 @@ function Checkout() {
       },
       body,
     }).then((res) => res.json());
-    
+
     navigate(`/customer/orders/${response.id}`);
   };
 
