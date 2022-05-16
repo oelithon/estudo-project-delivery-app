@@ -25,7 +25,7 @@ function LoginProvider({ children }) {
   });
 
   const [number, setNumber] = useState({
-    number: 0,
+    number: '0',
   });
 
   const settingName = ({ target }) => {
