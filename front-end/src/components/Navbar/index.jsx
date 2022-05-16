@@ -33,17 +33,6 @@ const Navbar = ({ usertype, username }) => {
 
   return (
     <header className="Navbar__header">
-      <div>
-        <div
-          data-testid={ `${prefix}element-navbar-link-products` }
-        >
-          <p>PRODUTOS</p>
-        </div>
-        <div
-          data-testid={ `${prefix}element-navbar-link-orders` }
-        >
-          <p>MEUS PEDIDOS</p>
-        </div>
         <Link to="/">
           <button
             className="Navbar__button--home"
@@ -52,20 +41,24 @@ const Navbar = ({ usertype, username }) => {
             ZECA DELIVERY
           </button>
         </Link>
-      </div>
-      <Link to={ menuLink }>
-        <button
-          className="Navbar__button--items"
-          type="button"
-        >
-          { items.item1 }
-        </button>
-      </Link>
-      <Link to={ secondLink }>
-        <button className="Navbar__button--items" type="button">
-          { items.item2 }
-        </button>
-      </Link>
+        <Link to={ menuLink }>
+          <button
+            data-testid={ `${prefix}element-navbar-link-products` }
+            className="Navbar__button--items"
+            type="button"
+          >
+            {items.item1}
+          </button>
+        </Link>
+        <Link to={ secondLink }>
+          <button
+            data-testid={ `${prefix}element-navbar-link-orders` }
+            className="Navbar__button--items"
+            type="button"
+          >
+            { items.item2 }
+          </button>
+        </Link>
       <div className="Navbar__buttons--exit--username">
         <button
           data-testid={ `${prefix}element-navbar-user-full-name` }

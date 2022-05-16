@@ -23,22 +23,31 @@ const Counter = ({ productId, price, setCart, description }) => {
       removeProduct({ productId, price: Number(price) });
     }
     const productsInfo = getAllProducts();
-    // let totalPrice = 0;
-    // productsInfo.forEach((product) => {
-    //   totalPrice += product.price;
-    // });
     const totalPrice = productsInfo.reduce((acc, product) => (
       acc + product.price * product.quantity
     ), 0);
-    setCart(totalPrice);
+    const formattedTotalPrice = totalPrice
+      .toFixed(2)
+      .toString()
+      .replace(/\./, ',');
+    setCart(formattedTotalPrice);
   };
 
   const handleChange = (value) => {
     setQuantity(parseInt(value, 10));
+    const productsInfo = getAllProducts();
+    const totalPrice = productsInfo.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0);
+    const formattedTotalPrice = totalPrice
+      .toFixed(2)
+      .toString()
+      .replace(/\./, ',');
+    setCart(formattedTotalPrice);
   };
 
   useEffect(() => {
-    if (Number.isNaN(quantity)) setQuantity(0);
+    if (Number.isNaN(quantity)) return setQuantity(0);
   }, [quantity]);
 
   return (

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import Counter from '../Counter';
 import formatNumbertoBRL from '../../helpers/formatNumberToBRL';
 import './style.css';
-// import { readUser } from '../../helpers/localStorage';
-
-// const userRole = readUser().role;
 
 const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
   <div className="ProductCard__div">
