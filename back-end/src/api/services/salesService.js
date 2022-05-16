@@ -55,7 +55,7 @@ const createSale = async (receivedSale, token) => {
   const create = await Sale.create({ ...receivedSale, userId: id });
   await createSaleProduct(receivedSale, create);
   create.dataValues.date = filterDate(create.saleDate);
-  return goodResponse(statusCode.CREATED, { create, token });
+  return goodResponse(statusCode.CREATED, create);
 };
 
 const editStatusSale = async (status, id) => {

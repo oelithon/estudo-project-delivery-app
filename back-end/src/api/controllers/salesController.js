@@ -18,7 +18,7 @@ const createNewSale = async (req, res) => {
   const { status, json } = await createSale(receivedSale, token);
   console.log(status);
   console.log(json);
-  return res.status(status).json(json.create);
+  return res.status(status).json(json);
 };
 const editOrderById = async (req, res) => {
   const token = req.headers.authorization;
