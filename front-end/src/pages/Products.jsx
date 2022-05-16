@@ -51,6 +51,7 @@ const Products = () => {
           <button
             data-testid="customer_products__button-cart"
             onClick={ () => savePrice(cart) }
+            type="button"
           >
             <p
               data-testid={ `${userRole}_products__checkout-bottom-value` }
