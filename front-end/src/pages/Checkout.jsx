@@ -212,7 +212,7 @@ function Checkout() {
           /> */}
           <button
             className="finish-order-button"
-            dataTestId="customer_checkout__button-submit-order"
+            data-testid="customer_checkout__button-submit-order"
             onClick={ handleFinishOrderClick }
             type="button"
           >
