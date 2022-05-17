@@ -84,7 +84,7 @@ function CustomerOrderDetails() {
     });
   };
 
-  const status =  "seller_order_details__element-order-details-label-delivery-status"
+  const status = "seller_order_details__element-order-details-label-delivery-status";
 
   return (
     <div>
