@@ -33,32 +33,32 @@ const Navbar = ({ usertype, username }) => {
 
   return (
     <header className="Navbar__header">
-        <Link to="/">
-          <button
-            className="Navbar__button--home"
-            type="button"
-          >
-            ZECA DELIVERY
-          </button>
-        </Link>
-        <Link to={ menuLink }>
-          <button
-            data-testid={ `${prefix}element-navbar-link-products` }
-            className="Navbar__button--items"
-            type="button"
-          >
-            {items.item1}
-          </button>
-        </Link>
-        <Link to={ secondLink }>
-          <button
-            data-testid={ `${prefix}element-navbar-link-orders` }
-            className="Navbar__button--items"
-            type="button"
-          >
-            { items.item2 }
-          </button>
-        </Link>
+      <Link to="/">
+        <button
+          className="Navbar__button--home"
+          type="button"
+        >
+          ZECA DELIVERY
+        </button>
+      </Link>
+      <Link to={ menuLink }>
+        <button
+          data-testid={ `${prefix}element-navbar-link-products` }
+          className="Navbar__button--items"
+          type="button"
+        >
+          {items.item1}
+        </button>
+      </Link>
+      <Link to={ secondLink }>
+        <button
+          data-testid={ `${prefix}element-navbar-link-orders` }
+          className="Navbar__button--items"
+          type="button"
+        >
+          { items.item2 }
+        </button>
+      </Link>
       <div className="Navbar__buttons--exit--username">
         <button
           data-testid={ `${prefix}element-navbar-user-full-name` }
