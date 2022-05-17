@@ -47,13 +47,15 @@ const createSaleProduct = async (receivedSale, create) => {
   const createSaleProducts = receivedSale.products.map(async ({ productId, quantity }) => (
     SaleProduct.create({ saleId: create.id, productId, quantity })));
 
-  await Promise.all(createSaleProducts);
+  const teste2 = await Promise.all(createSaleProducts);
+  return teste2;
 };
 
 const createSale = async (receivedSale, token) => {
   const { id } = await decoder(token);
   const create = await Sale.create({ ...receivedSale, userId: id });
-  await createSaleProduct(receivedSale, create);
+  const test = await createSaleProduct(receivedSale, create);
+  console.log(test);
   create.dataValues.date = filterDate(create.saleDate);
   return goodResponse(statusCode.CREATED, create);
 };
