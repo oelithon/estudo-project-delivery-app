@@ -10,7 +10,7 @@ function Checkout() {
   const [sellers, setSellers] = useState(['']);
   const [sellerId, setSellerId] = useState({
     sellerId: '2',
-  })
+  });
   const [products, setProducts] = useState([{
     description: '',
     price: 0,

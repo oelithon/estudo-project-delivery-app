@@ -30,7 +30,7 @@ const Products = () => {
       setDisable(false);
     } else {
       setDisable(true);
-    };
+    }
   }, [cart]);
 
   const handleClick = () => {

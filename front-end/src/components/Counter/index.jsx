@@ -63,9 +63,9 @@ const Counter = ({ productId, price, setCart, description }) => {
       >
         -
       </button>
-      <label htmlFor={`${productId}`} className="Counter__label">
+      <label htmlFor={ `${productId}` } className="Counter__label">
         <input
-          id={`${productId}`}
+          id={ `${productId}` }
           data-testid={ `${userRole}_products__input-card-quantity-${productId}` }
           className="Counter__input"
           type="text"
