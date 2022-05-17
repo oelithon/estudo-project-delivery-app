@@ -1,6 +1,9 @@
 const filterDate = (paramDate) => {
   const [month, date, year] = paramDate.toLocaleDateString('en-US').split('/');
-  return `${date}/${month}/${year}`;
+  if (month.length === 2) {
+    return `${date}/${month}/${year}`;
+  }
+  return `${date}/0${month}/${year}`;
 };
 
 const filterArrayDate = (orders) => {

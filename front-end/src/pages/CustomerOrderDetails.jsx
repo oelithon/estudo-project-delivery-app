@@ -102,10 +102,11 @@ function CustomerOrderDetails() {
         </div>
         <div
           className="delivery-status"
-          data-testid={ `customer_order_details__element
-            -order-details-label-delivery-status` }
+          data-testid={ 
+            `customer_order_details__element-order-details-label-delivery-status`
+          }
         >
-          { order.status.toUpperCase() }
+          { order.status }
         </div>
         <button
           className="delivery-check-button"
