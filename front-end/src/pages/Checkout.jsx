@@ -8,6 +8,9 @@ import LoginContext from '../context/LoginContext';
 function Checkout() {
   const navigate = useNavigate();
   const [sellers, setSellers] = useState(['']);
+  const [sellerId, setSellerId] = useState({
+    sellerId: '2',
+  })
   const [products, setProducts] = useState([{
     description: '',
     price: 0,
@@ -54,9 +57,6 @@ function Checkout() {
   };
 
   const handleFinishOrderClick = () => {
-    // https://metring.com.br/como-obter-o-valor-de-um-select-em-javascript#:~:text=Para%20obter%20o%20valor%20de,selecionado%20atrav%C3%A9s%20da%20propriedade%20selectedIndex.&text=Ser%C3%A1%20impresso%20no%20console%20o,J%20para%20abrir%20o%20console).
-    const mySelect = document.getElementById('select');
-    const myOption = mySelect.options[mySelect.selectedIndex];
     const total = products.reduce((acc, product) => (
       acc + product.price * product.quantity
     ), 0);
@@ -66,7 +66,7 @@ function Checkout() {
     }));
 
     const body = JSON.stringify({
-      sellerId: myOption.id,
+      sellerId: sellerId.sellerId,
       totalPrice: total,
       deliveryAddress: address.address,
       deliveryNumber: number.number,
@@ -171,6 +171,11 @@ function Checkout() {
               data-testid="customer_checkout__select-seller"
               className="select-input"
               id="select"
+              onChange={
+                ({ target }) => setSellerId({
+                  sellerId: Number(target.options[target.selectedIndex].id),
+                })
+              }
             >
               { sellers.map((seller) => (
                 <option

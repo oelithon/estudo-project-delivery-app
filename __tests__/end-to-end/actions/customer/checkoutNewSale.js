@@ -5,10 +5,12 @@ const checkoutNewSale = async (
   page,
   { sellerId, deliveryAddress, deliveryNumber }
 ) => {
+  // await page.screenshot({ path: require('path').resolve(process.cwd(), `${Date.now()}.png`) });
   await expect(page).toSelectItemOption(
     customerCheckoutPage.select.orderSeller,
     sellerId
   );
+
   await expect(page).toTypeInInput(
     customerCheckoutPage.input.address,
     `${deliveryAddress}`
