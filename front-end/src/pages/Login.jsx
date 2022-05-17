@@ -33,7 +33,7 @@ function Login() {
         break;
       }
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     console.error('Verificar useEffect da tela de Login');
