@@ -96,6 +96,16 @@ function LoginProvider({ children }) {
     return response;
   };
 
+  const verifyRoute = (data) => {
+    if (data.role === 'customer') {
+      navigate('/customer/products');
+    } else if (data.role === 'seller') {
+      navigate('seller/orders');
+    } else {
+      navigate('/admin/manage');
+    }
+  };
+
   const verifyData = (data) => {
     if (data.token === undefined) {
       setLoading(false);
@@ -109,7 +119,7 @@ function LoginProvider({ children }) {
         token: data.token,
       }));
       setHidden(false);
-      navigate('/customer/products');
+      verifyRoute(data);
     }
   };
 
