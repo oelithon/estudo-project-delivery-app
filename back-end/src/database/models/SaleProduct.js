@@ -22,7 +22,7 @@ module.exports = (sequelize,
     {
       timestamps: false,
       underscored: true,
-      tableName: 'sales_products',
+      tableName: 'salesProducts',
 
     });
 
