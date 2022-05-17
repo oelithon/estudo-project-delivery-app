@@ -249,7 +249,7 @@ describe(requirement(16), () => {
   test("O avaliador testará a existência de um botão de carrinho com um valor total válido e que seja capaz de nos direcionar a tela de checkout", async () => {
     const itemList = action.customer.getRandomProducts();
     showCurrentCart(itemList, global.__TESTDESC__);
-
+    
     expect(true).toBe(true);
     await expect(page).toFindElement(customerProductsPage.button.cart.disabled);
 

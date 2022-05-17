@@ -26,13 +26,16 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    if (cart >= 1) return setDisable(false);
-    setDisable(false);
+    if (parseFloat(cart) >= 1) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    };
   }, [cart]);
 
   const handleClick = () => {
     savePrice(cart);
-    if (cart > 0) navigate('/customer/checkout');
+    navigate('/customer/checkout');
   };
 
   return (

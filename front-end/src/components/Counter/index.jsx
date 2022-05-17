@@ -40,9 +40,9 @@ const Counter = ({ productId, price, setCart, description }) => {
       acc + product.price * product.quantity
     ), 0);
     const formattedTotalPrice = totalPrice
-      .toFixed(2)
-      .toString()
-      .replace(/\./, ',');
+      // .toFixed(2)
+      // .toString()
+      // .replace(/\./, ',');
     setCart(formattedTotalPrice);
   };
 
