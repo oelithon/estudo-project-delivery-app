@@ -84,6 +84,8 @@ function CustomerOrderDetails() {
     });
   };
 
+  const status =  "seller_order_details__element-order-details-label-delivery-status"
+
   return (
     <div>
       <Navbar
@@ -111,9 +113,7 @@ function CustomerOrderDetails() {
         </div>
         <div
           className="delivery-status-seller"
-          data-testid={ 
-            `seller_order_details__element-order-details-label-delivery-status`
-          }
+          data-testid={ status }
         >
           { order.status }
         </div>
