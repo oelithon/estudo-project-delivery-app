@@ -34,15 +34,17 @@ const Counter = ({ productId, price, setCart, description }) => {
   };
 
   const handleChange = (value) => {
+    setQuantity((prevQuantity) => prevQuantity + value);
+    addProduct({ productId, description, price: Number(price) });
     setQuantity(parseInt(value, 10));
     const productsInfo = getAllProducts();
     const totalPrice = productsInfo.reduce((acc, product) => (
       acc + product.price * product.quantity
     ), 0);
     const formattedTotalPrice = totalPrice
-      // .toFixed(2)
-      // .toString()
-      // .replace(/\./, ',');
+      .toFixed(2)
+      .toString()
+      .replace(/\./, ',');
     setCart(formattedTotalPrice);
   };
 
@@ -61,9 +63,9 @@ const Counter = ({ productId, price, setCart, description }) => {
       >
         -
       </button>
-      <label htmlFor="Counter-input" className="Counter__label">
+      <label htmlFor={`${productId}`} className="Counter__label">
         <input
-          id="Counter-input"
+          id={`${productId}`}
           data-testid={ `${userRole}_products__input-card-quantity-${productId}` }
           className="Counter__input"
           type="text"
