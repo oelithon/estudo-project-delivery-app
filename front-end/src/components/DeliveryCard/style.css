@@ -64,3 +64,7 @@
 .PENDENTE {
   background-color: #bfc12f;
 }
+
+.link-delivery-card {
+  color: inherit;
+}

@@ -23,7 +23,7 @@ const Navbar = ({ usertype, username }) => {
     case 'customer':
       setItems({ item1: 'Produtos', item2: 'Pedidos' });
       setMenuLink('/customer/products');
-      setSecondLink('/customer/orders/:id');
+      setSecondLink('/customer/orders');
       setPrefix('customer_products__');
       break;
     default:

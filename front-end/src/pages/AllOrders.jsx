@@ -31,6 +31,7 @@ function AllOrders() {
             status={ order.status }
             date={ order.date }
             price={ order.totalPrice }
+            role={ userRole }
           />
         ))}
       </div>

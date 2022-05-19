@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
 
 const DeliveryCard = (props) => {
-  const { id, status, date, price } = props;
-
+  const { id, status, date, price, role } = props;
   const [deliveryStatusClassName, setDeliveryStatusClassName] = useState('ENTREGUE');
 
   useEffect(() => {
@@ -12,36 +12,41 @@ const DeliveryCard = (props) => {
   }, [status]);
 
   return (
-    <div className="DeliveryCard">
+    <Link to={ `/${role}/orders/${id}` } className="link-delivery-card">
+      <div className="DeliveryCard">
+        <div className="DeliveryCard--order">
+          <div className="DeliveryCard--order--pedido">Pedido</div>
+          <div
+            className="DeliveryCard--order--number"
+            data-testId={ `${role}_orders__element-order-id-${id}` }
+          >
+            { id }
+          </div>
+        </div>
 
-      <div className="DeliveryCard--order">
-        <div className="DeliveryCard--order--pedido">Pedido</div>
         <div
-          className="DeliveryCard--order--number"
-          data-testId={ `customer_orders__element-order-id-${id}` }
+          className={ `DeliveryCard--status ${deliveryStatusClassName}` }
+          data-testId={ `${role}_orders__element-delivery-status-${id}` }
         >
-          { id }
+          {status}
+        </div>
+
+        <div className="DeliveryCard--dateAndPrice">
+          <div
+            className="DeliveryCard--dateAndPrice--date"
+            data-testId={ `${role}_orders__element-order-date-${id}` }
+          >
+            { date }
+          </div>
+          <div
+            className="DeliveryCard--dateAndPrice--price"
+            data-testId={ `${role}_orders__element-card-price-${id}` }
+          >
+            { price ? price.replace('.', ',') : price }
+          </div>
         </div>
       </div>
-
-      <div
-        className={ `DeliveryCard--status ${deliveryStatusClassName}` }
-        data-testId={ `customer_orders__element-delivery-status-${status}` }
-      >
-        {status}
-      </div>
-
-      <div className="DeliveryCard--dateAndPrice">
-        <div
-          className="DeliveryCard--dateAndPrice--date"
-          data-testId={ `customer_orders__element-order-date-${date}` }
-        >
-          { date }
-        </div>
-        <div className="DeliveryCard--dateAndPrice--price">{price}</div>
-      </div>
-
-    </div>
+    </Link>
   );
 };
 
