@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { addProduct, removeProduct, getAllProducts } from '../../helpers/localStorage';
+import {
+  addProduct,
+  removeProduct,
+  getAllProducts,
+  readUser,
+} from '../../helpers/localStorage';
 import './style.css';
 
-const Counter = ({ productId, price, setCart }) => {
+const Counter = ({ productId, price, setCart, description }) => {
   const [quantity, setQuantity] = useState(0);
+  const userRole = readUser().role;
 
   const handleClick = (value) => {
     if (value === '+') {
       setQuantity((prevQuantity) => prevQuantity + 1);
-      addProduct({ productId, price: Number(price) });
+      addProduct({ productId, description, price: Number(price) });
     } else if (value === '-' && quantity === 0) {
       console.log('0 é o mínimo');
     } else {
@@ -17,36 +23,50 @@ const Counter = ({ productId, price, setCart }) => {
       removeProduct({ productId, price: Number(price) });
     }
     const productsInfo = getAllProducts();
-    let totalPrice = 0;
-    productsInfo.forEach((product) => {
-      totalPrice += product.price;
-    });
-    setCart(totalPrice);
+    const totalPrice = productsInfo.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0);
+    const formattedTotalPrice = totalPrice
+      .toFixed(2)
+      .toString()
+      .replace(/\./, ',');
+    setCart(formattedTotalPrice);
   };
 
   const handleChange = (value) => {
+    setQuantity((prevQuantity) => prevQuantity + value);
+    addProduct({ productId, description, price: Number(price) });
     setQuantity(parseInt(value, 10));
+    const productsInfo = getAllProducts();
+    const totalPrice = productsInfo.reduce((acc, product) => (
+      acc + product.price * product.quantity
+    ), 0);
+    const formattedTotalPrice = totalPrice
+      .toFixed(2)
+      .toString()
+      .replace(/\./, ',');
+    setCart(formattedTotalPrice);
   };
 
   useEffect(() => {
-    if (Number.isNaN(quantity)) setQuantity(0);
+    if (Number.isNaN(quantity)) return setQuantity(0);
   }, [quantity]);
 
   return (
     <div className="Counter__div">
       <button
         className="Counter__button --left"
-        data-testid="19"
+        data-testid={ `${userRole}_products__button-card-rm-item-${productId}` }
         type="button"
         value="-"
         onClick={ ({ target }) => handleClick(target.value) }
       >
         -
       </button>
-      <label htmlFor="Counter-input" className="Counter__label">
+      <label htmlFor={ `${productId}` } className="Counter__label">
         <input
-          id="Counter-input"
-          data-testid="20"
+          id={ `${productId}` }
+          data-testid={ `${userRole}_products__input-card-quantity-${productId}` }
           className="Counter__input"
           type="text"
           value={ quantity }
@@ -59,7 +79,7 @@ const Counter = ({ productId, price, setCart }) => {
         className="Counter__button --right"
         type="button"
         value="+"
-        data-testid="18"
+        data-testid={ `${userRole}_products__button-card-add-item-${productId}` }
         onClick={ ({ target }) => handleClick(target.value) }
       >
         +
@@ -71,11 +91,13 @@ const Counter = ({ productId, price, setCart }) => {
 Counter.defaultProps = {
   price: 'R$ 0,00',
   productId: 0,
+  description: '',
 };
 
 Counter.propTypes = {
   price: PropTypes.string,
   productId: PropTypes.number,
+  description: PropTypes.string,
   setCart: PropTypes.func.isRequired,
 };
 

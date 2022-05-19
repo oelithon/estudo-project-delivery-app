@@ -11,16 +11,27 @@ const ProductCard = ({ setCart, price, description, imgURL, productId }) => (
         src={ imgURL }
         alt="Product logo"
         className="productImage"
-        data-testid="17"
+        data-testid={ `customer_products__img-card-bg-image-${productId}` }
       />
     </div>
-    <div className="productPrice" data-testid="16">
-      { formatNumbertoBRL(price) }
+    <div
+      className="productPrice"
+      data-testid={ `customer_products__element-card-price-${productId}` }
+    >
+      {formatNumbertoBRL(price)}
     </div>
-    <div className="productDescriptionAndCounter" data-testid="15">
-      { description }
+    <div
+      className="productDescriptionAndCounter"
+      data-testid={ `customer_products__element-card-title-${productId}` }
+    >
+      {description}
       <div className="productCounter">
-        <Counter setCart={ setCart } productId={ productId } price={ price } />
+        <Counter
+          setCart={ setCart }
+          description={ description }
+          productId={ productId }
+          price={ price }
+        />
       </div>
     </div>
   </div>

@@ -1,11 +1,23 @@
 const USER_KEY = 'user';
 const PRODUCTS_KEY = 'products';
+const PRICE_KEY = 'price';
 
 const emptyUser = {
   name: '',
   email: '',
   role: '',
   token: '',
+};
+
+export const savePrice = (price) => {
+  localStorage.setItem(PRICE_KEY, JSON.stringify(price));
+};
+
+export const getTotalPrice = () => {
+  if (!JSON.parse(localStorage.getItem(PRICE_KEY))) {
+    localStorage.setItem(PRICE_KEY, JSON.stringify(0));
+  }
+  return JSON.parse(localStorage.getItem(PRICE_KEY));
 };
 
 // função para remover qualquer coisa do localStorage,
@@ -50,7 +62,7 @@ const incrementProduct = (product, allProducts) => {
   allProducts.forEach((objProduct) => {
     if (objProduct.productId === product.productId) {
       objProduct.quantity += 1;
-      objProduct.price += product.price;
+      // objProduct.price += product.price;
     }
   });
   saveProducts(allProducts);
@@ -78,7 +90,7 @@ const decrementProduct = (product, allProducts) => {
   allProducts.forEach((objProduct) => {
     if (objProduct.productId === product.productId) {
       objProduct.quantity -= 1;
-      objProduct.price -= product.price;
+      // objProduct.price -= product.price;
     }
   });
   saveProducts(allProducts);

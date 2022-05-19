@@ -5,7 +5,6 @@ import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -22,11 +21,11 @@ function LoginProvider({ children }) {
   });
 
   const [address, setAddress] = useState({
-    address: '',
+    address: 'A',
   });
 
   const [number, setNumber] = useState({
-    number: '',
+    number: '0',
   });
 
   const settingName = ({ target }) => {
@@ -97,21 +96,30 @@ function LoginProvider({ children }) {
     return response;
   };
 
+  const verifyRoute = (data) => {
+    if (data.role === 'customer') {
+      navigate('/customer/products');
+    } else if (data.role === 'seller') {
+      navigate('seller/orders');
+    } else {
+      navigate('/admin/manage');
+    }
+  };
+
   const verifyData = (data) => {
-    console.log(data);
     if (data.token === undefined) {
       setLoading(false);
       setHidden(true);
     } else {
       setLoading(false);
-      localStorage.setItem('customer', JSON.stringify({
+      localStorage.setItem('user', JSON.stringify({
         name: data.name,
         email: data.email,
         role: data.role,
         token: data.token,
       }));
       setHidden(false);
-      navigate('/customer/products');
+      verifyRoute(data);
     }
   };
 
@@ -131,15 +139,19 @@ function LoginProvider({ children }) {
   };
 
   function currency(value, coin) {
-    const fixedValue = value.toFixed(2);
+    let newValue = 0;
+    if (typeof value === 'string') {
+      newValue = Number(value);
+    } else {
+      newValue = value;
+    }
+    const fixedValue = newValue.toFixed(2);
     const modifiedValue = fixedValue.replace('.', ',');
     const newCurrency = `${coin} ${modifiedValue}`;
     return newCurrency;
   }
 
   const context = {
-    products,
-    setProducts,
     address,
     setAddress,
     number,

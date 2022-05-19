@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Navbar, ProductCard } from '../components';
 import '../styles/Products.css';
-import formatNumbertoBRL from '../helpers/formatNumberToBRL';
-import { readUser } from '../helpers/localStorage';
+import { readUser, savePrice } from '../helpers/localStorage';
 
 const Products = () => {
   const [products, setProducts] = useState(['']);
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
-  const [cart, setCart] = useState(0);
+  const [cart, setCart] = useState('0,00');
+  const [disable, setDisable] = useState(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    axios.get('http://localhost:3001/customer/products', {
-      headers: { Authorization: process.env.REACT_APP_TOKEN },
-    })
-      .then((res) => setProducts(res.data))
-      .catch((error) => console.log(JSON.stringify(error)));
     const userInfo = readUser();
     setUsername(userInfo.name);
     setUserRole(userInfo.role);
+
+    axios.get('http://localhost:3001/customer/products', {
+      headers: { Authorization: userInfo.token },
+    })
+      .then((res) => setProducts(res.data))
+      .catch((error) => console.log(JSON.stringify(error)));
   }, []);
+
+  useEffect(() => {
+    if (parseFloat(cart) >= 1) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }, [cart]);
+
+  const handleClick = () => {
+    savePrice(cart);
+    navigate('/customer/checkout');
+  };
 
   return (
     <>
@@ -37,11 +53,20 @@ const Products = () => {
           />
         ))}
       </div>
-      <div data-testid="21" className="TotalPrice">
-        Ver carrinho:
-        <Link to="/customer/checkout" data-testid="79">
-          { formatNumbertoBRL(cart) }
-        </Link>
+      <div
+        className="TotalPrice"
+      >
+        {'Ver carrinho: R$ '}
+        <button
+          data-testid="customer_products__button-cart"
+          onClick={ handleClick }
+          type="button"
+          disabled={ disable }
+        >
+          <span data-testid={ `${userRole}_products__checkout-bottom-value` }>
+            { cart }
+          </span>
+        </button>
       </div>
     </>
   );
