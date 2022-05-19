@@ -4,7 +4,7 @@ import Register from './Register';
 import Checkout from './Checkout';
 import CustomerOrderDetails from './CustomerOrderDetails';
 import SellerOrderDetails from './SellerOrderDetails';
-import AllOrders from './AllOrders'
+import AllOrders from './AllOrders';
 
 export {
   Login,
